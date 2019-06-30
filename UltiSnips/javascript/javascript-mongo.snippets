@@ -1,0 +1,65 @@
+snippet mongoose_tpl "mongoose template"
+const mongoose = require('mongoose')
+const path = require('path')
+const uniqueValidater = require('mongoose-unique-validator')
+const fs = require('fs')
+
+const { logger } = require('${1:utils}')
+const { db } = require('${2:config}')
+
+const { URI } = db
+
+mongoose.connect(URI, () => {
+  logger.info(`db connected on ${URI}`)
+})
+
+const schemaFiles = fs.readdirSync(path.resolve('${3:shema}'))
+// 加载model以及注册插件
+modelFiles.forEach(file => {
+  const schema = require(path.resolve(${4:file}))
+  schema.plugin(uniqueValidater)
+})
+
+module.exports = mongoose
+
+module.exports.getError = (err) => {
+  var message = ''
+
+  if (err.error) {
+    message = err.error
+  } else if (err.message && !err.errors) {
+    message = err.message
+  } else {
+    for (const errName in err.errors) {
+      if (err.errors[errName].message) {
+        message = err.errors[errName].message
+        break
+      }
+    }
+  }
+
+  return message
+}
+endsnippet
+
+snippet mongoose_schema_tpl "mongoose schema template"
+const mongoose = require('mongoose')
+const Schema = require('mongoose').Schema
+
+const schema = new Schema({
+  name: {
+    type: String,
+    required: true
+  }
+})
+
+schema.index({
+  name: 1
+}, {
+  unique: 'name is unique'
+})
+
+module.exports = schema
+
+mongoose.model('User', schema)
+endsnippet

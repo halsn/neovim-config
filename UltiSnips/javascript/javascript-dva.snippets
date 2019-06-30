@@ -1,0 +1,94 @@
+snippet dva_service "dva service"
+import { request } from '${2:utils}'
+
+export function get(params) {
+  return request('${1:/api}', {
+    method: 'get',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    params
+  })
+}
+
+export function del(params) {
+  return request('$1', {
+    method: 'delete',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    params
+  })
+}
+export function post(data) {
+  return request('$1', {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    data
+  })
+}
+
+export function put(data) {
+  return request('$1', {
+    method: 'put',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    data
+  })
+}
+endsnippet  
+
+snippet dva_model "dva model"
+/* global localStorage document window */
+import { message } from 'antd'
+import { get } from '${3:service}'
+import { axios } from '${4:utils}'
+
+const ERROR_MSG_DURATION = 3 // 3 秒
+
+export default {
+  namespace: '${1:namespace}',
+  subscriptions: {
+    // { dispatch, history }
+    setup({ dispatch, history }) {
+      history.listen(location => {
+        if (location.pathname === '${3:/api/}') {
+          const token = localStorage.getItem('jwttoken')
+          if (token) {
+            axios.defaults.headers.common.Authorization = 'Bearer ' + token
+          }
+          dispatch({ type: 'get' })
+        }
+      })
+    }
+  },
+  state: {},
+  effects: {
+    *get({ payload }, { call, put }) {
+      const { data } = yield call(get, payload)
+      if (data.success) {
+        yield put({ type: 'getSuccess', data })
+      } else {
+        yield put({ type: 'getFail', data })
+      }
+    }
+  },
+  reducers: {
+    getSuccess(state, { data }) {
+      message.success(data.success, ERROR_MSG_DURATION)
+      return {
+        ...state
+      }
+    },
+    getFail(state, { data }) {
+      message.error(data.error, ERROR_MSG_DURATION)
+      return {
+        ...state
+      }
+    }
+  }
+}
+endsnippet

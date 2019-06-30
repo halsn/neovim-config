@@ -1,0 +1,37 @@
+# range函数
+snippet	range "range (m, n)"
+const range = (m, n) => Array(n - m + 1).fill().map((x, i) => m + i)
+$0
+endsnippet
+
+# charMap数字映射大写字母
+snippet charMap "0-25 => A-Z"
+const charMap = range(0, 25).map(e => String.fromCharCode(e + 65))
+endsnippet
+
+# 深度取值函数
+snippet deep_get "deepGet(obj, ['user', 'posts', 0, 'comments'])"
+const deepGet = (o, p) => p.reduce((xs, x) => (xs && xs[x]) ? xs[x] : null, o)
+endsnippet
+
+# Obj克隆函数
+snippet cloneobj "clone an object from source"
+JSON.parse(JSON.stringify($0))
+endsnippet
+
+# 找到数组中符合elm的所有index
+snippet get_array_indexs "find indexs of elm in array"
+const getIndexs = (arr, elm) => arr.map((e, idx) => e === elm ? idx : '').filter(String)
+endsnippet
+
+snippet sub_array_from_another "subtract an array from another"
+const ${0:subArray} = ${1:to}.reduce((p, c) => ($2.includes(c) ? p.splice(p.indexOf(c), 1) : null, p), ${2:from})
+endsnippet
+
+snippet array_to_count_map "convert array to count map"
+const ${0:Map} = ${1:array}.reduce((p, c) => (p[c] = (p[c] === undefined ? 1 : p[c] + 1), p), {})
+endsnippet
+
+snippet flat_array "flatten nested array"
+const flatArray = arr => [].concat(...arr.map(v => (Array.isArray(v) ? deepFlatten(v) : v)))
+endsnippet
