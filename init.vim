@@ -50,22 +50,19 @@ call plug#end()
 
 let s:script_cwd = expand('<sfile>:p:h')
 
-let s:viml_path = split(globpath(s:script_cwd . '/viml', '*.vim'), '\n')
-" 插件设置
-let s:config_path = split(globpath(s:script_cwd . '/config', '*.vim'), '\n')
+let s:source_list = [
+      \ 'viml',
+      \ 'config',
+      \]
 
-for s:cfg in s:viml_path
-  if filereadable(s:cfg)
-    execute 'source ' . s:cfg
-  endif
-endfor
-
-for s:cfg in s:config_path
-  if filereadable(s:cfg)
-    execute 'source ' . s:cfg
-  endif
+for s:item in s:source_list
+  let s:path = split(globpath(s:script_cwd . '/' . s:item, '*.vim'), '\n')
+  for s:cfg in s:path
+    if filereadable(s:cfg)
+      execute 'source ' . s:cfg
+    endif
+  endfor
 endfor
 
 unlet s:script_cwd
-unlet s:viml_path
-unlet s:config_path
+unlet s:source_list
