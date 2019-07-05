@@ -21,17 +21,17 @@ endsnippet
 
 # 找到数组中符合elm的所有index
 snippet get_array_indexs "find indexs of elm in array"
-const getIndexs = (arr, elm) => arr.map((e, idx) => e === elm ? idx : '').filter(String)
+const getIndexs = (arr, elm) => arr.map((e, idx) => e === elm ? idx : '').filter(String)$0
 endsnippet
 
 snippet sub_array_from_another "subtract an array from another"
-const ${0:subArray} = ${1:to}.reduce((p, c) => ($2.includes(c) ? p.splice(p.indexOf(c), 1) : null, p), ${2:from})
+const ${0:subArray} = ${1:to}.reduce((p, c) => ($2.includes(c) ? p.splice(p.indexOf(c), 1) : null, p), ${2:from})$0
 endsnippet
 
 snippet array_to_count_map "convert array to count map"
-const ${0:Map} = ${1:array}.reduce((p, c) => (p[c] = (p[c] === undefined ? 1 : p[c] + 1), p), {})
+const ${0:Map} = ${1:array}.reduce((p, c) => (p[c] = (p[c] === undefined ? 1 : p[c] + 1), p), {})$0
 endsnippet
 
 snippet flat_array "flatten nested array"
-const flatArray = arr => [].concat(...arr.map(v => (Array.isArray(v) ? deepFlatten(v) : v)))
+const flatArray = arr => [].concat(...arr.map(v => (Array.isArray(v) ? flatArray(v) : v)))$0
 endsnippet

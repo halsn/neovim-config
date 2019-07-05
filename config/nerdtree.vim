@@ -25,3 +25,5 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 let NERDTreeMouseMode=2
 let NERDTreeQuitOnOpen=1
 let NERDTreeAutoDeleteBuffer = 1
+
+" autocmd BufEnter * lcd %:p:h

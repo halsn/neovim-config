@@ -1,3 +1,11 @@
+snippet * "function description"
+/**
+ * ${1:Description}
+ * @param (${2}) ${3:param}
+ * @return (${4}) ${5:return}
+ */
+endsnippet
+
 snippet /* "A JSDoc comment" b
 /**
  * ${1:${VISUAL}}$0
@@ -134,7 +142,7 @@ console.log($0)
 endsnippet
 
 snippet cll "console.log"
-console.log(\``!v line(".")` - $0\`)
+console.log(\``!v line(".")` - $1\`$2)$0
 endsnippet
 
 snippet ce "console.error"
@@ -157,14 +165,6 @@ snippet im "import {} from ''"
 import ${1} from '${0}'
 endsnippet
 
-snippet /** "function description"
-/**
- * ${1:Description}
- * @param (${2}) ${3:param}
- * @return (${4}) ${5:return}
- */
-endsnippet
-
 snippet ret "return"
 return ${0}
 endsnippet
@@ -181,18 +181,6 @@ snippet .catch ".catch(err)"
 .catch(err => {
   ${0}
 })
-endsnippet
-
-snippet parserr "JSON.parse(e.message)"
-var err = JSON.parse(e.message)
-if (err.errcode) {
-  userMgr.sendMsg(userId, '$1', err)
-} else {
-  userMgr.sendMsg(userId, '$1', {
-    errcode: -1,
-    errmsg: 'unkown error'
-  })
-}
 endsnippet
 
 snippet var "var = "
@@ -222,7 +210,7 @@ async function ${1:name} (${2}) {
   try {
     $0
   } catch (e) {
-    logger.error(e)
+    $3
   }
 }
 endsnippet
