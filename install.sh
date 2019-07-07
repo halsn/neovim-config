@@ -26,6 +26,6 @@ cd $HOME/.config/nvim
 cp -r ./fonts/. $HOME/.fonts
 
 fc-cache -fv
-nvim +PlugInstall +qa!
+nvim +PlugInstall +UpdateRemotePlugins +qa!
 
 set +e

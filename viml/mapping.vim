@@ -7,8 +7,8 @@ let mapleader=","
 set timeout timeoutlen=1500
 
 " 展开错误列表
-nmap <leader>e <Esc>:llist<CR>
-nmap <leader>w <Esc>:ll<CR>
+" nmap <leader>e <Esc>:llist<CR>
+" nmap <leader>w <Esc>:ll<CR>
 
 " buffer list
 nmap <leader><Space> <Esc>:CtrlSpace<CR>
@@ -30,6 +30,8 @@ nmap <leader>t :NERDTreeToggle<cr>
 nmap <leader><leader>t :NERDTreeFind<cr>
 " TagBar
 nmap <leader>b :Tagbar<cr>
+" Vista
+nmap <leader><leader>v :Vista!!<cr>
 " 快速注释
 nmap <leader>v <leader>c<space>
 vmap <leader>v <leader>c<space>
@@ -42,6 +44,7 @@ nmap d<Space> zd
 vmap d<Space> zd
 " 列出所有匹配单词对行
 nmap <Leader>m <Esc>:vim // % \| :copen<cr>
+nmap <Leader><space> <Esc>:CocList --auto-preview buffers<cr>
 
 " 内置Terminal快捷键
 " 自动insert 取消line number
@@ -74,7 +77,7 @@ nmap <A-down> <Esc>:resize -1<CR>
 vmap // y/<C-R>"<CR>
 
 " ale快捷键
-nmap <leader><leader>d <Esc>:ALEGoToDefinitionInSplit<CR>
-nmap <leader><leader>r <Esc>:ALEFindReferences<CR>
-vmap <leader><leader>d <Esc>:ALEGoToDefinitionInSplit<CR>
-vmap <leader><leader>r <Esc>:ALEFindReferences<CR>
+" nmap <leader><leader>d <Esc>:ALEGoToDefinitionInSplit<CR>
+" nmap <leader><leader>r <Esc>:ALEFindReferences<CR>
+" vmap <leader><leader>d <Esc>:ALEGoToDefinitionInSplit<CR>
+" vmap <leader><leader>r <Esc>:ALEFindReferences<CR>

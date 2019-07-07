@@ -1,0 +1,10 @@
+{
+  // "coc.preferences.jumpCommand": "split",
+  "tslint.autoFixOnSave": true,
+  "eslint.filetypes": [
+    "javascript",
+    "javascript.jsx",
+    "javascriptreact"
+  ],
+  "eslint.autoFixOnSave": true,
+}
