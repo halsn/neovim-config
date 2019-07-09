@@ -7,4 +7,8 @@
     "javascriptreact"
   ],
   "eslint.autoFixOnSave": true,
+  "html.suggest.angular1": false,
+  "diagnostic-languageserver.filetypes": {
+    "sh": "shellcheck",
+  },
 }
