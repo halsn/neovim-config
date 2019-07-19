@@ -44,7 +44,18 @@ nmap d<Space> zd
 vmap d<Space> zd
 " 列出所有匹配单词对行
 nmap <Leader>m <Esc>:vim // % \| :copen<cr>
-nmap <Leader><space> <Esc>:CocList --auto-preview buffers<cr>
+
+" coc mapping
+" nmap <Leader><space> <Esc>:CocList --auto-preview buffers<cr>
+nmap <Leader><space> <Esc>:CocList buffers<cr>
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+nmap <silent> <leader>w <Plug>(coc-diagnostic-next)
+nmap <silent> <leader>e :<C-u>CocList --normal --auto-preview diagnostics<cr>
 
 " 内置Terminal快捷键
 " 自动insert 取消line number

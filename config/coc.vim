@@ -15,15 +15,6 @@ set updatetime=300
 
 " set shortmess+=c
 
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-nmap <silent> <leader>w <Plug>(coc-diagnostic-next)
-nmap <silent> <leader>e :<C-u>CocList --normal --auto-preview diagnostics<cr>
-
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
@@ -48,3 +39,5 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+
+" let g:coc_enable_locationlist=0

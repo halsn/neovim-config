@@ -3,7 +3,7 @@
 set -e
 
 sudo apt-get -y install software-properties-common
-sudo add-apt-repository -y ppa:neovim-ppa/unstable
+sudo add-apt-repository -y ppa:neovim-ppa/stable
 sudo apt-get update
 sudo apt-get -y install neovim
 sudo apt-get -y install python-dev python-pip python3-dev python3-pip
@@ -16,7 +16,7 @@ if [ -d $HOME/tmp/neovim-config ]; then
   rm -rf $HOME/tmp/neovim-config
 fi
 
-git clone git@github.com:halsn/neovim-config ~/tmp/neovim-config
+git clone git@github.com:halsn/neovim-config $HOME/tmp/neovim-config
 cd $HOME/tmp
 mv ./neovim-config $HOME/.config/nvim/
 if [ ! -d $HOME/.fonts ]; then
