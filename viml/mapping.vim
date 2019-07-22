@@ -83,9 +83,10 @@ nmap <A-k> <C-w>k
 nmap <A-l> <C-w>l
 nmap <A-left> <Esc>:vertical resize -1<CR>
 nmap <A-right> <Esc>:vertical resize +1<CR>
-nmap <A-up> <Esc>:resize +1<CR>
+nmap <A-up> <Esc>:resize +1<CR><S-n>
 nmap <A-down> <Esc>:resize -1<CR>
 vmap // y/<C-R>"<CR>
+vmap .. y/<C-R>"<CR><S-n><S-n>
 
 " ale快捷键
 " nmap <leader><leader>d <Esc>:ALEGoToDefinitionInSplit<CR>
