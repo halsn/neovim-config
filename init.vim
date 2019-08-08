@@ -38,6 +38,7 @@ Plug 'digitaltoad/vim-pug'                                      " Pug
 Plug 'nikvdp/ejs-syntax'                                        " ejs
 Plug 'mustache/vim-mustache-handlebars'                         " hbs
 Plug 'leafgarland/typescript-vim'                               " typescript
+Plug 'chemzqm/wxapp.vim'                                        " 小程序
 " Plug 'mxw/vim-jsx'
 " Plug 'digitaltoad/vim-jade'
 " Plug 'posva/vim-vue'

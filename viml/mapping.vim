@@ -57,6 +57,12 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <silent> <leader>w <Plug>(coc-diagnostic-next)
 nmap <silent> <leader>e :<C-u>CocList --normal --auto-preview diagnostics<cr>
 
+" Remap for format selected region
+xmap <leader><leader>f  <Plug>(coc-format-selected)
+nmap <leader><leader>f  <Plug>(coc-format-selected)
+" Fix autofix problem of current line
+nmap <leader><leader>qf  <Plug>(coc-fix-current)
+
 " 内置Terminal快捷键
 " 自动insert 取消line number
 " autocmd BufEnter,TermOpen,WinEnter term://* startinsert
