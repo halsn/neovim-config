@@ -46,7 +46,7 @@ vmap d<Space> zd
 " nmap <Leader>m <Esc>:vim // % \| :copen<cr>
 " nmap <Leader>m <Esc>:vim // % \| :Ag <cr>
 nmap <silent> \| :exe 'CocList --auto-preview --normal --input='.expand('<cword>').' grep'<CR>
-nmap <silent> <leader>m :exe 'CocList --auto-preview --normal --input='.expand('<cword>').' words'<CR>
+" nmap <silent> <leader>m :exe 'CocList --auto-preview --normal --input='.expand('<cword>').' words'<CR>
 
 " coc mapping
 " nmap <silent> <Leader><space> <Esc>:CocList --normal --auto-preview buffers<cr>
