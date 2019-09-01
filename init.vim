@@ -30,6 +30,7 @@ Plug 'editorconfig/editorconfig-vim'                            " editorconfig
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'airblade/vim-rooter'
 
 " syntax
 Plug 'ekalinin/Dockerfile.vim'                                  " Dockerfile

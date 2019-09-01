@@ -43,10 +43,13 @@ vmap <Space> zf
 nmap d<Space> zd
 vmap d<Space> zd
 " 列出所有匹配单词对行
-nmap <Leader>m <Esc>:vim // % \| :copen<cr>
+" nmap <Leader>m <Esc>:vim // % \| :copen<cr>
+" nmap <Leader>m <Esc>:vim // % \| :Ag <cr>
+nmap <silent> \| :exe 'CocList --auto-preview --normal --input='.expand('<cword>').' grep'<CR>
+nmap <silent> <leader>m :exe 'CocList --auto-preview --normal --input='.expand('<cword>').' words'<CR>
 
 " coc mapping
-" nmap <Leader><space> <Esc>:CocList --auto-preview buffers<cr>
+" nmap <silent> <Leader><space> <Esc>:CocList --normal --auto-preview buffers<cr>
 nmap <Leader><space> <Esc>:CocList buffers<cr>
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)

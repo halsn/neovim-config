@@ -40,4 +40,6 @@ function! s:show_documentation()
   endif
 endfunction
 
+let g:ag_working_path_mode="r"
+
 " let g:coc_enable_locationlist=0
