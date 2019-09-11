@@ -35,3 +35,9 @@ endsnippet
 snippet flat_array "flatten nested array"
 const flatArray = arr => [].concat(...arr.map(v => (Array.isArray(v) ? flatArray(v) : v)))$0
 endsnippet
+
+snippet plain_stringify "reformat JSON.stringify"
+const plainStringify = (obj) => {
+  return JSON.stringify(obj).replace(/\"([^(\")"]+)\":/g, "$1:")
+}
+endsnippet
