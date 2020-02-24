@@ -1,4 +1,4 @@
-autocmd BufEnter * if winnr("$") == 1 && vista#sidebar#IsVisible() | execute "normal! :q!\<CR>" | endif
+" autocmd BufEnter * if winnr("$") == 1 && vista#sidebar#IsVisible() | execute "normal! :q!\<CR>" | endif
 
 " e.g., more compact: ["▸ ", ""]
 let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
