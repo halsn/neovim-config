@@ -73,6 +73,6 @@ snippet format_yyyy_mm_dd "description"
 convertDate(date) {
   const first = date.toISOString().split('T')[0]
   const second = date.toISOString().split('T')[1]
-  return `${first} ${second.slice(0, 8)}`
+  return first + second.slice(0, 8)
 }
 endsnippet

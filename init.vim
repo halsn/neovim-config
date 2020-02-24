@@ -42,7 +42,7 @@ Plug 'leafgarland/typescript-vim'                               " typescript
 Plug 'chemzqm/wxapp.vim'                                        " 小程序
 " Plug 'mxw/vim-jsx'
 " Plug 'digitaltoad/vim-jade'
-" Plug 'posva/vim-vue'
+Plug 'posva/vim-vue'
 " Plug 'cakebaker/scss-syntax.vim'
 " Plug 'tpope/vim-haml'
 
