@@ -67,6 +67,20 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
+" Add `:RN` command for rename
+command! -nargs=0 RN   :CocAction('rename')
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
 nmap <silent> <leader>w <Plug>(coc-diagnostic-next)
 nmap <silent> <leader>e :<C-u>CocList --normal --auto-preview diagnostics<cr>
 

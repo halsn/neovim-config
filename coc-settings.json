@@ -15,5 +15,6 @@
   "diagnostic-languageserver.filetypes": {
     "sh": "shellcheck",
   },
+  "coc.source.word.priority": 10,
   "java.format.settings.url": "/home/halsn/.config/coc/extensions/node_modules/redhat.java/eclipse-formatter.xml"
 }
