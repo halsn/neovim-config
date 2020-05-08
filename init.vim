@@ -45,6 +45,9 @@ Plug 'chemzqm/wxapp.vim'                                        " 小程序
 Plug 'posva/vim-vue'
 " Plug 'cakebaker/scss-syntax.vim'
 " Plug 'tpope/vim-haml'
+Plug 'voldikss/vim-translator'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 
 call plug#end()
 

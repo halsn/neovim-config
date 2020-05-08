@@ -126,3 +126,7 @@ vmap .. y/<C-R>"<CR><S-n><S-n>
 " nmap <leader><leader>r <Esc>:ALEFindReferences<CR>
 " vmap <leader><leader>d <Esc>:ALEGoToDefinitionInSplit<CR>
 " vmap <leader><leader>r <Esc>:ALEFindReferences<CR>
+
+" vim-translator
+nmap <silent> <Leader>k <Plug>Translate
+vmap <silent> <Leader>k <Plug>TranslateV
