@@ -130,3 +130,6 @@ vmap .. y/<C-R>"<CR><S-n><S-n>
 " vim-translator
 nmap <silent> <Leader>k <Plug>Translate
 vmap <silent> <Leader>k <Plug>TranslateV
+
+" movement
+nmap <leader>o <C-o>
