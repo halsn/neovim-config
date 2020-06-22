@@ -45,7 +45,7 @@ vmap d<Space> zd
 " 列出所有匹配单词对行
 " nmap <Leader>m <Esc>:vim // % \| :copen<cr>
 " nmap <Leader>m <Esc>:vim // % \| :Ag <cr>
-nmap <silent> \| :exe 'CocList --auto-preview --normal --input='.expand('<cword>').' grep'<CR>
+nmap <silent> { :exe 'CocList --auto-preview --normal --input='.expand('<cword>').' grep'<CR>
 nmap <silent> } :exe 'CocList files'<CR>
 nmap <silent> <leader>m :exe 'CocList --auto-preview --normal --input='.expand('<cword>').' words'<CR>
 
