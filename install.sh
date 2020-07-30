@@ -3,10 +3,10 @@
 set -e
 
 sudo apt-get -y install software-properties-common
-sudo add-apt-repository -y ppa:neovim-ppa/stable
+# sudo add-apt-repository -y ppa:neovim-ppa/stable
 sudo apt-get update
 sudo apt-get -y install neovim
-sudo apt-get -y install python-dev python-pip python3-dev python3-pip
+sudo apt-get -y install python-dev-is-python2 python3-dev python3-pip
 sudo apt-get -y install xclip xsel git
 sudo pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple --upgrade pip
 sudo pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple neovim
