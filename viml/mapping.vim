@@ -101,7 +101,11 @@ nmap <leader>g <Esc>:tabedit term://$SHELL<CR>
 nmap <leader><leader>g <Esc>:tabedit term://cmd.exe<CR>
 nmap <leader>f <Esc>:sp term://$SHELL<CR>
 nmap <leader>d <Esc>:vsp term://$SHELL<CR>
-nmap <leader>j <Esc>:tabnew<CR>
+nmap <leader>i <Esc>:tabnew<CR>
+
+nmap <leader>k <C-b>
+nmap <leader>j <C-f>
+
 " tnoremap <F10> <C-\><C-n>:tabnext<CR>
 " tnoremap <F9> <C-\><C-n>:tabprevious<CR>
 tnoremap <A-h> <C-\><C-n><C-w>h
@@ -128,8 +132,8 @@ vmap .. y/<C-R>"<CR><S-n><S-n>
 " vmap <leader><leader>r <Esc>:ALEFindReferences<CR>
 
 " vim-translator
-nmap <silent> <Leader>k <Plug>Translate
-vmap <silent> <Leader>k <Plug>TranslateV
+nmap <silent> <Leader><Leader>k <Plug>Translate
+vmap <silent> <Leader><Leader>k <Plug>TranslateV
 
 " movement
 nmap <leader>o <C-o>
