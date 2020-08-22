@@ -49,6 +49,7 @@ Plug 'voldikss/vim-translator'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 " Mac
+Plug 'APZelos/blamer.nvim'
 
 call plug#end()
 
