@@ -68,11 +68,38 @@ const deepClone = (obj, hash = new WeakMap()) => {
 }
 endsnippet
 
-snippet format_yyyy_mm_dd "description"
+snippet format_yyyy_mm_dd "format data"
 // yyyy-MM-dd HH:MM:SS
 convertDate(date) {
   const first = date.toISOString().split('T')[0]
   const second = date.toISOString().split('T')[1]
   return first + second.slice(0, 8)
 }
+endsnippet
+
+snippet find_path_by_dfs "find path by dfs"
+const findPathByDepthFirstSearch = (source, target, childKey, compareKey) => {
+  const stack = JSON.parse(JSON.stringify(source));
+  const result = [];
+  const dfs = data => {
+    result.push(data);
+    if (data[compareKey] === target) {
+      return result;
+    }
+    if (data[childKey] && data[childKey].length > 0) {
+      return dfs(data[childKey][0]);
+    }
+    result.pop();
+    if (result.length === 0) {
+      return stack.length > 0 ? dfs(stack.shift()) : result;
+    }
+    const lastNode = result[result.length - 1];
+    lastNode[childKey].shift();
+    if (lastNode[childKey].length > 0) {
+      return dfs(lastNode[childKey][0]);
+    }
+    return dfs(result.pop());
+  };
+  return dfs(stack.shift());
+};
 endsnippet
