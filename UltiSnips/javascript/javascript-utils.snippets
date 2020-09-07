@@ -103,3 +103,42 @@ const findPathByDepthFirstSearch = (source, target, childKey, compareKey) => {
   return dfs(stack.shift());
 };
 endsnippet
+
+snippet format_number "format value to natural number string"
+function formatNumber(value, maxLength) {
+  let ret = value.length && value.length > maxLength ? value.substr(0, maxLength) : value;
+  ret = ret.replace(/[^\d\.\-]/g, '');
+  if (ret.includes('0')) {
+    if (ret.length > 1 && !ret.includes('.')) {
+	ret = ret.replace(/^0+/, '');
+    }
+  }
+  if (ret.includes('-0')) {
+    if (ret.length > 2 && !ret.includes('.')) {
+	ret = ret.replace(/^-0+/, '-');
+    }
+  }
+  if (ret.includes('-')) {
+    const firstIdx = ret.indexOf('-');
+    ret = ret.split('').filter((e, idx) => e !== '-' || (e === '-' && idx <= firstIdx)).join('');
+    if (firstIdx !== 0) {
+	ret = ret.replace(/-/, '');
+    }
+  }
+  if (ret.includes('.')) {
+    const firstIdx = ret.indexOf('.');
+    ret = ret.split('').filter((e, idx) => e !== '.' || (e === '.' && idx <= firstIdx)).join('');
+  }
+  return ret;
+}
+endsnippet
+
+snippet format_int_with_split "format value with split /"
+function formatIntWithSplit(value) {
+  if (value === '/') return '';
+  let ret = value.replace(/[^\d/]/g, '');
+  ret = ret.replace(/\/{2,}/g, '/');
+  ret = ret.split('/').map(f => f.replace(/^0+/, '')).join('/');
+  return ret;
+}
+endsnippet
