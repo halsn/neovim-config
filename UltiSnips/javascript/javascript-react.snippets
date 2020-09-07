@@ -1,6 +1,11 @@
 snippet react_class "class component extends React.Component"
 class ${1:component} extends React.Component {
-  state = {}
+
+  constructor(props) {
+    super(props);
+    this.state = { counter: 0 };
+    this.handleClick = this.handleClick.bind(this);
+  }
 
   render () {
     return (
@@ -10,4 +15,9 @@ class ${1:component} extends React.Component {
     )
   }
 }
+endsnippet
+
+snippet import_react "import react and react-dom"
+import React, { Component } from 'react';
+import ReactDom from 'react-dom';
 endsnippet
