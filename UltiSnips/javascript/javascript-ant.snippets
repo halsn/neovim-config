@@ -1,0 +1,99 @@
+snippet ant_table_with_pagination "ant design table with pagination"
+const columns = [
+  {
+    title: '序号',
+    key: 'no',
+    dataIndex: 'no',
+    width: 150,
+  },
+  {
+    title: '名称',
+    key: 'name',
+    dataIndex: 'name',
+    width: 150,
+  },
+  {
+    title: '操作',
+    key: 'operation',
+    fixed: 'right',
+    width: 100,
+    render: () => <a>导出</a>,
+  }
+]
+
+const [tableData, setTableData] = useState([])
+const [currentPage, setCurrentPage] = useState(1)
+const [totalRecord, setTotalRecord] = useState(0)
+const [pageSize, setPageSize] = useState(10)
+const [loading, setLoading] = useState(false)
+const tableWidth = tableColumns.map(t => t.width ? t.width : 100).reduce((p, c) => p + c, 0)
+const pageChange = (page, pageSize) => {
+  setCurrentPage(page)
+  setPageSize(pageSize)
+}
+const onShowSizeChange = (current, pageSize) => {
+  setCurrentPage(1)
+  setPageSize(pageSize)
+}
+
+
+const fetchTableData = async () => {
+  const params = {
+    pageIndex: currentPage,
+    pageSize: pageSize,
+  }
+
+  const response = await getTableData(params)
+  const datas = deepGet(response, 'data') || []
+  const totalRecord = deepGet(response, 'data.totalRecord') || 0;
+  setTableData(datas);
+  setTotalRecord(totalRecord);
+}
+
+useEffect(() => {
+  fetchTableData()
+}, [currentPage, pageSize])
+
+<Table
+  bordered
+  columns={tableColumns}
+  dataSource={tableData}
+  scroll={{ y: 'calc(100vh - 380px)', x: tableWidth }}
+  loading={loading}
+  pagination={{
+    showSizeChanger
+    current={currentPage}
+    total={totalRecord}
+    pageSize={pageSize}
+    pageSizeOptions={['10', '15', '30']}
+    showTotal={(total) => \`共${total}条\`}
+    onChange={onPageChange}
+    onShowSizeChang={onShowSizeChang}
+  }}
+/>
+endsnippet
+
+snippet ant_empty_component "ant design empty page"
+import React, { useState, useEffect, useRef } from 'react';
+import { Row, Col, message } from 'antd';
+import styles from './styles.less';
+
+const ${1:Component} = (props) => {
+    const [safeDays, setSafeDays] = useState(0);
+    useEffect(() => {
+
+    }, []);
+    return (
+        <div className={styles.wrapper} style={{ height: 'calc(100% - 78px)' }}>
+            <Row>
+                <Col span={24} className={styles.topWrapper}>
+                    <div className={styles.header}>${0}</div>
+                </Col>
+            </Row>
+
+        </div>
+    );
+};
+
+export default ${1};
+endsnippet

@@ -71,7 +71,7 @@ process.on('unhandledRejection', (reason) => {
 module.exports = app
 endsnippet
 
-snippet logger_tpl "winston logger template"
+snippet express_logger_tpl "winston logger template"
 const winston = require('winston')
 const tsFormat = () => (new Date()).toLocaleString()
 const logFile = ${0:app.log}
