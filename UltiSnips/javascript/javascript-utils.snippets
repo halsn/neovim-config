@@ -142,3 +142,7 @@ const formatIntWithSplit = (value, splitFlag) => {
   return ret;
 }
 endsnippet
+
+snippet utils_get_fixed_number "get fixed number : (123.456, 2) => (123.45)"
+const toFixed = (num, n) => Number(num).toFixed(n);
+endsnippet

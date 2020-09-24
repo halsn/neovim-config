@@ -10,8 +10,6 @@ set timeout timeoutlen=1500
 " nmap <leader>e <Esc>:llist<CR>
 " nmap <leader>w <Esc>:ll<CR>
 
-" buffer list
-nmap <leader><Space> <Esc>:CtrlSpace<CR>
 " 切换buffer
 " nmap <leader>j <Esc>:bpre<CR>
 " nmap <leader>k <Esc>:bnext<CR>
@@ -50,8 +48,9 @@ nmap <silent> } :exe 'CocList files'<CR>
 nmap <silent> <leader>m :exe 'CocList --auto-preview --normal --input='.expand('<cword>').' words'<CR>
 
 " coc mapping
+" buffer list
 " nmap <silent> <Leader><space> <Esc>:CocList --normal --auto-preview buffers<cr>
-nmap <Leader><space> <Esc>:CocList buffers<cr>
+nmap <Leader><Space> <Esc>:CocList buffers<cr>
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
