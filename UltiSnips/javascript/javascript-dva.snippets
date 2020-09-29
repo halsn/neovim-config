@@ -92,3 +92,9 @@ export default {
   }
 }
 endsnippet
+
+snippet dva_connect "dva connect"
+export default connect(({ ${1:model} }) => ({
+    ${2}: ${1}.${2}
+}))(${3:Component});
+endsnippet
