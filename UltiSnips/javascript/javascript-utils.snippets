@@ -150,9 +150,6 @@ endsnippet
 snippet utils_get_zero_timestamp "get zero timestamp from date"
 const getZeroTimeStampFromDate = date => {
   const foo = new Date(date)
-  const year = foo.getUTCFullYear()
-  const month = foo.getMonth()
-  const day = foo.getDate()
   foo.setHours(0)
   foo.setMinutes(0)
   foo.setSeconds(0)
