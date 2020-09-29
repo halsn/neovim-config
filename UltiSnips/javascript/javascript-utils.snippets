@@ -78,7 +78,7 @@ const convertDate = (date) => {
 endsnippet
 
 snippet utils_find_path_by_dfs "find path by dfs : ([{ id: 1, child: [{ id: 2, child: null }]}], 2) => [{ id: 1, ...}, { id: 2, ...}]"
-const findPathByDepthFirstSearch = (source, target, childKey, compareKey) => {
+const findPathByDepthFirstSearch = (source, target, childKey = 'child', compareKey) => {
   const stack = JSON.parse(JSON.stringify(source));
   const result = [];
   const dfs = data => {
