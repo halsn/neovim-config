@@ -138,7 +138,7 @@ ${1:array}.reduce((${2:pre}, ${3:cur}) => ${0})
 endsnippet
 
 snippet cl "console.log"
-console.log($0)
+console.log(\``!v line(".")` - $1\`, $1)$0
 endsnippet
 
 snippet cll "console.log"
@@ -221,4 +221,10 @@ snippet note "important information!"
  */
 endsnippet
 
-clearsnippets data dataa obj offset off offsetp extend val param is reset clearq change get select error resize contains clone http next nexta nextu timeout supc sup submit const trigh f emit bind f this text click
+snippet .then "then wrapper"
+.then(res => {
+  $0
+})
+endsnippet
+
+clearsnippets data dataa obj offset off offsetp extend val param is reset clearq change get select error resize contains clone http next nexta nextu timeout supc sup submit const trigh f emit bind f this text click props

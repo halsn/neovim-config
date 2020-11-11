@@ -1,0 +1,145 @@
+snippet ant_table_with_pagination "ant design table with pagination"
+const tableColumns = [
+  {
+    title: '序号',
+    key: 'no',
+    dataIndex: 'no',
+    width: 150,
+  },
+  {
+    title: '名称',
+    key: 'name',
+    dataIndex: 'name',
+    width: 150,
+  },
+  {
+    title: '操作',
+    key: 'operation',
+    fixed: 'right',
+    width: 100,
+    render: () => <a>导出</a>,
+  }
+];
+
+const [tableData, setTableData] = useState([]);
+const [currentPage, setCurrentPage] = useState(1);
+const [totalRecord, setTotalRecord] = useState(0);
+const [pageSize, setPageSize] = useState(10);
+const [loading, setLoading] = useState(false);
+const tableWidth = tableColumns.map(t => t.width ? t.width : 100).reduce((p, c) => p + c, 0);
+
+const onPageChange = (page, pageSize) => {
+  setCurrentPage(page);
+  setPageSize(pageSize);
+}
+
+const onShowSizeChange = (current, pageSize) => {
+  setCurrentPage(1);
+  setPageSize(pageSize);
+}
+
+const getTableData = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      return resolve({
+	code: 200,
+	data: [
+	  {
+	    key: 1,
+	    no: 1,
+	    name: 'foo'
+	  }
+	]
+      });
+    }, 500)
+  })
+}
+
+const fetchTableData = async () => {
+  const params = {
+    pageIndex: currentPage,
+    pageSize: pageSize,
+  };
+  setLoading(true);
+  const response = await getTableData(params);
+  const datas = deepGet(response, 'data') || [];
+  const totalRecord = deepGet(response, 'data.totalRecord') || 0;
+  setTableData(datas);
+  setTotalRecord(totalRecord);
+  setLoading(false);
+}
+
+useEffect(() => {
+  fetchTableData();
+}, [currentPage, pageSize]);
+
+<Table
+  columns={tableColumns}
+  dataSource={tableData}
+  scroll={{ y: 'calc(100vh - 380px)', x: tableWidth }}
+  loading={loading}
+  pagination={{
+    showSizeChanger: true,
+    current: currentPage,
+    total: totalRecord,
+    pageSize: pageSize,
+    pageSizeOptions: ['10', '15', '30'],
+    showTotal: (total) => \`共${total}条\`,
+    onChange: onPageChange,
+    onShowSizeChange: onShowSizeChange
+  }}
+/>
+endsnippet
+
+snippet ant_empty_component "ant design empty page"
+import React, { useState, useEffect, useRef } from 'react';
+import { Row, Col, message } from 'antd';
+import styles from './styles.less';
+
+const ${1:Component} = (props) => {
+    useEffect(() => {
+
+    }, []);
+    return (
+        <div className={styles.wrapper} style={{ height: 'calc(100% - 78px)' }}>
+            <Row>
+                <Col span={24} className={styles.topWrapper}>
+                    <div className={styles.header}>${0}</div>
+                </Col>
+            </Row>
+
+        </div>
+    );
+};
+
+export default ${1};
+endsnippet
+
+snippet ant_empty_modal "ant design empty modal"
+const [formVisible, setFormVisible] = useState(false);
+
+<Modal title="title"
+  bodyStyle={{ height: 620, overflowY: 'scroll',overflowX:'hidden' }}
+  visible={formVisible}
+  onOk={(e) => {}}
+  onCancel={() => setFormVisible(false)}
+  centered={true}
+  width="700px"
+  wrapClassName="modal"
+  footer={null}
+  destroyOnClose
+>
+  $1
+</Modal>
+endsnippet
+
+snippet ant_select_basic "ant design basic select example"
+import { Select } from 'antd';
+const { Option } = Select;
+const onSelectChange = value => {
+  $2
+}
+<Select placeholder='$1' defaultValue="foo" style={{ width: 120 }} onChange={onSelectChange}>
+  <Option value="foo">Foo</Option>
+</Select>
+endsnippet

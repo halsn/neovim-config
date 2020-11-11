@@ -13,8 +13,9 @@
   "eslint.autoFixOnSave": true,
   "html.suggest.angular1": false,
   "diagnostic-languageserver.filetypes": {
-    "sh": "shellcheck",
+    "sh": "shellcheck"
   },
   "coc.source.word.priority": 100,
+  "list.source.mru.ignoreGitIgnore": true,
   "java.format.settings.url": "/home/halsn/.config/coc/extensions/node_modules/redhat.java/eclipse-formatter.xml"
 }

@@ -17,7 +17,22 @@ class ${1:component} extends React.Component {
 }
 endsnippet
 
-snippet import_react "import react and react-dom"
+snippet react_pure_component "react pure component with hook"
+import React, { useState, useEffect } from 'react';
+import ReactDom from 'react-dom';
+
+const ${1:Component} = (props) => {
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+
+  }, []);
+  return <div>
+    ${0}
+  </div>
+}
+endsnippet
+
+snippet react_import_base "import react and react-dom"
 import React, { Component } from 'react';
 import ReactDom from 'react-dom';
 endsnippet
