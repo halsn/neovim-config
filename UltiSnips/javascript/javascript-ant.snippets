@@ -143,3 +143,24 @@ const onSelectChange = value => {
   <Option value="foo">Foo</Option>
 </Select>
 endsnippet
+
+snippet ant_tabs_basic "ant design basic tabs example"
+import { Tabs } from 'antd';
+
+const { TabPane } = Tabs;
+
+function callback(key) {
+  console.log(key);
+}
+
+const ${1:Demo} = () => (
+  <Tabs defaultActiveKey="1" onChange={callback}>
+    <TabPane tab="${2:Tab 1}" key="1">
+      Content of Tab Pane 1
+    </TabPane>
+    <TabPane tab="${3:Tab 2}" key="2">
+      Content of Tab Pane 2
+    </TabPane>
+  </Tabs>
+);
+endsnippet
