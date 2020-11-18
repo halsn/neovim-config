@@ -5,7 +5,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'Raimondi/delimitMate'                                     " 自动加括号，换行等
 Plug 'Yggdroot/indentLine'                                      " 缩进线
 Plug 'scrooloose/nerdcommenter'                                 " 注释插件
-Plug 'mattn/emmet-vim'                                          " Emmet神器
+" Plug 'mattn/emmet-vim'                                          " Emmet神器
 " Plug 'ap/vim-css-color'                                         " CSS颜色显示
 Plug 'vim-airline/vim-airline'                                  " 状态栏
 Plug 'vim-airline/vim-airline-themes'                           " 状态栏主题

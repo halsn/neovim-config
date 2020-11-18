@@ -51,3 +51,5 @@ let g:coc_snippet_next = '<S-Tab>'
 
 " Use <C-l> for trigger snippet expand.
 imap <S-Tab> <Plug>(coc-snippets-expand)
+
+inoremap <silent><expr> <S-Tab> pumvisible() ? coc#_select_confirm() : "\<C-y>"
