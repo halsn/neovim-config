@@ -17,5 +17,6 @@
   },
   "coc.source.word.priority": 100,
   "list.source.mru.ignoreGitIgnore": true,
-  "java.format.settings.url": "/home/halsn/.config/coc/extensions/node_modules/redhat.java/eclipse-formatter.xml"
+  "java.format.settings.url": "/home/halsn/.config/coc/extensions/node_modules/redhat.java/eclipse-formatter.xml",
+  "emmet.includeLanguages": {"vue-html": "html", "javascript": "javascriptreact"}
 }
