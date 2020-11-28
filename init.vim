@@ -13,7 +13,7 @@ Plug 'vim-airline/vim-airline-themes'                           " 状态栏主�
 Plug 'scrooloose/nerdtree'                                      " 查看项目文件
 " Plug 'neomake/neomake'                                          " 代码检错
 Plug 'Chiel92/vim-autoformat'                                   " 代码格式化
-" Plug 'SirVer/ultisnips'                                         " 代码块
+Plug 'SirVer/ultisnips'                                         " 代码块
 Plug 'honza/vim-snippets'                                       " 常用代码块集合
 Plug 'Lokaltog/vim-easymotion'                                  " 快速跳转
 Plug 'majutsushi/tagbar'                                        " TagBar

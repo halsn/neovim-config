@@ -36,7 +36,7 @@ snippet utils_flat_array "flatten nested array : ([1, 2, [3, 4, [5, 6]]]) => [1,
 const flatArray = arr => [].concat(...arr.map(v => (Array.isArray(v) ? flatArray(v) : v)))$0
 endsnippet
 
-snippet utils_plain_stringify "get JSON Object plain string : ({ "name": "foo" }) => '{ name: "foo" }' "
+snippet utils_plain_stringify "get JSON Object plain string"
 const plainStringify = (obj) => {
   return JSON.stringify(obj).replace(/\"([^(\")"]+)\":/g, "\$1:")
 }$0
@@ -158,9 +158,8 @@ const getZeroTimeStampFromDate = date => {
 }
 endsnippet
 
-snippet add_quotas_to_number_in_json_string "add quota in json"
+snippet utils_add_quotas_to_number_in_json_string "add quota in json"
 const s = `{"id":498111409327050752,"list":[32.012334123,34433222442.13124]}`;
 const result = s.replace(/([\[:])?(-\d+|\d+|\d+\.\d+|-\d+\.\d+)([,\}\]])/g, "$1\"$2\"$3");
 const ret = JSON.parse(result);
 endsnippet
-	
