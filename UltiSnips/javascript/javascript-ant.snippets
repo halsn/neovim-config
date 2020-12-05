@@ -164,3 +164,14 @@ const ${1:Demo} = () => (
   </Tabs>
 );
 endsnippet
+
+snippet ant_inline_form_v3 "ant design search input"
+<Form layout="inline">
+  <Form.Item>
+    {getFieldDecorator('form_field', {
+      initialValue: '0',
+      rules: [],
+    })(<Input />)}
+  </Form.Item>
+</Form>
+endsnippet
