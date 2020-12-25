@@ -22,5 +22,6 @@
 * **Dockerfile.vim**(Dockerfile语法支持)
 * **vim-json**(JSON语法支持)
 * **vim-pug**(Pug语法支持)
+* 
 
 [![图片链接](https://user-images.githubusercontent.com/13534265/27003377-f72e102a-4e27-11e7-8d5e-3cd3eadf9b6c.png)](https://asciinema.org/a/20ne0acyzypfqew0l73glna8d)
