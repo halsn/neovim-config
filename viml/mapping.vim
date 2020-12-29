@@ -31,8 +31,11 @@ nmap <leader>b :Tagbar<cr>
 " Vista
 nmap <leader><leader>v :Vista!!<cr>
 " 快速注释
-nmap <leader>v <leader>c<space>
-vmap <leader>v <leader>c<space>
+nmap <leader>v gcc<space>
+vmap <leader>v gcc<space>
+nmap <leader>c gcw<space>
+vmap <leader>c gcw<space>
+
 " reload
 nmap <leader>r :e<cr>
 " 用空格键来开关折叠

@@ -86,3 +86,5 @@ if executable(s:clip)
       autocmd TextYankPost * call system('echo '.shellescape(join(v:event.regcontents, "\<CR>")).' | '.s:clip)
     augroup END
 end
+
+autocmd BufNewFile,BufRead *.js,*.jsx set filetype=javascript.jsx

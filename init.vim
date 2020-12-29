@@ -4,7 +4,9 @@ call plug#begin('~/.config/nvim/plugged')
 " 功能相关
 Plug 'Raimondi/delimitMate'                                     " 自动加括号，换行等
 Plug 'Yggdroot/indentLine'                                      " 缩进线
-Plug 'scrooloose/nerdcommenter'                                 " 注释插件
+" Plug 'scrooloose/nerdcommenter'                                 " 注释插件
+" Plug 'tpope/vim-commentary'
+Plug 'tyru/caw.vim'
 " Plug 'mattn/emmet-vim'                                          " Emmet神器
 " Plug 'ap/vim-css-color'                                         " CSS颜色显示
 Plug 'vim-airline/vim-airline'                                  " 状态栏
@@ -13,7 +15,7 @@ Plug 'vim-airline/vim-airline-themes'                           " 状态栏主�
 Plug 'scrooloose/nerdtree'                                      " 查看项目文件
 " Plug 'neomake/neomake'                                          " 代码检错
 Plug 'Chiel92/vim-autoformat'                                   " 代码格式化
-Plug 'SirVer/ultisnips'                                         " 代码块
+" Plug 'SirVer/ultisnips'                                         " 代码块
 Plug 'honza/vim-snippets'                                       " 常用代码块集合
 Plug 'Lokaltog/vim-easymotion'                                  " 快速跳转
 Plug 'majutsushi/tagbar'                                        " TagBar
