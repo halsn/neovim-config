@@ -61,7 +61,7 @@ app.use((error, req, res, next) => {
 })
 
 app.listen(port, () => {
-  logger.info(`Node app is running on http://localhost:${port}`)
+  logger.info(\`Node app is running on http://localhost:\$\{port\}\`)
 })
 
 process.on('unhandledRejection', (reason) => {
