@@ -163,3 +163,32 @@ const s = `{"id":498111409327050752,"list":[32.012334123,34433222442.13124]}`;
 const result = s.replace(/([\[:])?(-\d+|\d+|\d+\.\d+|-\d+\.\d+)([,\}\]])/g, "$1\"$2\"$3");
 const ret = JSON.parse(result);
 endsnippet
+
+snippet utils_debounce "debounce function"
+function debounce(fn, wait = 50, immediate) {
+  let timer;
+  return function() {
+    if(immediate) {
+      fn.apply(this,arguments)
+    }
+    if(timer) clearTimeout(timer)
+    timer = setTimeout(()=> {
+      fn.apply(this,arguments)
+    },wait)
+  }
+}
+endsnippet
+
+snippet utils_throttling "throttling function"
+function throttle(fn, wait = 300) {
+  let prev = new Date();
+  return function() { 
+    const args = arguments;
+    const now = new Date();
+    if (now - prev > wait) {
+      fn.apply(this, args);
+      prev = new Date();
+    }
+  }
+}
+endsnippet
