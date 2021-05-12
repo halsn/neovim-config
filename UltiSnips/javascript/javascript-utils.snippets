@@ -192,3 +192,7 @@ function throttle(fn, wait = 300) {
   }
 }
 endsnippet
+
+snippet utils_make_pairs "split an array into array pairs"
+$0.reduce((result, value, index, sourceArray) => index % 2 === 0 ? [...result, sourceArray.slice(index, index + 2)] : result, []);
+endsnippet
