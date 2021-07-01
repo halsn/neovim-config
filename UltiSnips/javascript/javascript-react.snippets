@@ -36,3 +36,283 @@ snippet react_import_base "import react and react-dom"
 import React, { Component } from 'react';
 import ReactDom from 'react-dom';
 endsnippet
+
+snippet react_echarts_multiple_bar "multiple bar charts"
+import React, { useEffect } from 'react';
+import Chart from 'echarts-for-react';
+
+const MultipleLineChart = () => {
+  let chartRef = null;
+
+  const chartOption = () => {
+    const testData = [
+      ['product', '用电高峰', '用电低谷'],
+      ['1号充电桩', 43.3, 85.8],
+      ['2号充电桩', 83.1, 73.4],
+      ['3号充电桩', 86.4, 65.2],
+      ['4号充电桩', 72.4, 53.9],
+      ['5号充电桩', 72.4, 53.9]
+    ];
+
+    return {
+      animationDuration: 100,
+      animationDurationUpdate: 1000,
+      legend: {
+        itemHeight: 2,
+        itemWidth: 40,
+        right: 100,
+        itemGap: 40,
+        textStyle: {
+          color: '#95A6A5',
+          fontSize: 34,
+          padding: [0, 0, 0, 10]
+        }
+      },
+      tooltip: {},
+      dataset: {
+        source: testData
+      },
+      xAxis: { 
+        type: 'category',
+        axisTick: {
+          show: false
+        },
+        axisLabel: {
+          fontSize: 34,
+          color: '#95A6A5',
+          interval: 0,
+          margin: 30
+        }
+      },
+      yAxis: {
+        axisLine: {
+          show: false
+        },
+        axisLabel: {
+          fontSize: 34,
+          color: '#95A6A5',
+          margin: 30
+        },
+        splitLine: {
+          lineStyle: {
+            color: '#27484C',
+            width: 2
+          }
+        }
+      },
+      series: [
+        {
+          type: 'bar',
+          barWidth: 16,
+          itemStyle: {
+            color: '#E02020'
+          }
+        },
+        {
+          type: 'bar',
+          barWidth: 16,
+          itemStyle: {
+            color: '#0091FF'
+          }
+        },
+      ],
+    };
+  };
+
+  useEffect(() => {
+    setInterval(() => {
+      if (chartRef) {
+        chartRef.getEchartsInstance().clear();
+        chartRef.getEchartsInstance().setOption(chartOption());
+      }
+    }, 10000);
+  }, []);
+
+  return (
+    <div style={{ width: '1050px', height: '500px', margin: '0 auto', position: 'relative' }}>
+      <div style={{
+        position: 'absolute',
+        color: '#95A6A5',
+          fontSize: 34,
+          left: '24px'
+      }}>kW</div>
+      <Chart style={{ height: '100%' }} ref={(e) => (chartRef = e)} option={chartOption()} />
+    </div>
+  );
+};
+
+export default MultipleBarChart;
+endsnippet
+
+snippet react_echarts_multiple_line "echarts multiple line chart"
+import React, { useEffect } from 'react';
+import Chart from 'echarts-for-react';
+
+const MultipleBarChart = () => {
+  let chartRef = null;
+
+  const chartOption = () => {
+
+    return {
+      animationDuration: 100,
+      animationDurationUpdate: 1000,
+      legend: {
+        data: [{
+          name: '预警上限',
+          icon: 'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACkAAAADCAYAAAAOVyamAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAKaADAAQAAAABAAAAAwAAAABLUbP6AAAAKElEQVQYGWP87yxdxfCPoZUBJ2BqY9z/uBqXND30M+GyfDCJDwlHAgBGwA/o8Mg7iAAAAABJRU5ErkJggg==',
+          textStyle: {
+            color: '#95A6A5',
+            fontSize: 34,
+            padding: [0, 0, 0, 10]
+          },
+        }, {
+          name: '充电桩',
+          textStyle: {
+            color: '#95A6A5',
+            fontSize: 34,
+            padding: [0, 0, 0, 10]
+          }
+        }, {
+          name: '居民用电',
+          textStyle: {
+            color: '#95A6A5',
+            fontSize: 34,
+            padding: [0, 0, 0, 10]
+          }
+        }],
+        itemHeight: 2,
+        itemWidth: 40,
+        right: 100,
+        itemGap: 40,
+      },
+      tooltip: {},
+      // dataset: {
+        // source: testData
+      // },
+      xAxis: {
+        boundaryGap: false,
+        data: [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22],
+        type: 'category',
+        axisTick: {
+          show: false
+        },
+        axisLabel: {
+          fontSize: 34,
+          color: '#95A6A5',
+          interval: 0,
+          margin: 30
+        }
+      },
+      yAxis: {
+        max: 630,
+        interval: 126,
+        axisLine: {
+          show: false
+        },
+        axisLabel: {
+          fontSize: 34,
+          color: '#95A6A5',
+          margin: 30
+        },
+        splitLine: {
+          lineStyle: {
+            color: '#27484C',
+            width: 2
+          }
+        }
+      },
+      series: [
+        {
+          name: '充电桩',
+          data: [43.3, 83.1, 86.4, 72.4, 72.4, 72.4, 72.4, 72.4, 72.4, 72.4, 72.4, 72.4],
+          symbol: 'circle',
+          symbolSize: 8,
+          lineStyle: {
+            width: 3,
+          },
+          type: 'line',
+          itemStyle: {
+            color: '#6DD400'
+          },
+          markLine: {
+            silent: true,
+            label: {
+              show: false
+            },
+            lineStyle: {
+              color: '#FF411B',
+              width: 2,
+            },
+            data: [
+              { yAxis: 525 }
+            ]
+          }
+        },
+        {
+          name: '居民用电',
+          data: [58.3, 93.1, 186.4, 82.4, 82.4, 82.4, 82.4, 82.4, 82.4, 82.4, 82.4, 82.4],
+          type: 'line',
+          symbol: 'circle',
+          symbolSize: 8,
+          lineStyle: {
+            width: 3,
+          },
+          itemStyle: {
+            color: '#FEEF32'
+          },
+          markLine: {
+            silent: true,
+            label: {
+              show: false
+            },
+            lineStyle: {
+              color: '#FF411B',
+              width: 2,
+            },
+            data: [
+              { yAxis: 525 }
+            ]
+          }
+        },
+        {
+          name: '预警上限',
+          type: 'line',
+          itemStyle: {
+            color: '#FF411B'
+          },
+        }
+      ],
+    };
+  };
+
+  useEffect(() => {
+    setInterval(() => {
+      if (chartRef) {
+        chartRef.getEchartsInstance().clear();
+        chartRef.getEchartsInstance().setOption(chartOption());
+      }
+    }, 10000);
+  }, []);
+
+  return (
+    <div style={{ width: '1050px', height: '500px', margin: '0 auto', position: 'relative' }}>
+      <div style={{
+        position: 'absolute',
+        color: '#95A6A5',
+          fontSize: 34,
+          left: '24px'
+      }}>kW</div>
+      <div style={{
+        position: 'absolute',
+        color: '#95A6A5',
+          fontSize: 34,
+          left: '42px',
+          bottom: 0
+      }}>(h)</div>
+      <Chart style={{ height: '100%' }} ref={(e) => (chartRef = e)} option={chartOption()} />
+    </div>
+  );
+};
+
+export default MultipleLineChart;
+endsnippet
