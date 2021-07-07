@@ -85,6 +85,14 @@ const MultipleLineChart = () => {
         }
       },
       yAxis: {
+        name: "℃",
+        nameTextStyle: {
+          fontSize: 34,
+          color: "#95A6A5",
+          padding: [0, 120, 0, 0],
+        },
+        max: 150,
+        interval: 30,
         axisLine: {
           show: false
         },
@@ -130,12 +138,6 @@ const MultipleLineChart = () => {
 
   return (
     <div style={{ width: '1050px', height: '500px', margin: '0 auto', position: 'relative' }}>
-      <div style={{
-        position: 'absolute',
-        color: '#95A6A5',
-          fontSize: 34,
-          left: '24px'
-      }}>kW</div>
       <Chart style={{ height: '100%' }} ref={(e) => (chartRef = e)} option={chartOption()} />
     </div>
   );
@@ -190,6 +192,12 @@ const MultipleBarChart = () => {
         // source: testData
       // },
       xAxis: {
+        name: "(h)",
+        nameTextStyle: {
+          fontSize: 34,
+          color: "#95A6A5",
+          padding: [0, 120, 0, 0],
+        },
         boundaryGap: false,
         data: [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22],
         type: 'category',
@@ -204,6 +212,12 @@ const MultipleBarChart = () => {
         }
       },
       yAxis: {
+        name: "kW",
+        nameTextStyle: {
+          fontSize: 34,
+          color: "#95A6A5",
+          padding: [0, 120, 0, 0],
+        },
         max: 630,
         interval: 126,
         axisLine: {
@@ -296,19 +310,6 @@ const MultipleBarChart = () => {
 
   return (
     <div style={{ width: '1050px', height: '500px', margin: '0 auto', position: 'relative' }}>
-      <div style={{
-        position: 'absolute',
-        color: '#95A6A5',
-          fontSize: 34,
-          left: '24px'
-      }}>kW</div>
-      <div style={{
-        position: 'absolute',
-        color: '#95A6A5',
-          fontSize: 34,
-          left: '42px',
-          bottom: 0
-      }}>(h)</div>
       <Chart style={{ height: '100%' }} ref={(e) => (chartRef = e)} option={chartOption()} />
     </div>
   );
