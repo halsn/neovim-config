@@ -109,8 +109,7 @@ const errorHandle = (error) => {
               const queryPath = stringify({
                 redirect: window.location.href
               });
-              // window.location.hash = `/user/login?${queryPath}`;
-              window.location.href = `/user/login?${queryPath}`;
+              window.location.href = \`/user/login?\$\{queryPath\}\`;
             }
           }
         }
@@ -174,7 +173,7 @@ axiosInstance.interceptors.response.use((response) => {
 function axiosRequest(config, needResponse = false) {
   config = {
     ...config,
-    // `paramsSerializer` 是一个负责 `params` 序列化的函数
+    // paramsSerializer 是一个负责 params 序列化的函数
     // (e.g. https://www.npmjs.com/package/qs, http://api.jquery.com/jquery.param/)
     paramsSerializer: function (params) {
       return stringify(params, { arrayFormat: 'brackets' });
@@ -239,7 +238,7 @@ export default function (url, options = {}, needResponse = false) {
 
     if (isDev) {
       // 开发阶段逐步替换现有的body参数
-      console.error(`！！！建议${url}请求中的将body参数转化为data参数，与axios 请求参数保持一致`);
+      console.error(\`！！！建议\$\{url\}请求中的将body参数转化为data参数，与axios 请求参数保持一致\`);
     }
   }
 
