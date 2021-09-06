@@ -1,0 +1,323 @@
+snippet axios_instance "generate axios instance"
+import axios from 'axios';
+import { message, notification } from 'antd';
+import { stringify } from 'qs';
+
+/**
+ * 获取Token信息
+ */
+function getAuthToken() {
+  return localStorage.getItem(STORAGE_TOKEN);
+}
+/**
+ * 存储token信息
+ * @param {*} data token信息
+ */
+function setAuthToken(data = '') {
+  localStorage.setItem(STORAGE_TOKEN, data);
+}
+
+/**
+ * Prism模块
+ */
+import Crypto from 'crypto-js';
+const WEB_APPSECRET = 'websecret';
+
+// 实例化axios
+const axiosInstance = axios.create();
+
+// 全局取消请求标识
+const cancelSource = axios.CancelToken.source();
+
+// webpack 配置中的开发模式
+const isDev = process.env.NODE_ENV === 'development';
+
+/**
+ * api 请求在header头部里面带的东西
+ */
+function PrismHeaders() {
+  const timestamp = getTimeStamp();
+  const aNonce = getNonce();
+  const sign = assembleSafeParams(timestamp, aNonce);
+  // 携带Token值
+  // return {};
+  return {
+    'X-Timestamp': timestamp,
+    'X-Nonce': aNonce,
+    'X-Signature': sign
+  };
+}
+
+/**
+ * 获取时间戳
+ */
+function getTimeStamp() {
+  return new Date().valueOf();
+}
+
+/**
+ * 获取随机秘钥
+ */
+function getNonce() {
+  return Math.random();
+}
+
+/**
+ * https 安全方式签名
+ */
+function assembleSafeParams(aTimeStamp = 0, aNoce = '') {
+  const secret = WEB_APPSECRET;
+  const nonce = aNoce;
+  const timestamp = aTimeStamp;
+  const sign = Crypto.MD5(secret + nonce + timestamp).toString();
+  return sign.toUpperCase();
+}
+
+/**
+ * Token是否有效
+ */
+function isValidToken() {
+  // 后续做时间校验
+  return true;
+}
+/**
+ * 异常捕获
+ */
+const errorHandle = (error) => {
+  if (error.response) {
+    const {
+      login: { isDebugDev = false }
+    } = window.g_app._store.getState();
+    switch (error.response.status) {
+      case 401:
+        {
+          // 非调试模式下
+          if (!isDebugDev) {
+            // 取消请求<暂时不能加取消，会影响获取验证码>
+            // cancelSource.cancel();
+            // 尚未登录 不在登录页面 跳转到登录页面
+            // if (window.location.hash.indexOf('/user/login') === -1) {
+            if (window.location.href.indexOf('/user/login') === -1) {
+              // 用户权限错误，跳转登录<未登录情况下不能提示>
+              if (getAuthToken()) {
+                setAuthToken();
+                notification.error({
+                  message: '未登录或登录已过期，请重新登录'
+                });
+              }
+
+              const queryPath = stringify({
+                redirect: window.location.href
+              });
+              // window.location.hash = `/user/login?${queryPath}`;
+              window.location.href = `/user/login?${queryPath}`;
+            }
+          }
+        }
+        break;
+      case 403:
+        // window.location.hash = '/';
+        window.location.href = '/';
+        break;
+      default:
+        throw error;
+    }
+  }
+};
+
+/**
+ * 将原有配置的进行整合
+ */
+const AXIOS_CONFIG = () => {
+  // JWT Token
+  const token = getAuthToken();
+  // 获取签名值
+  const prismHeaders = PrismHeaders();
+  return {
+    //
+    headers: {
+      // Content-Type 默认是 application/json
+      Authorization: token,
+      'content-type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      // prism签名方式
+      ...prismHeaders
+    },
+    // 取消用到的token
+    cancelToken: cancelSource.token,
+    // 超时时间
+    timeout: 10 * 60 * 1000 // 10分钟超时;
+  };
+};
+
+/**
+ * 响应拦截器
+ */
+axiosInstance.interceptors.response.use((response) => {
+  if (response.status >= 200 && response.status < 300) {
+    // 有错误，统一提示
+    const { data = {} } = response;
+    if (data.status !== 'SUCCESS') {
+      if (data.code == '100100') {
+        // 临时修改，作为AI问诊session过期的handler
+        return response;
+      } else if (data.msg) {
+        message.error(data.msg);
+      }
+    }
+    return response;
+  }
+  return {};
+}, errorHandle);
+
+// axios发起请求
+function axiosRequest(config, needResponse = false) {
+  config = {
+    ...config,
+    // `paramsSerializer` 是一个负责 `params` 序列化的函数
+    // (e.g. https://www.npmjs.com/package/qs, http://api.jquery.com/jquery.param/)
+    paramsSerializer: function (params) {
+      return stringify(params, { arrayFormat: 'brackets' });
+    }
+  };
+  return axiosInstance
+    .request(config)
+    .then((response) => {
+      if (needResponse) {
+        return response;
+      }
+      return response ? response.data : undefined;
+    })
+    .catch((error) => {
+      if (error.response) {
+        let status = error.response.status;
+        if (status == 400 || status == 500) {
+          return {
+            ...error.response.data,
+            repStatus: status // 增加http状态码，交由redux中间件拦截并统一处理error
+          };
+        }
+      }
+
+      if (isDev) {
+        console.log('请求过程错误:', error);
+        return {
+          code: '100001', // 全局错误码
+          msg: '请求过程发生错误,已经取消请求!',
+          repStatus: 500
+        };
+      }
+    });
+}
+
+/**
+ * DnsPod 解析(目前牵涉到跨域 =服务端)
+ * 暂不接入 留作备份
+ */
+
+export default function (url, options = {}, needResponse = false) {
+  // 基础配置
+  const baseConfig = AXIOS_CONFIG();
+  const newConfig = {
+    url,
+    // 基础配置信息
+    ...baseConfig,
+    // 新增的配置信息
+    ...options
+  };
+
+  // 合并header信息
+  if (options.headers) {
+    newConfig.headers = { ...baseConfig.headers, ...options.headers };
+  }
+
+  // <--暂不删除 为了匹配现有项目中的额外传输的body参数--->
+  // 后期将逐步珊瑚
+  if (options && options.body) {
+    delete newConfig.body;
+    newConfig.data = options.body;
+
+    if (isDev) {
+      // 开发阶段逐步替换现有的body参数
+      console.error(`！！！建议${url}请求中的将body参数转化为data参数，与axios 请求参数保持一致`);
+    }
+  }
+
+  return axiosRequest(newConfig, needResponse);
+}
+endsnippet
+
+snippet axios_request_method "common http request method"
+import CommonRequest from './axiosInstance';
+
+/**
+ * POST 请求方法
+ * @param {*} url url
+ * @param {*} params 参数信息
+ */
+export function post(url, params, extraOptions = {}, needResponse) {
+  return CommonRequest(
+    url,
+    {
+      method: 'post',
+      data: JSON.stringify(params),
+      ...extraOptions
+    },
+    needResponse
+  );
+}
+
+/**
+ * GET 请求方法
+ * @param {*} url 请求地址
+ * @param {*} options 基本请求配置
+ */
+export function get(url, options, needResponse) {
+  return CommonRequest(url, { method: 'get', ...options }, needResponse);
+}
+
+/**
+ * PUT方法
+ * @param {*} url
+ * @param {*} params 传入的请求参数信息
+ */
+export function put(url, params) {
+  return CommonRequest(url, { method: 'put', data: JSON.stringify(params) });
+}
+
+/**
+ * DELETE 删除方法
+ * @param {*} url url
+ * @param {*} options 基本配置
+ */
+export function del(url, options) {
+  return CommonRequest(url, { method: 'delete', ...options });
+}
+
+/**
+ * 上传方法
+ * @param {*} url url
+ * @param {*} options
+ */
+export function upload(url, options) {
+  return CommonRequest(url, {
+    method: 'post',
+    headers: { 'Content-Type': 'multipart/form-data' },
+    ...options
+  });
+}
+
+/**
+ * 下载方法
+ * @param {*} url url
+ * @param {*} options 基本配置
+ */
+export function download(url, options) {
+  return CommonRequest(url, {
+    method: 'post',
+    headers: { 'Content-Type': 'application/octet-stream' },
+    body: {},
+    ...options
+  });
+}
+endsnippet
