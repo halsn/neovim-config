@@ -26,5 +26,6 @@
     "vue-html": "html",
     "ejs": "html",
     "javascript": "javascriptreact"
-  }
+  },
+  "snippets.textmateSnippetsRoots": ["~/.config/nvim/vscode-snippets"]
 }

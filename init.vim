@@ -50,6 +50,7 @@ Plug 'posva/vim-vue'
 Plug 'voldikss/vim-translator'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+Plug 'junkblocker/git-time-lapse'                               " 类似于git lens
 " Mac
 Plug 'APZelos/blamer.nvim'
 
