@@ -134,8 +134,8 @@ vmap .. y/<C-R>"<CR><S-n><S-n>
 " vmap <leader><leader>r <Esc>:ALEFindReferences<CR>
 
 " vim-translator
-nmap <silent> <Leader><Leader>m <Plug>Translate
-vmap <silent> <Leader><Leader>m <Plug>TranslateV
+nmap <silent> <Leader>' <Plug>TranslateW
+vmap <silent> <Leader>' <Plug>TranslateWV
 
 " movement
 nmap <leader>o <C-o>
