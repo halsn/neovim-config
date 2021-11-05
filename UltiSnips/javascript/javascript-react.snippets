@@ -326,3 +326,191 @@ useEffect(() => {
   }
 }, []);
 endsnippet
+
+snippet react_echarts_multiple_bar_with_click "react multip bar with click event"
+import React from 'react';
+import Chart from 'echarts-for-react';
+
+class MultipleBarChart extends React.Component {
+
+  chartRef = React.createRef();
+
+  constructor(props) {
+    super(props);
+  }
+
+  onClick (params) {
+    const name = params.name.replace(`\n`, '');
+
+    const { data, onSelect = () => {} } = this.props;
+    const barColor = '#42D1FF';
+    const unSelectColor = '#C0C0C0';
+
+    const barData = data.map((d) => ({
+      value: d,
+      itemStyle: {
+        color: barColor
+      }
+    }));
+
+    if (this.chartRef) {
+      const chart = this.chartRef.getEchartsInstance();
+      const selectedData = params.data;
+      const currentOption = chart.getOption();
+      const currentSeries = currentOption.series[0].data;
+      const hasUnselected = currentSeries.some((b) => b.itemStyle.color === unSelectColor);
+      const selected = selectedData.itemStyle.color === barColor && hasUnselected;
+      if (selected) {
+        barData.forEach((data, idx) => (barData[idx].itemStyle.color = barColor));
+        onSelect({
+          type: 'unselect',
+          value: 'all'
+        });
+      } else {
+        barData.forEach((data, idx) => {
+          if (idx === params.dataIndex) {
+            barData[idx].itemStyle = {
+              color: barColor
+            };
+          } else {
+            barData[idx].itemStyle = {
+              color: unSelectColor
+            };
+          }
+        });
+        onSelect({
+          type: 'select',
+          value: name
+        });
+      }
+      chart.setOption({
+        series: [
+          {
+            data: barData
+          }
+        ]
+      });
+    }
+  }
+
+  chartOption () {
+
+    const { data = [9, 1, 4, 6], xData = ['10\nkV', '20\nkV', '30\nkV', '40\nkV'] } = this.props;
+    const barColor = '#42D1FF';
+
+    const barData = data.map((d) => ({
+      value: d,
+      itemStyle: {
+        color: barColor
+      }
+    }));
+
+    return {
+      animation: true,
+      animationDuration: 100,
+      animationDurationUpdate: 1000,
+      legend: {
+        itemHeight: 10,
+        itemWidth: 10,
+        itemGap: 10,
+        right: 34,
+        padding: [34, 0, 0, 0],
+        textStyle: {
+          color: '#ffffff',
+          fontSize: 12,
+          padding: [0, 0, 0, 0]
+        }
+      },
+      tooltip: {},
+      xAxis: {
+        type: 'category',
+        data: xData,
+        axisLine: {
+          show: true,
+          lineStyle: {
+            color: '#0E3A3D'
+          }
+        },
+        axisTick: {
+          show: false
+        },
+        axisLabel: {
+          fontSize: 12,
+          color: '#ffffff',
+          interval: 0,
+          margin: 8
+        }
+      },
+      yAxis: {
+        name: '个',
+        nameTextStyle: {
+          fontSize: 12,
+          color: '#ffffff',
+          padding: [0, 24, 0, 0]
+        },
+        max: 10,
+        interval: 2,
+        axisLine: {
+          show: true,
+          lineStyle: {
+            type: 'solid',
+            color: '#0E3A3D'
+          }
+        },
+        axisLabel: {
+          fontSize: 12,
+          color: '#ffffff',
+          margin: 8
+        },
+        axisTick: {
+          show: false
+        },
+        splitLine: {
+          lineStyle: {
+            color: '#27484C ',
+            width: 2,
+            type: 'dotted'
+          }
+        }
+      },
+      series: [
+        {
+          type: 'bar',
+          barWidth: 10,
+          color: barColor,
+          name: '数量',
+          data: barData,
+          itemStyle: {
+            normal: {
+              barBorderRadius: [5, 5, 0, 0]
+            }
+          },
+          label: {
+            show: true,
+            position: 'top',
+            color: '#B3F5FF'
+          }
+        }
+      ]
+    }
+  }
+
+  evtMap = {
+    click: this.onClick.bind(this)
+  }
+
+  render () {
+    return (
+      <div style={{ width: '320px', height: '250px', margin: '0 auto', position: 'relative', marginTop: '-20px' }}>
+        <Chart
+          onEvents={this.evtMap}
+          style={{ height: '100%' }}
+          ref={e => this.chartRef = e}
+          option={this.chartOption()}
+        />
+      </div>
+    )
+  }
+}
+export default MultipleBarChart;
+endsnippet

@@ -196,3 +196,8 @@ endsnippet
 snippet utils_make_pairs "split an array into array pairs"
 $0.reduce((result, value, index, sourceArray) => index % 2 === 0 ? [...result, sourceArray.slice(index, index + 2)] : result, []);
 endsnippet
+
+snippet utils_isFullScreen "check if browser is fullScreen"
+const isFullScreen = () => (outerHeight - innerHeight) <= 1;
+endsnippet
+	
