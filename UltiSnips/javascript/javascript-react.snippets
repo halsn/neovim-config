@@ -514,3 +514,61 @@ class MultipleBarChart extends React.Component {
 }
 export default MultipleBarChart;
 endsnippet
+
+snippet react_echarts_pie_chart "react echarts pie chart"
+import React, { useEffect } from 'react';
+import Chart from 'echarts-for-react';
+
+const PieChart = () => {
+  let chartRef = null;
+
+  const chartOption = () => {
+    const testData = [
+      { value: 1048, name: 'Search Engine' },
+      { value: 735, name: 'Direct' },
+      { value: 580, name: 'Email' },
+      { value: 484, name: 'Union Ads' },
+      { value: 300, name: 'Video Ads' }
+    ];
+
+    return {
+      tooltip: {
+        trigger: 'item'
+      },
+      series: [
+        {
+          type: 'pie',
+          radius: ['40%', '70%'],
+          avoidLabelOverlap: false,
+          label: {
+            show: false,
+            position: 'center'
+          },
+
+          labelLine: {
+            show: false
+          },
+          data: testData
+        }
+      ]
+    };
+  };
+
+  useEffect(() => {
+    setInterval(() => {
+      if (chartRef) {
+        chartRef.getEchartsInstance().clear();
+        chartRef.getEchartsInstance().setOption(chartOption());
+      }
+    }, 10000);
+  }, []);
+
+  return (
+    <div style={{ width: '500px', height: '500px', margin: '0 auto', position: 'relative' }}>
+      <Chart style={{ height: '100%' }} ref={(e) => (chartRef = e)} option={chartOption()} />
+    </div>
+  );
+};
+
+export default PieChart;
+endsnippet
