@@ -340,7 +340,7 @@ class MultipleBarChart extends React.Component {
   }
 
   onClick (params) {
-    const name = params.name.replace(`\n`, '');
+    const name = params.name.replace(\`\n\`, '');
 
     const { data, onSelect = () => {} } = this.props;
     const barColor = '#42D1FF';
