@@ -579,3 +579,96 @@ const PieChart = () => {
 
 export default PieChart;
 endsnippet
+
+snippet react_echarts_single_bar "echarts single bar chart"
+import React, { useEffect } from 'react';
+import Chart from 'echarts-for-react';
+
+const MultipleLineChart = () => {
+  let chartRef = null;
+
+  const chartOption = () => {
+
+    return {
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          type: 'shadow'
+        }
+      },
+      legend: {
+        show: true,
+        data: [{
+          name: 'Direct',
+          textStyle: {
+            color: '#95A6A5',
+            fontSize: 12,
+            padding: [0, 0, 0, 10]
+          }
+        }],
+      },
+      xAxis: [
+        {
+          type: 'category',
+          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+          axisTick: {
+            alignWithLabel: true
+          },
+          axisLine: {
+            show: false
+          }
+        }
+      ],
+      yAxis: [{
+        name: "℃",
+        nameTextStyle: {
+          fontSize: 12,
+          color: "#95A6A5",
+          padding: [0, 30, 0, 0],
+        },
+        max: 600,
+        interval: 200,
+        axisLine: {
+          show: true
+        },
+        axisLabel: {
+          fontSize: 12,
+          color: '#95A6A5',
+          margin: 10
+        },
+        splitLine: {
+          lineStyle: {
+            type: 'dotted'
+          }
+        }
+      }],
+      series: [
+        {
+          name: 'Direct',
+          type: 'bar',
+          barWidth: '50%',
+          color: '#0C5D64',
+          data: [20, 60, 200, 334, 390, 330, 220]
+        },
+      ]
+    }
+  };
+
+  useEffect(() => {
+    setInterval(() => {
+      if (chartRef) {
+        chartRef.getEchartsInstance().clear();
+        chartRef.getEchartsInstance().setOption(chartOption());
+      }
+    }, 10000);
+  }, []);
+
+  return (
+    <div style={{ width: '350px', height: '200px', margin: '0 auto', position: 'relative' }}>
+      <Chart style={{ height: '100%' }} ref={(e) => (chartRef = e)} option={chartOption()} />
+    </div>
+  );
+};
+
+export default MultipleLineChart;
+endsnippet
