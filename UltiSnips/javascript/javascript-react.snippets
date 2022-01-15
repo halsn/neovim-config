@@ -681,3 +681,103 @@ const MultipleLineChart = () => {
 
 export default MultipleLineChart;
 endsnippet
+
+snippet react_echarts_stack_bar "echarts stack bar"
+import React, { useEffect } from 'react';
+import Chart from 'echarts-for-react';
+
+const StackBarChart = () => {
+  let chartRef = null;
+
+  const chartOption = () => {
+
+    return {
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          // Use axis to trigger tooltip
+          type: 'shadow' // 'shadow' as default; can also be 'line' or 'shadow'
+        }
+      },
+      legend: {},
+      grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+      },
+      yAxis: {
+        type: 'value',
+        max: 200,
+        axisLine: {
+          show: false
+        },
+        axisLabel: {
+          show: false
+        },
+        splitLine: {
+          lineStyle: {
+            type: 'dotted'
+          }
+        }
+      },
+      xAxis: {
+        type: 'category',
+        axisTick: {
+          alignWithLabel: true
+        },
+        axisLine: {
+          show: false
+        },
+        axisLabel: {
+          interval: 0
+        },
+        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+      },
+      series: [
+        {
+          name: 'Direct',
+          type: 'bar',
+          stack: 'total',
+          data: [320, 302, 301, 334, 390, 330, 320]
+        },
+        {
+          name: 'Mail Ad',
+          type: 'bar',
+          stack: 'total',
+          data: [120, 132, 101, 134, 90, 230, 210]
+        },
+        {
+          name: 'Affiliate Ad',
+          type: 'bar',
+          stack: 'total',
+          data: [220, 182, 191, 234, 290, 330, 310]
+        },
+        {
+          name: 'Video Ad',
+          type: 'bar',
+          stack: 'total',
+          data: [150, 212, 201, 154, 190, 330, 410]
+        },
+        {
+          name: 'Search Engine',
+          type: 'bar',
+          stack: 'total',
+          data: [820, 832, 901, 934, 1290, 1330, 1320]
+        }
+      ]
+    }
+  };
+
+  useEffect(() => {
+  }, []);
+
+  return (
+    <div style={{ width: '350px', height: '200px', margin: '0 auto', position: 'relative' }}>
+      <Chart style={{ height: '100%' }} ref={(e) => (chartRef = e)} option={chartOption()} />
+    </div>
+  );
+};
+
+export default StackBarChart;
+endsnippet
