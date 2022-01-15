@@ -59,12 +59,12 @@ const MultipleBarChart = () => {
       animationDurationUpdate: 1000,
       legend: {
         itemHeight: 2,
-        itemWidth: 40,
-        right: 100,
-        itemGap: 40,
+        itemWidth: 10,
+        right: 0,
+        itemGap: 10,
         textStyle: {
           color: '#95A6A5',
-          fontSize: 34,
+          fontSize: 14,
           padding: [0, 0, 0, 10]
         }
       },
@@ -78,18 +78,18 @@ const MultipleBarChart = () => {
           show: false
         },
         axisLabel: {
-          fontSize: 34,
+          fontSize: 14,
           color: '#95A6A5',
           interval: 0,
-          margin: 30
+          margin: 0
         }
       },
       yAxis: {
         name: "℃",
         nameTextStyle: {
-          fontSize: 34,
+          fontSize: 14,
           color: "#95A6A5",
-          padding: [0, 120, 0, 0],
+          padding: [0, 12, 0, 0],
         },
         max: 150,
         interval: 30,
@@ -97,9 +97,9 @@ const MultipleBarChart = () => {
           show: false
         },
         axisLabel: {
-          fontSize: 34,
+          fontSize: 14,
           color: '#95A6A5',
-          margin: 30
+          margin: 0
         },
         splitLine: {
           lineStyle: {
@@ -137,7 +137,7 @@ const MultipleBarChart = () => {
   }, []);
 
   return (
-    <div style={{ width: '1050px', height: '500px', margin: '0 auto', position: 'relative' }}>
+    <div style={{ width: '450px', height: '300px', margin: '0 auto', position: 'relative' }}>
       <Chart style={{ height: '100%' }} ref={(e) => (chartRef = e)} option={chartOption()} />
     </div>
   );
@@ -164,28 +164,28 @@ const MultipleLineChart = () => {
           icon: 'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACkAAAADCAYAAAAOVyamAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAKaADAAQAAAABAAAAAwAAAABLUbP6AAAAKElEQVQYGWP87yxdxfCPoZUBJ2BqY9z/uBqXND30M+GyfDCJDwlHAgBGwA/o8Mg7iAAAAABJRU5ErkJggg==',
           textStyle: {
             color: '#95A6A5',
-            fontSize: 34,
+            fontSize: 14,
             padding: [0, 0, 0, 10]
           },
         }, {
           name: '充电桩',
           textStyle: {
             color: '#95A6A5',
-            fontSize: 34,
+            fontSize: 14,
             padding: [0, 0, 0, 10]
           }
         }, {
           name: '居民用电',
           textStyle: {
             color: '#95A6A5',
-            fontSize: 34,
+            fontSize: 14,
             padding: [0, 0, 0, 10]
           }
         }],
         itemHeight: 2,
-        itemWidth: 40,
-        right: 100,
-        itemGap: 40,
+        itemWidth: 10,
+        right: 0,
+        itemGap: 10,
       },
       tooltip: {},
       // dataset: {
@@ -194,9 +194,9 @@ const MultipleLineChart = () => {
       xAxis: {
         name: "(h)",
         nameTextStyle: {
-          fontSize: 34,
+          fontSize: 14,
           color: "#95A6A5",
-          padding: [0, 120, 0, 0],
+          padding: [0, 12, 0, 0],
         },
         boundaryGap: false,
         data: [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22],
@@ -205,18 +205,18 @@ const MultipleLineChart = () => {
           show: false
         },
         axisLabel: {
-          fontSize: 34,
+          fontSize: 14,
           color: '#95A6A5',
           interval: 0,
-          margin: 30
+          margin: 0
         }
       },
       yAxis: {
         name: "kW",
         nameTextStyle: {
-          fontSize: 34,
+          fontSize: 14,
           color: "#95A6A5",
-          padding: [0, 120, 0, 0],
+          padding: [0, 12, 0, 0],
         },
         max: 630,
         interval: 126,
@@ -224,9 +224,9 @@ const MultipleLineChart = () => {
           show: false
         },
         axisLabel: {
-          fontSize: 34,
+          fontSize: 14,
           color: '#95A6A5',
-          margin: 30
+          margin: 0
         },
         splitLine: {
           lineStyle: {
@@ -309,7 +309,7 @@ const MultipleLineChart = () => {
   }, []);
 
   return (
-    <div style={{ width: '1050px', height: '500px', margin: '0 auto', position: 'relative' }}>
+    <div style={{ width: '450px', height: '300px', margin: '0 auto', position: 'relative' }}>
       <Chart style={{ height: '100%' }} ref={(e) => (chartRef = e)} option={chartOption()} />
     </div>
   );
@@ -673,7 +673,7 @@ const MultipleLineChart = () => {
   }, []);
 
   return (
-    <div style={{ width: '350px', height: '200px', margin: '0 auto', position: 'relative' }}>
+    <div style={{ width: '450px', height: '300px', margin: '0 auto', position: 'relative' }}>
       <Chart style={{ height: '100%' }} ref={(e) => (chartRef = e)} option={chartOption()} />
     </div>
   );
@@ -773,7 +773,7 @@ const StackBarChart = () => {
   }, []);
 
   return (
-    <div style={{ width: '350px', height: '200px', margin: '0 auto', position: 'relative' }}>
+    <div style={{ width: '450px', height: '300px', margin: '0 auto', position: 'relative' }}>
       <Chart style={{ height: '100%' }} ref={(e) => (chartRef = e)} option={chartOption()} />
     </div>
   );
