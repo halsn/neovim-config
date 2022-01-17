@@ -38,11 +38,11 @@ import ReactDom from 'react-dom';
 endsnippet
 
 snippet react_echarts_multiple_bar "multiple bar charts"
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Chart from 'echarts-for-react';
 
 const MultipleBarChart = () => {
-  let chartRef = null;
+  let chartRef = useRef(null);
 
   const chartOption = () => {
     const testData = [
@@ -129,16 +129,16 @@ const MultipleBarChart = () => {
 
   useEffect(() => {
     setInterval(() => {
-      if (chartRef) {
-        chartRef.getEchartsInstance().clear();
-        chartRef.getEchartsInstance().setOption(chartOption());
+      if (chartRef.current) {
+        chartRef.current.getEchartsInstance().clear();
+        chartRef.current.getEchartsInstance().setOption(chartOption());
       }
     }, 10000);
   }, []);
 
   return (
     <div style={{ width: '450px', height: '300px', margin: '0 auto', position: 'relative' }}>
-      <Chart style={{ height: '100%' }} ref={(e) => (chartRef = e)} option={chartOption()} />
+      <Chart style={{ height: '100%' }} ref={chartRef} option={chartOption()} />
     </div>
   );
 };
@@ -147,11 +147,11 @@ export default MultipleBarChart;
 endsnippet
 
 snippet react_echarts_multiple_line "echarts multiple line chart"
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Chart from 'echarts-for-react';
 
 const MultipleLineChart = () => {
-  let chartRef = null;
+  let chartRef = useRef(null);
 
   const chartOption = () => {
 
@@ -301,16 +301,16 @@ const MultipleLineChart = () => {
 
   useEffect(() => {
     setInterval(() => {
-      if (chartRef) {
-        chartRef.getEchartsInstance().clear();
-        chartRef.getEchartsInstance().setOption(chartOption());
+      if (chartRef.current) {
+        chartRef.current.getEchartsInstance().clear();
+        chartRef.current.getEchartsInstance().setOption(chartOption());
       }
     }, 10000);
   }, []);
 
   return (
     <div style={{ width: '450px', height: '300px', margin: '0 auto', position: 'relative' }}>
-      <Chart style={{ height: '100%' }} ref={(e) => (chartRef = e)} option={chartOption()} />
+      <Chart style={{ height: '100%' }} ref={chartRef} option={chartOption()} />
     </div>
   );
 };
@@ -516,11 +516,11 @@ export default MultipleBarChart;
 endsnippet
 
 snippet react_echarts_pie_chart "react echarts pie chart"
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Chart from 'echarts-for-react';
 
 const PieChart = () => {
-  let chartRef = null;
+  let chartRef = useRef(null);
 
   const chartOption = () => {
     const testData = [
@@ -563,16 +563,16 @@ const PieChart = () => {
 
   useEffect(() => {
     setInterval(() => {
-      if (chartRef) {
-        chartRef.getEchartsInstance().clear();
-        chartRef.getEchartsInstance().setOption(chartOption());
+      if (chartRef.current) {
+        chartRef.current.getEchartsInstance().clear();
+        chartRef.current.getEchartsInstance().setOption(chartOption());
       }
     }, 10000);
   }, []);
 
   return (
     <div style={{ width: '500px', height: '500px', margin: '0 auto', position: 'relative' }}>
-      <Chart style={{ height: '100%' }} ref={(e) => (chartRef = e)} option={chartOption()} />
+      <Chart style={{ height: '100%' }} ref={chartRef} option={chartOption()} />
     </div>
   );
 };
@@ -581,11 +581,11 @@ export default PieChart;
 endsnippet
 
 snippet react_echarts_single_bar "echarts single bar chart"
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Chart from 'echarts-for-react';
 
 const MultipleLineChart = () => {
-  let chartRef = null;
+  let chartRef = useRef(null);
 
   const chartOption = () => {
 
@@ -665,16 +665,16 @@ const MultipleLineChart = () => {
 
   useEffect(() => {
     setInterval(() => {
-      if (chartRef) {
-        chartRef.getEchartsInstance().clear();
-        chartRef.getEchartsInstance().setOption(chartOption());
+      if (chartRef.current) {
+        chartRef.current.getEchartsInstance().clear();
+        chartRef.current.getEchartsInstance().setOption(chartOption());
       }
     }, 10000);
   }, []);
 
   return (
     <div style={{ width: '450px', height: '300px', margin: '0 auto', position: 'relative' }}>
-      <Chart style={{ height: '100%' }} ref={(e) => (chartRef = e)} option={chartOption()} />
+      <Chart style={{ height: '100%' }} ref={chartRef} option={chartOption()} />
     </div>
   );
 };
@@ -683,11 +683,11 @@ export default MultipleLineChart;
 endsnippet
 
 snippet react_echarts_stack_bar "echarts stack bar"
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Chart from 'echarts-for-react';
 
 const StackBarChart = () => {
-  let chartRef = null;
+  let chartRef = useRef(null);
 
   const chartOption = () => {
 
@@ -770,11 +770,17 @@ const StackBarChart = () => {
   };
 
   useEffect(() => {
+    setInterval(() => {
+      if (chartRef.current) {
+        chartRef.current.getEchartsInstance().clear();
+        chartRef.current.getEchartsInstance().setOption(chartOption());
+      }
+    }, 10000);
   }, []);
 
   return (
     <div style={{ width: '450px', height: '300px', margin: '0 auto', position: 'relative' }}>
-      <Chart style={{ height: '100%' }} ref={(e) => (chartRef = e)} option={chartOption()} />
+      <Chart style={{ height: '100%' }} ref={chartRef} option={chartOption()} />
     </div>
   );
 };
