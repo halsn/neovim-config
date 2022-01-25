@@ -200,4 +200,7 @@ endsnippet
 snippet utils_isFullScreen "check if browser is fullScreen"
 const isFullScreen = () => (outerHeight - innerHeight) <= 1;
 endsnippet
-	
+
+snippet utils_is_object "check if is object"
+const isObject = (obj) => (obj != null && obj.constructor.name === 'Object');
+endsnippet
