@@ -1,3 +1,8 @@
 snippet regex_match_positive_nagitave_number "regex for '-12344123.55323, 3423411323124.55123'"
 ^(-\d+|\d+|\d+\.\d+|-\d+\.\d+)$
 endsnippet
+
+snippet regex_password "must contain 1 num 1 uppercase letter 1 lowercase letter 1 non-alpha letter and length 9 to 20"
+^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{9,20}$
+endsnippet
+	
