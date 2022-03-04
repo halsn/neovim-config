@@ -815,3 +815,29 @@ const useLocalStorage = (keyName, defaultValue) => {
   return [storedValue, setValue];
 };
 endsnippet
+
+snippet react_echart_lineargradient "echart linear gradient"
+series: [
+  {
+    name: '台数',
+    type: 'bar',
+    barWidth: '30%',
+    color: '#0C5D64',
+    data: data,
+    itemStyle: {
+      color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [
+	{
+	  offset: 0,
+	  color: 'rgba(41 , 215, 235, 0)'
+	},
+	{
+	  offset: 1,
+	  color: 'rgba(41 , 215, 235, 1)'
+	}
+      ]),
+      borderColor: '#29d7eb',
+      borderWidth: 2
+    }
+  }
+]
+endsnippet
