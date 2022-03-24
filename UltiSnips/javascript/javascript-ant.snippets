@@ -339,3 +339,13 @@ const Demo = () => {
   );
 };
 endsnippet
+
+snippet ant_inputnumber_only_integer "ant design inputNumber only accept positive integer"
+<InputNumber
+  min={1}
+  step={1}
+  formatter={val => `${val}`.replace(/^(0+)|[^\d]+/g, '')}
+  parser={val => `${val}`.replace(/^(0+)|[^\d]+/g, '')}
+/>
+endsnippet
+	
