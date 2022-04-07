@@ -204,3 +204,13 @@ endsnippet
 snippet utils_is_object "check if is object"
 const isObject = (obj) => (obj != null && obj.constructor.name === 'Object');
 endsnippet
+
+snippet utils_blob_to_base64 "convert blob to base64"
+function blobToBase64(blob) {
+  return new Promise((resolve, _) => {
+    const reader = new FileReader();
+    reader.onloadend = () => resolve(reader.result);
+    reader.readAsDataURL(blob);
+  });
+}
+endsnippet
