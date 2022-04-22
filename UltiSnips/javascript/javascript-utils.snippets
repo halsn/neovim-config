@@ -214,3 +214,30 @@ function blobToBase64(blob) {
   });
 }
 endsnippet
+
+snippet utils_click_to_download "click to download file"
+// 后端相应头
+// Content-Disposition: attachment;filename=%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%9C-20220422.csv
+// Content-Length: 2766
+// Content-Type: application/octet-stream;charset=UTF-8
+const downloadFile = async (type, fileName) => {
+  let res = await downloadFile(type);
+  let blob = new window.Blob([res], { type: 'application/octet-stream' });
+  if (typeof window.chrome !== 'undefined') {
+    // chrome
+    let link = document.createElement('a');
+    link.href = window.URL.createObjectURL(blob);
+    link.download = `${fileName}.xlsx`;
+    link.click();
+  } else if (typeof window.navigator.msSaveBlob !== 'undefined') {
+    // IE
+    window.navigator.msSaveBlob(blob, `${fileName}.xlsx`);
+  } else {
+    // firefox
+    let file = new window.File([blob], `${fileName}.xlsx`, {
+      type: 'application/octet-stream'
+    });
+    window.open(URL.createObjectURL(file));
+  }
+};
+endsnippet
