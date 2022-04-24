@@ -220,9 +220,10 @@ snippet utils_click_to_download "click to download file"
 // Content-Disposition: attachment;filename=%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%9C-20220422.csv
 // Content-Length: 2766
 // Content-Type: application/octet-stream;charset=UTF-8
+// xhr responseType需要设置为blob
 import { saveAs } from 'file-saver';
 const downloadFile = async (type, fileName) => {
-  let res = await downloadFile(type);
+  let res = await downloadApi(type, { responseType: 'blob' });
   let blob = new window.Blob([res], { type: 'application/octet-stream' });
   saveAs(blob, `{fileName}.xls`);
 };
