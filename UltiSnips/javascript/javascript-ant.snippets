@@ -349,4 +349,151 @@ snippet ant_inputnumber_only_integer "ant design inputNumber only accept positiv
   parser={val => `${val}`.replace(/^(0+)|[^\d]+/g, '')}
 />
 endsnippet
-	
+
+snippet ant_table_with_form "ant design table with form search"
+// index.less
+// .content {
+//   margin: 20px;
+//   .form {
+//     display: flex;
+//     justify-content: space-between;
+//     .leftView {
+//       display: flex;
+//       flex-wrap: wrap;
+//     }
+//   }
+// }
+import React, { useState, useEffect } from 'react';
+import { Button, Form, Select, Tooltip, Input, Tag, Table, Popconfirm } from 'antd';
+import styles from './index.less';
+const { Option } = Select;
+
+const Demo = (props) => {
+  const { getFieldDecorator, resetFields } = props.form;
+
+  const [dataSource, setDataSource] = useState([]);
+  const [formVal, setFormVal] = useState({});
+  const [totalCount, setTotalCount] = useState(0);
+  const [pageIndex, setPageIndex] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
+
+  const formatTable = (param) => {
+    return param ? (param?.length > 20 ? `${param.slice(0, 20)}...` : param) : '-';
+  };
+  const columns = [
+    {
+      title: 'id',
+      key: 'id',
+      dataIndex: 'id',
+      fixed: 'left',
+      render: (text) => (
+        <Tooltip placement='topLeft' title={text} trigger='hover'>
+          {formatTable(text)}
+        </Tooltip>
+      )
+    },
+    {
+      title: '状态',
+      key: 'status',
+      dataIndex: 'status',
+      render: (text) => <Tag>{text}</Tag>
+    },
+    {
+      title: '操作',
+      key: 'operation',
+      width: 100,
+      render: () => {
+        return (
+          <div>
+            <Popconfirm title='confirm?' placement='topRight' onConfirm={() => {}}>
+              <Button type='link' style={{ marginLeft: -15 }}>
+                删除
+              </Button>
+            </Popconfirm>
+          </div>
+        );
+      }
+    }
+  ];
+
+  const onChangeFormVale = (key, val) => {
+    setFormVal({
+      ...formVal,
+      [`${key}`]: val
+    });
+  };
+  const reset = () => {
+    resetFields();
+    setFormVal({});
+  };
+  const fetchData = async () => {
+    const dataSource = [
+      {
+        id: 123,
+        key: 123,
+        status: 'success',
+        operation: '操作'
+      }
+    ];
+    setDataSource(dataSource);
+    setTotalCount(dataSource.length);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [formVal, pageIndex, pageSize]);
+
+  return (
+    <div className={styles.content}>
+      <Form className={styles.form}>
+        <div className={styles.leftView}>
+          <Form.Item>
+            {getFieldDecorator('type')(
+              <Select
+                placeholder='请选择类型'
+                style={{ width: 174, marginRight: 10 }}
+                onChange={(val) => onChangeFormVale('type', val)}>
+                <Option value='type1'>type1</Option>
+                <Option value='type2'>type2</Option>
+              </Select>
+            )}
+          </Form.Item>
+          <Form.Item>
+            {getFieldDecorator('name')(
+              <Input.Search
+                onChange={(e) => onChangeFormVale('name', e.target.value)}
+                placeholder='请输入名称'
+                style={{ width: 174, marginRight: 10 }}
+              />
+            )}
+          </Form.Item>
+          <Form.Item>
+            <Button type='default' onClick={reset}>
+              重置
+            </Button>
+          </Form.Item>
+        </div>
+      </Form>
+      <Table
+        columns={columns}
+        dataSource={dataSource}
+        scroll={{ x: 'max-content' }}
+        rowSelection={() => {}}
+        showTotal={(total) => `共 ${total} 条`}
+        showSizeChanger
+        pagination={{
+          total: +totalCount,
+          pageSize: pageSize,
+          current: pageIndex,
+          onChange: (val) => setPageIndex(val),
+          onShowSizeChange: (_, val) => {
+            setPageSize(val);
+            setPageIndex(1);
+          }
+        }}
+      />
+    </div>
+  );
+};
+export default Form.create()(Demo);
+endsnippet
