@@ -352,14 +352,26 @@ endsnippet
 
 snippet ant_table_with_form "ant design table with form search"
 // index.less
-// .content {
-//   margin: 20px;
-//   .form {
-//     display: flex;
-//     justify-content: space-between;
-//     .leftView {
+// .wrap {
+//   background: #fff;
+//   margin: 0 20px 20px;
+//   border-radius: 2px;
+//   height: 100%;
+//   overflow: auto;
+//   padding: 0 50px;
+//   .content {
+//     margin: 20px;
+//     .form {
 //       display: flex;
-//       flex-wrap: wrap;
+//       justify-content: space-between;
+//       .leftView {
+//         display: flex;
+//         flex-wrap: wrap;
+//       }
+//       .rightView {
+//         display: flex;
+//         padding-top: 5px;
+//       }
 //     }
 //   }
 // }
@@ -378,7 +390,7 @@ const Demo = (props) => {
   const [pageSize, setPageSize] = useState(10);
 
   const formatTable = (param) => {
-    return param ? (param?.length > 20 ? `${param.slice(0, 20)}...` : param) : '-';
+    return param ? (param?.length > 20 ? \`\$\{param.slice(0, 20)}...\` : param) : '-';
   };
   const columns = [
     {
@@ -419,7 +431,7 @@ const Demo = (props) => {
   const onChangeFormVale = (key, val) => {
     setFormVal({
       ...formVal,
-      [`${key}`]: val
+      [\`\$\{key\}\`]: val
     });
   };
   const reset = () => {
@@ -444,54 +456,57 @@ const Demo = (props) => {
   }, [formVal, pageIndex, pageSize]);
 
   return (
-    <div className={styles.content}>
-      <Form className={styles.form}>
-        <div className={styles.leftView}>
-          <Form.Item>
-            {getFieldDecorator('type')(
-              <Select
-                placeholder='请选择类型'
-                style={{ width: 174, marginRight: 10 }}
-                onChange={(val) => onChangeFormVale('type', val)}>
-                <Option value='type1'>type1</Option>
-                <Option value='type2'>type2</Option>
-              </Select>
-            )}
-          </Form.Item>
-          <Form.Item>
-            {getFieldDecorator('name')(
-              <Input.Search
-                onChange={(e) => onChangeFormVale('name', e.target.value)}
-                placeholder='请输入名称'
-                style={{ width: 174, marginRight: 10 }}
-              />
-            )}
-          </Form.Item>
-          <Form.Item>
-            <Button type='default' onClick={reset}>
-              重置
-            </Button>
-          </Form.Item>
-        </div>
-      </Form>
-      <Table
-        columns={columns}
-        dataSource={dataSource}
-        scroll={{ x: 'max-content' }}
-        rowSelection={() => {}}
-        showTotal={(total) => `共 ${total} 条`}
-        showSizeChanger
-        pagination={{
-          total: +totalCount,
-          pageSize: pageSize,
-          current: pageIndex,
-          onChange: (val) => setPageIndex(val),
-          onShowSizeChange: (_, val) => {
-            setPageSize(val);
-            setPageIndex(1);
-          }
-        }}
-      />
+    <div className={styles.wrap}>
+      <div className={styles.content}>
+        <Form className={styles.form}>
+          <div className={styles.leftView}>
+            <Form.Item>
+              {getFieldDecorator('type')(
+                <Select
+                  placeholder='请选择类型'
+                  style={{ width: 174, marginRight: 10 }}
+                  onChange={(val) => onChangeFormVale('type', val)}>
+                  <Option value='type1'>type1</Option>
+                  <Option value='type2'>type2</Option>
+                </Select>
+              )}
+            </Form.Item>
+            <Form.Item>
+              {getFieldDecorator('name')(
+                <Input.Search
+                  onChange={(e) => onChangeFormVale('name', e.target.value)}
+                  placeholder='请输入名称'
+                  style={{ width: 174, marginRight: 10 }}
+                />
+              )}
+            </Form.Item>
+            <Form.Item>
+              <Button type='default' onClick={reset}>
+                重置
+              </Button>
+            </Form.Item>
+          </div>
+        </Form>
+        <Table
+          columns={columns}
+          dataSource={dataSource}
+          scroll={{ x: 'max-content' }}
+          rowSelection={() => {}}
+          pagination={{
+            total: +totalCount,
+            pageSize: pageSize,
+            showSizeChanger: true,
+            pageSizeOptions: ['10', '15', '30'],
+            showTotal: (total) => \`共\$\{total\}条\`,
+            current: pageIndex,
+            onChange: (val) => setPageIndex(val),
+            onShowSizeChange: (_, val) => {
+              setPageSize(val);
+              setPageIndex(1);
+            }
+          }}
+        />
+      </div>
     </div>
   );
 };
