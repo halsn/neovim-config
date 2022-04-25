@@ -176,6 +176,7 @@ snippet ant_inline_form_v3 "ant design search input"
   </Form.Item>
 </Form>
 endsnippet
+
 snippet ant_base_tree_list "ant design base tree list"
 import { Tree } from 'antd';
 const treeData = [
@@ -246,12 +247,12 @@ endsnippet
 
 snippet ant_basic_form "ant design basic flow form"
 <Form labelCol={{ span: 7 }} wrapperCol={{ span: 12 }}>
-    <Form.Item label='label'>
-	{getFieldDecorator('form_field', {
-	    initialValue: '0',
-	    rules: [],
-	})(<Input />)}
-    </Form.Item>
+  <Form.Item label='label'>
+    {getFieldDecorator('form_field', {
+      initialValue: '0',
+      rules: [],
+    })(<Input />)}
+  </Form.Item>
 </Form>
 endsnippet
 
