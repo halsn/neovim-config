@@ -225,6 +225,6 @@ import { saveAs } from 'file-saver';
 const downloadFile = async (type, fileName) => {
   let res = await downloadApi(type, { responseType: 'blob' });
   let blob = new window.Blob([res], { type: 'application/octet-stream' });
-  saveAs(blob, `{fileName}.xls`);
+  saveAs(blob, \`\${fileName\}.xls\`);
 };
 endsnippet
