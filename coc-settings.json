@@ -27,5 +27,6 @@
     "ejs": "html",
     "javascript": "javascriptreact"
   },
-  "snippets.textmateSnippetsRoots": ["~/.config/nvim/vscode-snippets"]
+  "snippets.textmateSnippetsRoots": ["~/.config/nvim/vscode-snippets"],
+  "json.format.enable": false
 }
