@@ -428,7 +428,7 @@ const Demo = (props) => {
     }
   ];
 
-  const onChangeFormVale = (key, val) => {
+  const onChangeFormVal = (key, val) => {
     setFormVal({
       ...formVal,
       [\`\$\{key\}\`]: val
@@ -465,7 +465,7 @@ const Demo = (props) => {
                 <Select
                   placeholder='请选择类型'
                   style={{ width: 174, marginRight: 10 }}
-                  onChange={(val) => onChangeFormVale('type', val)}>
+                  onChange={(val) => onChangeFormVal('type', val)}>
                   <Option value='type1'>type1</Option>
                   <Option value='type2'>type2</Option>
                 </Select>
@@ -474,7 +474,7 @@ const Demo = (props) => {
             <Form.Item>
               {getFieldDecorator('name')(
                 <Input.Search
-                  onChange={(e) => onChangeFormVale('name', e.target.value)}
+                  onChange={(e) => onChangeFormVal('name', e.target.value)}
                   placeholder='请输入名称'
                   style={{ width: 174, marginRight: 10 }}
                 />
@@ -488,6 +488,7 @@ const Demo = (props) => {
           </div>
         </Form>
         <Table
+	  rowKey='id'
           columns={columns}
           dataSource={dataSource}
           scroll={{ x: 'max-content' }}
