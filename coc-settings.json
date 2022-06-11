@@ -4,7 +4,6 @@
   "diagnostic.infoSign": "⚠",
   "coc.preferences.previewAutoClose": true,
   "suggest.enablePreview": false,
-  "tslint.autoFixOnSave": true,
   "eslint.filetypes": [
     "javascript",
     "javascript.jsx",
