@@ -19,6 +19,7 @@
     "javascript.jsx": ["javascript"]
   },
   "coc.source.word.priority": 100,
+  "tabnine.priority": 99,
   "list.source.mru.ignoreGitIgnore": true,
   "java.format.settings.url": "/home/halsn/.config/coc/extensions/node_modules/redhat.java/eclipse-formatter.xml",
   "emmet.includeLanguages": {

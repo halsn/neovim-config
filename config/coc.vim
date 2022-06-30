@@ -53,3 +53,6 @@ let g:coc_snippet_next = '<S-Tab>'
 imap <S-Tab> <Plug>(coc-snippets-expand)
 
 inoremap <silent><expr> <S-Tab> pumvisible() ? coc#_select_confirm() : "\<C-y>"
+
+highlight CocUnusedHighlight  ctermfg=245
+" highlight CocErrorHighlight ctermfg=Red  guifg=#ff0000
