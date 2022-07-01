@@ -1,13 +1,13 @@
 {
   // "coc.preferences.jumpCommand": "split",
-  "diagnostic.refreshAfterSave": true,
   "diagnostic.infoSign": "⚠",
-  "coc.preferences.previewAutoClose": true,
   "suggest.enablePreview": false,
-  "eslint.filetypes": [
+  "eslint.validate": [
     "javascript",
-    "javascript.jsx",
-    "javascriptreact"
+    "javascriptreact",
+    "vue",
+    "typescript",
+    "typescriptreact"
   ],
   "eslint.autoFixOnSave": true,
   "html.suggest.angular1": false,
@@ -21,12 +21,13 @@
   "coc.source.word.priority": 100,
   "tabnine.priority": 99,
   "list.source.mru.ignoreGitIgnore": true,
-  "java.format.settings.url": "/home/halsn/.config/coc/extensions/node_modules/redhat.java/eclipse-formatter.xml",
   "emmet.includeLanguages": {
     "vue-html": "html",
     "ejs": "html",
     "javascript": "javascriptreact"
   },
   "snippets.textmateSnippetsRoots": ["~/.config/nvim/vscode-snippets"],
-  "json.format.enable": false
+  "json.format.enable": false,
+  "javascript.suggest.autoImports": true,
+  "typescript.suggest.autoImports": true
 }
