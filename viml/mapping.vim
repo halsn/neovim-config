@@ -72,6 +72,8 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " Add `:RN` command for rename
 command! -nargs=0 RN   :CocAction('rename')
 
+command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
+
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
