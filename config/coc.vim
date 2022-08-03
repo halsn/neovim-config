@@ -49,9 +49,7 @@ let g:ag_working_path_mode="r"
 let g:coc_snippet_next = '<S-Tab>'
 
 " Use <C-l> for trigger snippet expand.
-" imap <S-Tab> <Plug>(coc-snippets-expand)
-
-" inoremap <silent><expr> <S-Tab> pumvisible() ? coc#_select_confirm() : "\<C-y>"
+imap <S-Tab> <Plug>(coc-snippets-expand)
 
 highlight CocUnusedHighlight  ctermfg=245
 " highlight CocErrorHighlight ctermfg=Red  guifg=#ff0000
