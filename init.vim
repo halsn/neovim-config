@@ -33,6 +33,7 @@ Plug 'tpope/vim-repeat'                                         " 重复之前�
 Plug 'junkblocker/git-time-lapse'                               " 类似于git lens
 " Mac
 Plug 'APZelos/blamer.nvim'                                      " git blame显示
+Plug 'edluffy/hologram.nvim'
 
 " syntax
 Plug 'ekalinin/Dockerfile.vim'                                  " Dockerfile

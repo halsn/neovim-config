@@ -15,18 +15,17 @@ set updatetime=300
 
 " set shortmess+=c
 
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Use <c-space> to trigger completion.
+inoremap <silent><expr> <S-TAB> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" remap for complete to use tab and <cr>
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1):
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
 inoremap <silent><expr> <c-space> coc#refresh()
 
 " Use K to show documentation in preview window
@@ -50,9 +49,12 @@ let g:ag_working_path_mode="r"
 let g:coc_snippet_next = '<S-Tab>'
 
 " Use <C-l> for trigger snippet expand.
-imap <S-Tab> <Plug>(coc-snippets-expand)
+" imap <S-Tab> <Plug>(coc-snippets-expand)
 
-inoremap <silent><expr> <S-Tab> pumvisible() ? coc#_select_confirm() : "\<C-y>"
+" inoremap <silent><expr> <S-Tab> pumvisible() ? coc#_select_confirm() : "\<C-y>"
 
 highlight CocUnusedHighlight  ctermfg=245
 " highlight CocErrorHighlight ctermfg=Red  guifg=#ff0000
+
+hi CocSearch ctermfg=24 guifg=#005f87
+hi CocMenuSel ctermbg=109 guibg=#13354A
