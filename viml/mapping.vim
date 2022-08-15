@@ -69,8 +69,8 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
-" Add `:RN` command for rename
-command! -nargs=0 RN   :CocAction('rename')
+" Add `rn` command for rename
+nmap <leader>rn <Plug>(coc-rename)
 
 command! -nargs=0 Prettier :CocCommand prettier.forceFormatDocument
 

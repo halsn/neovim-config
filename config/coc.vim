@@ -46,7 +46,7 @@ let g:ag_working_path_mode="r"
 " coc-snippets config
 
 " Use <C-j> for jump to next placeholder, it's default of coc.nvim
-let g:coc_snippet_next = '<S-Tab>'
+" let g:coc_snippet_next = '<S-Tab>'
 
 " Use <C-l> for trigger snippet expand.
 imap <S-Tab> <Plug>(coc-snippets-expand)
