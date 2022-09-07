@@ -841,3 +841,29 @@ series: [
   }
 ]
 endsnippet
+
+snippet react_debounce_hook "react useDebouncedEffect"
+# import { useState } from "react";
+# import { useDebouncedEffect } from "./useDebouncedEffect";
+# 
+# const App = () => {
+#   const [value, setValue] = useState(0);
+# 
+#   useDebouncedEffect(() => console.log(value), [value], 1000);
+# 
+#   return <button onClick={() => setValue(value + 1)}>{value}</button>;
+# };
+# 
+# export default App;
+
+import { useEffect } from "react";
+
+export default (effect, deps, delay) => {
+  useEffect(() => {
+    const handler = setTimeout(() => effect(), delay);
+
+    return () => clearTimeout(handler);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [...(deps || []), delay]);
+};
+endsnippet
