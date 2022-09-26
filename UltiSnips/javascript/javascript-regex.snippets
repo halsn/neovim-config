@@ -5,4 +5,7 @@ endsnippet
 snippet regex_password "must contain 1 num 1 uppercase letter 1 lowercase letter 1 non-alpha letter and length 9 to 20"
 ^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){9,20}$
 endsnippet
-	
+
+snippet regex_emoji "regex for emoji"
+/([\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD10-\uDDFF])/g
+endsnippet
