@@ -43,7 +43,7 @@ const plainStringify = (obj) => {
 endsnippet
 
 snippet utils_safe_deep_clone "safe deepClone with circular case"
-const deepClone = (obj) => {
+function deepClone(obj) {
   let res = null;
   const reference = [Date, RegExp, Set, WeakSet, Map, WeakMap, Error];
   if (reference.includes(obj?.constructor)) {
@@ -51,13 +51,13 @@ const deepClone = (obj) => {
   } else if (Array.isArray(obj)) {
     res = [];
     obj.forEach((e, i) => {
-      res[i] = deep_clone(e);
+      res[i] = deepClone(e);
     });
   } else if (typeof obj === 'object' && obj !== null) {
     res = {};
     for (const key in obj) {
       if (Object.hasOwnProperty.call(obj, key)) {
-        res[key] = deep_clone(obj[key]);
+        res[key] = deepClone(obj[key]);
       }
     }
   } else {
