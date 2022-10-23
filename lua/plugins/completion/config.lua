@@ -123,7 +123,7 @@ function config.cmp()
           TypeParameter = "",
         }
         -- load lspkind icons
-        vim_item.kind = string.format("%s %s", lspkind_icons[vim_item.kind], vim_item.kind)
+        -- vim_item.kind = string.format("%s %s", lspkind_icons[vim_item.kind], vim_item.kind)
 
         vim_item.menu = ({
           -- cmp_tabnine = "[TN]",
@@ -142,11 +142,20 @@ function config.cmp()
     },
     -- You can set mappings if you want
     mapping = cmp.mapping.preset.insert({
-      ["<CR>"] = cmp.mapping.confirm({ select = true }),
-      ["<C-p>"] = cmp.mapping.select_prev_item(),
-      ["<C-n>"] = cmp.mapping.select_next_item(),
-      ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-      ["<C-f>"] = cmp.mapping.scroll_docs(4),
+      -- ["<S-Tab>"] = cmp.mapping.confirm({ select = true }),
+      ["<S-Tab>"] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.confirm({ select = true })
+        elseif require("luasnip").expand_or_jumpable() then
+          vim.fn.feedkeys(t("<Plug>luasnip-expand-or-jump"), "")
+        else
+          fallback()
+        end
+      end, { "i", "s" }),
+      ["<C-k>"] = cmp.mapping.select_prev_item(),
+      ["<C-j>"] = cmp.mapping.select_next_item(),
+      ["<C-h>"] = cmp.mapping.scroll_docs(-4),
+      ["<C-l>"] = cmp.mapping.scroll_docs(4),
       ["<C-e>"] = cmp.mapping.close(),
       ["<Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
@@ -157,27 +166,27 @@ function config.cmp()
           fallback()
         end
       end, { "i", "s" }),
-      ["<S-Tab>"] = cmp.mapping(function(fallback)
-        if cmp.visible() then
-          cmp.select_prev_item()
-        else
-          fallback()
-        end
-      end, { "i", "s" }),
-      ["<C-h>"] = function(fallback)
-        if require("luasnip").jumpable(-1) then
-          vim.fn.feedkeys(t("<Plug>luasnip-jump-prev"), "")
-        else
-          fallback()
-        end
-      end,
-      ["<C-l>"] = function(fallback)
-        if require("luasnip").expand_or_jumpable() then
-          vim.fn.feedkeys(t("<Plug>luasnip-expand-or-jump"), "")
-        else
-          fallback()
-        end
-      end,
+      -- ["<S-Tab>"] = cmp.mapping(function(fallback)
+      --   if cmp.visible() then
+      --     cmp.select_prev_item()
+      --   else
+      --     fallback()
+      --   end
+      -- end, { "i", "s" }),
+      -- ["<C-h>"] = function(fallback)
+      --   if require("luasnip").jumpable(-1) then
+      --     vim.fn.feedkeys(t("<Plug>luasnip-jump-prev"), "")
+      --   else
+      --     fallback()
+      --   end
+      -- end,
+      -- ["<C-l>"] = function(fallback)
+      --   if require("luasnip").expand_or_jumpable() then
+      --     vim.fn.feedkeys(t("<Plug>luasnip-expand-or-jump"), "")
+      --   else
+      --     fallback()
+      --   end
+      -- end,
     }),
     snippet = {
       expand = function(args)
