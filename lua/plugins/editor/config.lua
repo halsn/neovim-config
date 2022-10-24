@@ -88,7 +88,7 @@ function config.matchup()
 end
 
 function config.illuminate()
-  vim.api.nvim_set_hl(0, "IlluminatedWordText", { bg = "#FFFF4E", fg = "#000000" })
+  vim.api.nvim_set_hl(0, "IlluminatedWordText", { bg = "#FFFF00", fg = "#000000" })
   require("illuminate").configure({
     providers = {
       "regex",

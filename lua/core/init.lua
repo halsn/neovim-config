@@ -35,19 +35,19 @@ local load_core = function()
   leader_map()
 
   pack.ensure_plugins()
+  pack.load_compile()
   -- clipboard_config()
   require("core.options")
   require("core.mapping")
   require("keymap")
   require("core.event")
-  pack.load_compile()
 
   vim.cmd([[
     set background=light
     colorscheme PaperColor
     hi NonText ctermbg=none
-    hi MatchParen cterm=none ctermbg=190 ctermfg=46          " 括号匹配颜色
-    hi Folded ctermbg=253 ctermfg=51                         " 设置折叠区颜色
+    hi MatchParen cterm=none ctermbg=226 ctermfg=0 guifg=#000000 guibg=#FFFF00          " 括号匹配颜色
+    hi Folded ctermbg=253 ctermfg=51 guifg=#00ffff guibg=#dadada                         " 设置折叠区颜色
   ]])
 end
 

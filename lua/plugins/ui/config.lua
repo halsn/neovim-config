@@ -4,6 +4,7 @@ function config.indentLine()
   vim.cmd([[
     let g:indentLine_setColors = 1
     let g:indentLine_color_term = 39    			" 设置缩进线颜色
+    let g:indentLine_color_gui = '#00afff'
     let g:indentLine_char = '¦' 				" 设置缩进线 字符 ¦
     let g:vim_json_syntax_conceal = 0                           " json文件禁止隐藏引号
     let g:vim_json_conceal=0

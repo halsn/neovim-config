@@ -23,6 +23,14 @@ local plug_map = {
   ["n|<leader>v"] = map_cmd(":CommentToggle<CR>"):with_noremap():with_silent(),
   ["v|<leader>v"] = map_cmd(":CommentToggle<CR>"):with_noremap():with_silent(),
 
+  -- Plugin Telescope
+  ["n|}"] = map_cmd(":Telescope find_files<CR>"):with_noremap():with_silent(),
+  ["n|{"] = map_cmd(":Telescope grep_string initial_mode=normal<CR>"):with_noremap():with_silent(),
+  ["n|P"] = map_cmd(":Telescope live_grep<CR>"):with_noremap():with_silent(),
+  ["n|<leader><space>"] = map_cmd(":Telescope buffers sort_lastused=true initial_mode=normal<CR>")
+    :with_noremap()
+    :with_silent(),
+
   -- Bufferline
   -- ["n|gb"] = map_cr("BufferLinePick"):with_noremap():with_silent(),
   -- ["n|<A-j>"] = map_cr("BufferLineCycleNext"):with_noremap():with_silent(),
@@ -93,11 +101,8 @@ local plug_map = {
   -- ["n|<Leader>nr"] = map_cr("NvimTreeRefresh"):with_noremap():with_silent(),
   -- Plugin Undotree
   -- ["n|<Leader>u"] = map_cr("UndotreeToggle"):with_noremap():with_silent(),
-  -- Plugin Telescope
-  -- ["n|<Leader>fp"] = map_cu("lua require('telescope').extensions.project.project{}"):with_noremap():with_silent(),
-  -- ["n|<Leader>fr"] = map_cu("lua require('telescope').extensions.frecency.frecency{}"):with_noremap():with_silent(),
   -- ["n|<Leader>fe"] = map_cu("Telescope oldfiles"):with_noremap():with_silent(),
-  -- ["n|<Leader>ff"] = map_cu("Telescope find_files"):with_noremap():with_silent(),
+  -- ["n|<Leader>b"] = map_cu("Telescope find_files"):with_noremap():with_silent(),
   -- ["n|<Leader>sc"] = map_cu("Telescope colorscheme"):with_noremap():with_silent(),
   -- ["n|<Leader>fn"] = map_cu(":enew"):with_noremap():with_silent(),
   -- ["n|<Leader>fw"] = map_cu("Telescope live_grep"):with_noremap():with_silent(),

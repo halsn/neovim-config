@@ -25,6 +25,10 @@ local def_map = {
   ["n|<leader>o"] = map_cmd("<C-o>"):with_noremap():with_silent(),
   ["v|//"] = map_cmd('y/<C-R>"<CR>'):with_noremap():with_silent(),
   ["v|.."] = map_cmd('y/<C-R>"<CR><S-n><S-n>'):with_noremap():with_silent(),
+  ["n|<Space>"] = map_cmd("@=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>"):with_noremap():with_silent(),
+  ["v|<Space>"] = map_cmd("zf"):with_noremap():with_silent(),
+  ["n|d<Space>"] = map_cmd("zd"):with_noremap():with_silent(),
+  ["v|d<Space>"] = map_cmd("zd"):with_noremap():with_silent(),
 
   -- terminal map
   ["t|<Esc>"] = map_cmd("<C-\\><C-n>"):with_noremap():with_silent(),

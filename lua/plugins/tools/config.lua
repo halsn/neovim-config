@@ -70,6 +70,7 @@ function config.telescope()
         n = {
           ["s"] = "file_split",
           ["i"] = "file_vsplit",
+          ["t"] = "file_tab",
         },
       },
       initial_mode = "insert",
