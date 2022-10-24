@@ -26,4 +26,100 @@ function config.translator()
   ]])
 end
 
+function config.filetype()
+  -- In init.lua or filetype.nvim's config file
+  require("filetype").setup({
+    overrides = {
+      shebang = {
+        -- Set the filetype of files with a dash shebang to sh
+        dash = "sh",
+      },
+    },
+  })
+end
+
+function config.telescope()
+  vim.cmd([[packadd sqlite.lua]])
+  vim.cmd([[packadd telescope-fzf-native.nvim]])
+  vim.cmd([[packadd telescope-project.nvim]])
+  vim.cmd([[packadd telescope-frecency.nvim]])
+
+  local telescope_actions = require("telescope.actions.set")
+  local fixfolds = {
+    hidden = true,
+    attach_mappings = function(_)
+      telescope_actions.select:enhance({
+        post = function()
+          vim.cmd(":normal! zx")
+        end,
+      })
+      return true
+    end,
+  }
+
+  require("telescope").setup({
+    defaults = {
+      mappings = {
+        i = {
+          -- map actions.which_key to <C-h> (default: <C-/>)
+          -- actions.which_key shows the mappings for your picker,
+          -- e.g. git_{create, delete, ...}_branch for the git_branches picker
+          ["<C-j>"] = "move_selection_next",
+          ["<C-k>"] = "move_selection_previous",
+        },
+        n = {
+          ["s"] = "file_split",
+          ["i"] = "file_vsplit",
+        },
+      },
+      initial_mode = "insert",
+      prompt_prefix = "> ",
+      selection_caret = " ",
+      entry_prefix = " ",
+      scroll_strategy = "limit",
+      results_title = false,
+      -- borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
+      layout_strategy = "horizontal",
+      path_display = { "absolute" },
+      file_ignore_patterns = {},
+      layout_config = {
+        prompt_position = "bottom",
+        horizontal = {
+          preview_width = 0.5,
+        },
+      },
+      file_previewer = require("telescope.previewers").vim_buffer_cat.new,
+      grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
+      qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
+      file_sorter = require("telescope.sorters").get_fuzzy_file,
+      generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
+    },
+    extensions = {
+      fzf = {
+        fuzzy = false,
+        override_generic_sorter = true,
+        override_file_sorter = true,
+        case_mode = "smart_case",
+      },
+      frecency = {
+        show_scores = true,
+        show_unindexed = true,
+        ignore_patterns = { "*.git/*", "*/tmp/*" },
+      },
+    },
+    pickers = {
+      buffers = fixfolds,
+      find_files = fixfolds,
+      git_files = fixfolds,
+      grep_string = fixfolds,
+      live_grep = fixfolds,
+      oldfiles = fixfolds,
+    },
+  })
+
+  require("telescope").load_extension("fzf")
+  require("telescope").load_extension("project")
+  require("telescope").load_extension("frecency")
+end
+
 return config

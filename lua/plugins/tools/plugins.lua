@@ -13,5 +13,33 @@ tools["tpope/vim-repeat"] = { opt = true, event = "BufEnter" }
 tools["tpope/vim-fugitive"] = { opt = true, cmd = { "Git", "G" } }
 tools["junkblocker/git-time-lapse"] = { opt = true, cmd = { "GitTimeLapse" } }
 tools["APZelos/blamer.nvim"] = { opt = true, cmd = { "BlamerShow" } }
+tools["nathom/filetype.nvim"] = {
+  opt = false,
+  config = conf.filetype,
+}
+tools["nvim-telescope/telescope.nvim"] = {
+  opt = false,
+  module = "telescope",
+  cmd = "Telescope",
+  config = conf.telescope,
+  requires = {
+    { "nvim-lua/plenary.nvim", opt = false },
+    { "nvim-lua/popup.nvim", opt = true },
+  },
+}
 
+tools["nvim-telescope/telescope-fzf-native.nvim"] = {
+  opt = true,
+  run = "make",
+  after = "telescope.nvim",
+}
+tools["nvim-telescope/telescope-project.nvim"] = {
+  opt = true,
+  after = "telescope-fzf-native.nvim",
+}
+tools["nvim-telescope/telescope-frecency.nvim"] = {
+  opt = true,
+  after = "telescope-project.nvim",
+  requires = { { "tami5/sqlite.lua", opt = true } },
+}
 return tools
