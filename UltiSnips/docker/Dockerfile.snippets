@@ -1,0 +1,24 @@
+snippet node_dockerfile_tpl "node dockerfile template"
+FROM node:7.10.0-alpine
+MAINTAINER Halsn <xuhalsn@gmail.com>
+
+RUN echo "Asia/Shanghai" > /etc/timezone
+
+RUN apk update && \
+    apk upgrade && \
+    apk add --no-cache ${1:git}
+
+ENV FOO="bar"
+
+EXPOSE ${2:port}
+
+WORKDIR /app
+
+ADD . ./
+
+VOLUME /app/public/media
+
+RUN npm i && npm build
+
+CMD npm start
+endsnippet

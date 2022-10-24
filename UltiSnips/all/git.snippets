@@ -1,0 +1,6 @@
+snippet git_hook_pre_commit "add default message before evety commit"
+#!/bin/sh
+BRANCH=`git branch | grep '^\*' | grep -o '/.*_' | tail -c +2 | head -c -2`
+FILE=`cat "$1"`
+echo "$BRANCH $FILE" > "$1"
+endsnippet

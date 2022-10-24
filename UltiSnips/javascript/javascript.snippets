@@ -1,0 +1,238 @@
+snippet * "function description"
+/**
+ * ${1:Description}
+ * @param ${2} ${3:param}
+ * @returns ${4}
+ */
+endsnippet
+
+snippet /* "A JSDoc comment" b
+/**
+ * ${1:${VISUAL}}$0
+ */
+endsnippet
+
+snippet @au "@author email (First Last)"
+@author ${1:`!v g:snips_author`} [${2:`!v g:snips_author_email`}]
+endsnippet
+
+snippet @li "@license Description"
+@license ${1:MIT}$0
+endsnippet
+
+snippet @ver "@version Semantic version"
+@version ${1:0.1.0}$0
+endsnippet
+
+snippet @fileo "@fileoverview Description" b
+/**
+ * @fileoverview ${1:${VISUAL:A description of the file}}$0
+ */
+endsnippet
+
+snippet @constr "@constructor"
+@constructor
+endsnippet
+
+snippet @p "@param {Type} varname Description"
+@param {${1:Type}} ${2:varname} ${3:Description}
+endsnippet
+
+snippet @ret "@return {Type} Description"
+@return {${1:Type}} ${2:Description}
+endsnippet
+
+snippet @pri "@private"
+@private
+endsnippet
+
+snippet @over "@override"
+@override
+endsnippet
+
+snippet @pro "@protected"
+@protected
+endsnippet
+
+snippet for "for loop"
+for (let ${2:idx} = 0; $2 < ${1:arr.length}; $2 += 1) {
+  $0
+}
+endsnippet
+
+# promise
+snippet	retp "return new Promse"
+return new Promise((resolve, reject) => {
+  $0
+})
+endsnippet
+
+snippet retj "return reject"
+return reject(new Error(JSON.stringify({ $0 })))
+endsnippet
+
+snippet throw "thwor new Error"
+throw new Error(JSON.stringify({ $0 }))
+endsnippet
+
+snippet rets "return resolve"
+return resolve($0)
+endsnippet
+
+snippet retres "return res.status.json"
+return res.json({ $0 })
+endsnippet
+
+snippet log "logger.log"
+logger.log(\``!v line(".")` - $0\`)
+endsnippet
+
+snippet logi "logger.info"
+logger.info(\``!v line(".")` - $0\`)
+endsnippet
+
+snippet loge "logger.error"
+logger.error($0)
+endsnippet
+
+snippet logd "logger.debug"
+logger.debug(\``!v line(".")` - $0\`)
+endsnippet
+
+snippet req "require('model')"
+require('$0')
+endsnippet
+
+snippet reqpr "require(path.resolve(''))"
+require(path.resolve('$0'))
+endsnippet
+
+snippet con "const = "
+const ${1} = ${0}
+endsnippet
+
+snippet jsons "JSON.stringify"
+JSON.stringify(${1})${0}
+endsnippet
+
+snippet jsonp "JSON.parse"
+JSON.parse(${1})${0}
+endsnippet
+
+snippet each "[].forEach"
+${1:array}.forEach((${2:el, idx}) => {
+  ${0}
+})
+endsnippet
+
+snippet map "[].map"
+${1:array}.map((${2:el}) => ${0})
+endsnippet
+
+snippet filter "[].filter"
+${1:array}.filter(${2:el} => ${0})
+endsnippet
+
+snippet reduce "[].reduce"
+${1:array}.reduce((${2:pre}, ${3:cur}) => ${0})
+endsnippet
+
+snippet cl "console.log"
+console.log(\``!v line(".")` - $1\`, $1)$0
+endsnippet
+
+snippet cll "console.log"
+console.log(\``!v line(".")` - $1\`$2)$0
+endsnippet
+
+snippet ce "console.error"
+console.error($0)
+endsnippet
+
+snippet ex "module.export"
+module.exports${1} = ${0}
+endsnippet
+
+snippet ed "export default"
+export default $0
+endsnippet
+
+snippet imm "import {} from ''"
+import { ${1} } from '${0}'
+endsnippet
+
+snippet im "import {} from ''"
+import ${1} from '${0}'
+endsnippet
+
+snippet ret "return"
+return ${0}
+endsnippet
+
+snippet retps "return Promise.resolve"
+return Promise.resolve(${1})${0}
+endsnippet
+
+snippet retpj "return Promise.reject"
+return Promise.reject(new Error(JSON.stringify({ $1 })))${0}
+endsnippet
+
+snippet .catch ".catch(err)"
+.catch(err => {
+  ${0}
+})
+endsnippet
+
+snippet var "var = "
+var ${1} = ${0}
+endsnippet
+
+snippet let "let = "
+let ${1} = ${0}
+endsnippet
+
+snippet eslint_global "/* global */"
+/* global localStorage document window */
+endsnippet
+
+snippet eslint_ignore "/* eslint-disable */"
+/* eslint-disable ${0} */
+endsnippet
+
+snippet eslint_disable_line "eslint disable this line"
+// eslint-disable-line
+endsnippet
+
+snippet eslint_disable_next_line "eslint disable next line"
+// eslint-disable-next-line 
+endsnippet
+
+snippet fun "function () {}"
+function ${1:name} (${2:args}) {
+  ${0}
+}
+endsnippet
+
+snippet asyncfun "async function () {}"
+async function ${1:name} (${2}) {
+  try {
+    $0
+  } catch (e) {
+    $3
+  }
+}
+endsnippet
+
+snippet note "important information!"
+/*
+ * NOTE: ${0:info}
+ */
+endsnippet
+
+snippet .then "then wrapper"
+.then(res => {
+  $0
+})
+endsnippet
+
+clearsnippets data dataa obj offset off offsetp extend val param is reset clearq change get select error resize contains clone http next nexta nextu timeout supc sup submit const trigh f emit bind f this text click props

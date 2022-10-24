@@ -1,0 +1,63 @@
+snippet ng_component "default component"
+import { Component, OnInit, Input } from '@angular/core';
+
+@Component({
+  selector: '${1:app-default-component}',
+  templateUrl: '${2:html-url}',
+})
+export class ${3:componentName} implements OnInit {
+  @Input() foo: any;
+
+  constructor(
+
+  ) { }
+
+  ngOnInit(): void {
+    $0
+  }
+}
+endsnippet
+
+snippet ng_form_component "ng zorro form component"
+import { Input, Component, OnInit, ViewChild } from '@angular/core';
+import { NzModalRef, NzMessageService } from 'ng-zorro-antd';
+import { _HttpClient } from '@delon/theme';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
+@Component({
+  selector: '${1:selector}',
+  templateUrl: '${2:html}',
+})
+export class ${1:componentName} implements OnInit {
+  @Input()
+  record: any = {};
+  validateForm: FormGroup;
+  create: false;
+
+  constructor(
+    private modal: NzModalRef,
+    private msgSrv: NzMessageService,
+    private fb: FormBuilder,
+    private http: _HttpClient
+  ) {
+    this.validateForm = fb.group({
+      name: [null, [Validators.required]],
+      role: [null, [Validators.required]],
+      organization: [null, [Validators.required]],
+      mobile: [null, [Validators.required, Validators.pattern(/^1[3456789]\d{9}$/)]],
+      password: [null, [Validators.required]]
+    });
+  }
+
+  ngOnInit(): void {
+  }
+
+  ok() {
+    this.cancel();
+  }
+
+  cancel() {
+    this.modal.destroy();
+  }
+}
+endsnippet

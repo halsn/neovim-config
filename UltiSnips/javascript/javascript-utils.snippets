@@ -1,0 +1,229 @@
+# range函数
+snippet	utils_range "range(m, n)"
+const range = (m, n) => Array(n - m + 1).fill().map((x, i) => m + i)
+$0
+endsnippet
+
+# charMap数字映射大写字母
+snippet utils_charMap "0-25 => A-Z"
+const charMap = range(0, 25).map(e => String.fromCharCode(e + 65))
+endsnippet
+
+# 深度取值函数
+snippet utils_deep_get "deepGet(obj, ['user', 'posts', 0, 'comments'])"
+const deepGet = (o, p) => p.reduce((xs, x) => (xs && xs[x]) ? xs[x] : null, o)
+endsnippet
+
+# Obj克隆函数
+snippet utils_cloneobj "clone an object from source"
+JSON.parse(JSON.stringify($0))
+endsnippet
+
+# 找到数组中符合elm的所有index
+snippet utils_get_match_elm_indexs "find indexs of elm in array : ([1, 2, 2, 3], 2) => [1, 2]"
+const getIndexs = (arr, elm) => arr.map((e, idx) => e === elm ? idx : '').filter(String)$0
+endsnippet
+
+snippet utils_sub_array_from_another "subtract an array from another : ([1, 2, 3], [1, 2]) => [1]"
+const ${0:subArray} = ${1:to}.reduce((p, c) => ($2.includes(c) ? p.splice(p.indexOf(c), 1) : null, p), ${2:from})$0
+endsnippet
+
+snippet utils_array_to_count_map "convert array to count map : ([1, 1, 2, 2, 3]) => { 1: 2, 2: 2, 3: 1 }"
+const ${0:Map} = ${1:array}.reduce((p, c) => (p[c] = (p[c] === undefined ? 1 : p[c] + 1), p), {})$0
+endsnippet
+
+snippet utils_flat_array "flatten nested array : ([1, 2, [3, 4, [5, 6]]]) => [1, 2, 3, 4, 5, 6]"
+const flatArray = arr => [].concat(...arr.map(v => (Array.isArray(v) ? flatArray(v) : v)))$0
+endsnippet
+
+snippet utils_plain_stringify "get JSON Object plain string"
+const plainStringify = (obj) => {
+  return JSON.stringify(obj).replace(/\"([^(\")"]+)\":/g, "\$1:")
+}$0
+endsnippet
+
+snippet utils_safe_deep_clone "safe deepClone with circular case"
+function deepClone(obj) {
+  let res = null;
+  const reference = [Date, RegExp, Set, WeakSet, Map, WeakMap, Error];
+  if (reference.includes(obj?.constructor)) {
+    res = new obj.constructor(obj);
+  } else if (Array.isArray(obj)) {
+    res = [];
+    obj.forEach((e, i) => {
+      res[i] = deepClone(e);
+    });
+  } else if (typeof obj === 'object' && obj !== null) {
+    res = {};
+    for (const key in obj) {
+      if (Object.hasOwnProperty.call(obj, key)) {
+        res[key] = deepClone(obj[key]);
+      }
+    }
+  } else {
+    res = obj;
+  }
+  return res;
+}
+endsnippet
+
+snippet utils_format_yyyy_mm_dd "format data"
+// yyyy-MM-dd HH:MM:SS
+const convertDate = (date) => {
+  const first = date.toISOString().split('T')[0]
+  const second = date.toISOString().split('T')[1]
+  return first + second.slice(0, 8)
+}
+endsnippet
+
+snippet utils_find_path_by_dfs "find path by dfs : ([{ id: 1, child: [{ id: 2, child: null }]}], 2) => [{ id: 1, ...}, { id: 2, ...}]"
+const findPathByDepthFirstSearch = (source, target, childKey = 'child', compareKey) => {
+  const stack = JSON.parse(JSON.stringify(source));
+  const result = [];
+  const dfs = data => {
+    result.push(data);
+    if (data[compareKey] === target) {
+      return result;
+    }
+    if (data[childKey] && data[childKey].length > 0) {
+      return dfs(data[childKey][0]);
+    }
+    result.pop();
+    if (result.length === 0) {
+      return stack.length > 0 ? dfs(stack.shift()) : result;
+    }
+    const lastNode = result[result.length - 1];
+    lastNode[childKey].shift();
+    if (lastNode[childKey].length > 0) {
+      return dfs(lastNode[childKey][0]);
+    }
+    return dfs(result.pop());
+  };
+  return dfs(stack.shift());
+};
+endsnippet
+
+snippet utils_format_str_to_natural_number "format value to natural number string : '-4123..123' => '-4123.123'"
+const formatNumber = (value, maxLength) => {
+  let ret = value.length && value.length > maxLength ? value.substr(0, maxLength) : value;
+  ret = ret.replace(/[^\d\.\-]/g, '');
+  if (ret.includes('0')) {
+    if (ret.length > 1 && !ret.includes('.')) {
+	ret = ret.replace(/^0+/, '');
+    }
+  }
+  if (ret.includes('-0')) {
+    if (ret.length > 2 && !ret.includes('.')) {
+	ret = ret.replace(/^-0+/, '-');
+    }
+  }
+  if (ret.includes('-')) {
+    const firstIdx = ret.indexOf('-');
+    ret = ret.split('').filter((e, idx) => e !== '-' || (e === '-' && idx <= firstIdx)).join('');
+    if (firstIdx !== 0) {
+	ret = ret.replace(/-/, '');
+    }
+  }
+  if (ret.includes('.')) {
+    const firstIdx = ret.indexOf('.');
+    ret = ret.split('').filter((e, idx) => e !== '.' || (e === '.' && idx <= firstIdx)).join('');
+  }
+  return ret;
+}
+endsnippet
+
+snippet utils_format_int_with_split "format value with split / : '1/2//f/3' => '1/2/3'"
+const formatIntWithSplit = (value, splitFlag) => {
+  if (value === splitFlag) return '';
+  let ret = value.replace(/[^\d/]/g, '');
+  ret = ret.replace(/\/{2,}/g, splitFlag);
+  ret = ret.split(splitFlag).map(f => f.replace(/^0+/, '')).join(splitFlag);
+  return ret;
+}
+endsnippet
+
+snippet utils_get_fixed_number "get fixed number : (123.456, 2) => (123.45)"
+const toFixed = (num, n) => Number(num).toFixed(n);
+endsnippet
+
+snippet utils_get_zero_timestamp "get zero timestamp from date"
+const getZeroTimeStampFromDate = date => {
+  const foo = new Date(date)
+  foo.setHours(0)
+  foo.setMinutes(0)
+  foo.setSeconds(0)
+  foo.setMilliseconds(0)
+  return foo.getTime()
+}
+endsnippet
+
+snippet utils_add_quotas_to_number_in_json_string "add quota in json"
+const s = \`{"id":498111409327050752,"list":[32.012334123,34433222442.13124]}\`;
+const result = s.replace(/([\[:])?(-\d+|\d+|\d+\.\d+|-\d+\.\d+)([,\}\]])/g, "\$1\"\$2\"\$3");
+const ret = JSON.parse(result);
+endsnippet
+
+snippet utils_debounce "debounce function"
+function debounce(fn, wait = 50, immediate) {
+  let timer;
+  return function() {
+    if(immediate) {
+      fn.apply(this,arguments)
+    }
+    if(timer) clearTimeout(timer)
+    timer = setTimeout(()=> {
+      fn.apply(this,arguments)
+    },wait)
+  }
+}
+endsnippet
+
+snippet utils_throttling "throttling function"
+function throttle(fn, wait = 300) {
+  let prev = new Date();
+  return function() { 
+    const args = arguments;
+    const now = new Date();
+    if (now - prev > wait) {
+      fn.apply(this, args);
+      prev = new Date();
+    }
+  }
+}
+endsnippet
+
+snippet utils_make_pairs "split an array into array pairs"
+$0.reduce((result, value, index, sourceArray) => index % 2 === 0 ? [...result, sourceArray.slice(index, index + 2)] : result, []);
+endsnippet
+
+snippet utils_isFullScreen "check if browser is fullScreen"
+const isFullScreen = () => (outerHeight - innerHeight) <= 1;
+endsnippet
+
+snippet utils_is_object "check if is object"
+const isObject = (obj) => (obj != null && obj.constructor.name === 'Object');
+endsnippet
+
+snippet utils_blob_to_base64 "convert blob to base64"
+function blobToBase64(blob) {
+  return new Promise((resolve, _) => {
+    const reader = new FileReader();
+    reader.onloadend = () => resolve(reader.result);
+    reader.readAsDataURL(blob);
+  });
+}
+endsnippet
+
+snippet utils_click_to_download "click to download file"
+// 后端相应头
+// Content-Disposition: attachment;filename=%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%9C-20220422.csv
+// Content-Length: 2766
+// Content-Type: application/octet-stream;charset=UTF-8
+// xhr responseType需要设置为blob
+import { saveAs } from 'file-saver';
+const downloadFile = async (type, fileName) => {
+  let res = await downloadApi(type, { responseType: 'blob' });
+  let blob = new window.Blob([res], { type: 'application/octet-stream' });
+  saveAs(blob, \`\${fileName\}.xls\`);
+};
+endsnippet

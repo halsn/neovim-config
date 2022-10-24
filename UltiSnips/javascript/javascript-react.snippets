@@ -1,0 +1,881 @@
+global !p
+# Capitalize the first letter without affecting the rest of the letters
+def capitalize_first(word):
+	if(word):
+		word = word[0].upper() + word[1:]
+	return word
+endglobal
+
+snippet react_class "class component extends React.Component"
+class ${1:component} extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = { counter: 0 };
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  render () {
+    return (
+      <div>
+	${0}
+      </div>
+    )
+  }
+}
+endsnippet
+
+snippet react_pure_component "react pure component with hook"
+import React, { useState, useEffect } from 'react';
+import ReactDom from 'react-dom';
+
+const ${1:Component} = (props) => {
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+
+  }, []);
+  return <div>
+    ${0}
+  </div>
+}
+endsnippet
+
+snippet react_import_base "import react and react-dom"
+import React, { Component } from 'react';
+import ReactDom from 'react-dom';
+endsnippet
+
+snippet react_echarts_multiple_bar "multiple bar charts"
+import React, { useEffect, useRef } from 'react';
+import Chart from 'echarts-for-react';
+
+const MultipleBarChart = () => {
+  let chartRef = useRef(null);
+
+  const chartOption = () => {
+    const testData = [
+      ['product', '用电高峰', '用电低谷'],
+      ['1号充电桩', 43.3, 85.8],
+      ['2号充电桩', 83.1, 73.4],
+      ['3号充电桩', 86.4, 65.2],
+      ['4号充电桩', 72.4, 53.9],
+      ['5号充电桩', 72.4, 53.9]
+    ];
+
+    return {
+      animationDuration: 100,
+      animationDurationUpdate: 1000,
+      legend: {
+        itemHeight: 2,
+        itemWidth: 10,
+        right: 0,
+        itemGap: 10,
+        textStyle: {
+          color: '#95A6A5',
+          fontSize: 14,
+          padding: [0, 0, 0, 10]
+        }
+      },
+      tooltip: {},
+      dataset: {
+        source: testData
+      },
+      xAxis: { 
+        type: 'category',
+        axisTick: {
+          show: false
+        },
+        axisLabel: {
+          fontSize: 14,
+          color: '#95A6A5',
+          interval: 0,
+          margin: 0
+        }
+      },
+      yAxis: {
+        name: "℃",
+        nameTextStyle: {
+          fontSize: 14,
+          color: "#95A6A5",
+          padding: [0, 12, 0, 0],
+        },
+        max: 150,
+        interval: 30,
+        axisLine: {
+          show: false
+        },
+        axisLabel: {
+          fontSize: 14,
+          color: '#95A6A5',
+          margin: 0
+        },
+        splitLine: {
+          lineStyle: {
+            color: '#27484C',
+            width: 2
+          }
+        }
+      },
+      series: [
+        {
+          type: 'bar',
+          barWidth: 16,
+          itemStyle: {
+            color: '#E02020'
+          }
+        },
+        {
+          type: 'bar',
+          barWidth: 16,
+          itemStyle: {
+            color: '#0091FF'
+          }
+        },
+      ],
+    };
+  };
+
+  useEffect(() => {
+    setInterval(() => {
+      if (chartRef.current) {
+        chartRef.current.getEchartsInstance().clear();
+        chartRef.current.getEchartsInstance().setOption(chartOption());
+      }
+    }, 10000);
+  }, []);
+
+  return (
+    <div style={{ width: '450px', height: '300px', margin: '0 auto', position: 'relative' }}>
+      <Chart style={{ height: '100%' }} ref={chartRef} option={chartOption()} />
+    </div>
+  );
+};
+
+export default MultipleBarChart;
+endsnippet
+
+snippet react_echarts_multiple_line "echarts multiple line chart"
+import React, { useEffect, useRef } from 'react';
+import Chart from 'echarts-for-react';
+
+const MultipleLineChart = () => {
+  let chartRef = useRef(null);
+
+  const chartOption = () => {
+
+    return {
+      animationDuration: 100,
+      animationDurationUpdate: 1000,
+      legend: {
+        data: [{
+          name: '预警上限',
+          icon: 'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACkAAAADCAYAAAAOVyamAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAKaADAAQAAAABAAAAAwAAAABLUbP6AAAAKElEQVQYGWP87yxdxfCPoZUBJ2BqY9z/uBqXND30M+GyfDCJDwlHAgBGwA/o8Mg7iAAAAABJRU5ErkJggg==',
+          textStyle: {
+            color: '#95A6A5',
+            fontSize: 14,
+            padding: [0, 0, 0, 10]
+          },
+        }, {
+          name: '充电桩',
+          textStyle: {
+            color: '#95A6A5',
+            fontSize: 14,
+            padding: [0, 0, 0, 10]
+          }
+        }, {
+          name: '居民用电',
+          textStyle: {
+            color: '#95A6A5',
+            fontSize: 14,
+            padding: [0, 0, 0, 10]
+          }
+        }],
+        itemHeight: 2,
+        itemWidth: 10,
+        right: 0,
+        itemGap: 10,
+      },
+      tooltip: {},
+      // dataset: {
+        // source: testData
+      // },
+      xAxis: {
+        name: "(h)",
+        nameTextStyle: {
+          fontSize: 14,
+          color: "#95A6A5",
+          padding: [0, 12, 0, 0],
+        },
+        boundaryGap: false,
+        data: [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22],
+        type: 'category',
+        axisTick: {
+          show: false
+        },
+        axisLabel: {
+          fontSize: 14,
+          color: '#95A6A5',
+          interval: 0,
+          margin: 0
+        }
+      },
+      yAxis: {
+        name: "kW",
+        nameTextStyle: {
+          fontSize: 14,
+          color: "#95A6A5",
+          padding: [0, 12, 0, 0],
+        },
+        max: 630,
+        interval: 126,
+        axisLine: {
+          show: false
+        },
+        axisLabel: {
+          fontSize: 14,
+          color: '#95A6A5',
+          margin: 0
+        },
+        splitLine: {
+          lineStyle: {
+            color: '#27484C',
+            width: 2
+          }
+        }
+      },
+      series: [
+        {
+          name: '充电桩',
+          data: [43.3, 83.1, 86.4, 72.4, 72.4, 72.4, 72.4, 72.4, 72.4, 72.4, 72.4, 72.4],
+          symbol: 'circle',
+          symbolSize: 8,
+          lineStyle: {
+            width: 3,
+          },
+          type: 'line',
+          itemStyle: {
+            color: '#6DD400'
+          },
+          markLine: {
+            silent: true,
+            label: {
+              show: false
+            },
+            lineStyle: {
+              color: '#FF411B',
+              width: 2,
+            },
+            data: [
+              { yAxis: 525 }
+            ]
+          }
+        },
+        {
+          name: '居民用电',
+          data: [58.3, 93.1, 186.4, 82.4, 82.4, 82.4, 82.4, 82.4, 82.4, 82.4, 82.4, 82.4],
+          type: 'line',
+          symbol: 'circle',
+          symbolSize: 8,
+          lineStyle: {
+            width: 3,
+          },
+          itemStyle: {
+            color: '#FEEF32'
+          },
+          markLine: {
+            silent: true,
+            label: {
+              show: false
+            },
+            lineStyle: {
+              color: '#FF411B',
+              width: 2,
+            },
+            data: [
+              { yAxis: 525 }
+            ]
+          }
+        },
+        {
+          name: '预警上限',
+          type: 'line',
+          itemStyle: {
+            color: '#FF411B'
+          },
+        }
+      ],
+    };
+  };
+
+  useEffect(() => {
+    setInterval(() => {
+      if (chartRef.current) {
+        chartRef.current.getEchartsInstance().clear();
+        chartRef.current.getEchartsInstance().setOption(chartOption());
+      }
+    }, 10000);
+  }, []);
+
+  return (
+    <div style={{ width: '450px', height: '300px', margin: '0 auto', position: 'relative' }}>
+      <Chart style={{ height: '100%' }} ref={chartRef} option={chartOption()} />
+    </div>
+  );
+};
+
+export default MultipleLineChart;
+endsnippet
+
+snippet usf "react effect hook"
+useEffect(() => {
+  $0
+  return () => {
+
+  }
+}, []);
+endsnippet
+
+snippet react_echarts_multiple_bar_with_click "react multip bar with click event"
+import React from 'react';
+import Chart from 'echarts-for-react';
+
+class MultipleBarChart extends React.Component {
+
+  chartRef = React.createRef();
+
+  constructor(props) {
+    super(props);
+  }
+
+  onClick (params) {
+    const name = params.name.replace(\`\n\`, '');
+
+    const { data, onSelect = () => {} } = this.props;
+    const barColor = '#42D1FF';
+    const unSelectColor = '#C0C0C0';
+
+    const barData = data.map((d) => ({
+      value: d,
+      itemStyle: {
+        color: barColor
+      }
+    }));
+
+    if (this.chartRef) {
+      const chart = this.chartRef.getEchartsInstance();
+      const selectedData = params.data;
+      const currentOption = chart.getOption();
+      const currentSeries = currentOption.series[0].data;
+      const hasUnselected = currentSeries.some((b) => b.itemStyle.color === unSelectColor);
+      const selected = selectedData.itemStyle.color === barColor && hasUnselected;
+      if (selected) {
+        barData.forEach((data, idx) => (barData[idx].itemStyle.color = barColor));
+        onSelect({
+          type: 'unselect',
+          value: 'all'
+        });
+      } else {
+        barData.forEach((data, idx) => {
+          if (idx === params.dataIndex) {
+            barData[idx].itemStyle = {
+              color: barColor
+            };
+          } else {
+            barData[idx].itemStyle = {
+              color: unSelectColor
+            };
+          }
+        });
+        onSelect({
+          type: 'select',
+          value: name
+        });
+      }
+      chart.setOption({
+        series: [
+          {
+            data: barData
+          }
+        ]
+      });
+    }
+  }
+
+  chartOption () {
+
+    const { data = [9, 1, 4, 6], xData = ['10\nkV', '20\nkV', '30\nkV', '40\nkV'] } = this.props;
+    const barColor = '#42D1FF';
+
+    const barData = data.map((d) => ({
+      value: d,
+      itemStyle: {
+        color: barColor
+      }
+    }));
+
+    return {
+      animation: true,
+      animationDuration: 100,
+      animationDurationUpdate: 1000,
+      legend: {
+        itemHeight: 10,
+        itemWidth: 10,
+        itemGap: 10,
+        right: 34,
+        padding: [34, 0, 0, 0],
+        textStyle: {
+          color: '#ffffff',
+          fontSize: 12,
+          padding: [0, 0, 0, 0]
+        }
+      },
+      tooltip: {},
+      xAxis: {
+        type: 'category',
+        data: xData,
+        axisLine: {
+          show: true,
+          lineStyle: {
+            color: '#0E3A3D'
+          }
+        },
+        axisTick: {
+          show: false
+        },
+        axisLabel: {
+          fontSize: 12,
+          color: '#ffffff',
+          interval: 0,
+          margin: 8
+        }
+      },
+      yAxis: {
+        name: '个',
+        nameTextStyle: {
+          fontSize: 12,
+          color: '#ffffff',
+          padding: [0, 24, 0, 0]
+        },
+        max: 10,
+        interval: 2,
+        axisLine: {
+          show: true,
+          lineStyle: {
+            type: 'solid',
+            color: '#0E3A3D'
+          }
+        },
+        axisLabel: {
+          fontSize: 12,
+          color: '#ffffff',
+          margin: 8
+        },
+        axisTick: {
+          show: false
+        },
+        splitLine: {
+          lineStyle: {
+            color: '#27484C ',
+            width: 2,
+            type: 'dotted'
+          }
+        }
+      },
+      series: [
+        {
+          type: 'bar',
+          barWidth: 10,
+          color: barColor,
+          name: '数量',
+          data: barData,
+          itemStyle: {
+            normal: {
+              barBorderRadius: [5, 5, 0, 0]
+            }
+          },
+          label: {
+            show: true,
+            position: 'top',
+            color: '#B3F5FF'
+          }
+        }
+      ]
+    }
+  }
+
+  evtMap = {
+    click: this.onClick.bind(this)
+  }
+
+  render () {
+    return (
+      <div style={{ width: '320px', height: '250px', margin: '0 auto', position: 'relative', marginTop: '-20px' }}>
+        <Chart
+          onEvents={this.evtMap}
+          style={{ height: '100%' }}
+          ref={e => this.chartRef = e}
+          option={this.chartOption()}
+        />
+      </div>
+    )
+  }
+}
+export default MultipleBarChart;
+endsnippet
+
+snippet react_echarts_pie_chart "react echarts pie chart"
+import React, { useEffect, useRef } from 'react';
+import Chart from 'echarts-for-react';
+
+const PieChart = () => {
+  let chartRef = useRef(null);
+
+  const chartOption = () => {
+    const testData = [
+      { value: 1048, name: 'Search Engine' },
+      { value: 735, name: 'Direct' },
+      { value: 580, name: 'Email' },
+      { value: 484, name: 'Union Ads' },
+      { value: 300, name: 'Video Ads' }
+    ];
+
+    return {
+      clolr: [
+        '#3DF297',
+        '#F2433D',
+        '#33BBFF',
+        '#3BD8CE',
+        '#F2BF24',
+      ],
+      tooltip: {
+        trigger: 'item'
+      },
+      series: [
+        {
+          type: 'pie',
+          radius: ['40%', '70%'],
+          avoidLabelOverlap: false,
+          label: {
+            show: false,
+            position: 'center'
+          },
+
+          labelLine: {
+            show: false
+          },
+          data: testData
+        }
+      ]
+    };
+  };
+
+  useEffect(() => {
+    setInterval(() => {
+      if (chartRef.current) {
+        chartRef.current.getEchartsInstance().clear();
+        chartRef.current.getEchartsInstance().setOption(chartOption());
+      }
+    }, 10000);
+  }, []);
+
+  return (
+    <div style={{ width: '500px', height: '500px', margin: '0 auto', position: 'relative' }}>
+      <Chart style={{ height: '100%' }} ref={chartRef} option={chartOption()} />
+    </div>
+  );
+};
+
+export default PieChart;
+endsnippet
+
+snippet react_echarts_single_bar "echarts single bar chart"
+import React, { useEffect, useRef } from 'react';
+import Chart from 'echarts-for-react';
+
+const MultipleLineChart = () => {
+  let chartRef = useRef(null);
+
+  const chartOption = () => {
+
+    return {
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          type: 'shadow'
+        }
+      },
+      grid: {
+        left: 0,
+        right: 0,
+        bottom: 0,
+        containLabel: true
+      },
+      legend: {
+        show: true,
+        data: [{
+          name: 'Direct',
+          textStyle: {
+            color: '#95A6A5',
+            fontSize: 12,
+            padding: [0, 0, 0, 10]
+          }
+        }],
+      },
+      xAxis: [
+        {
+          type: 'category',
+          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+          axisTick: {
+            alignWithLabel: true
+          },
+          axisLine: {
+            show: false
+          },
+          axisLabel: {
+            interval: 0
+          },
+        }
+      ],
+      yAxis: [{
+        name: "℃",
+        nameTextStyle: {
+          fontSize: 12,
+          color: "#95A6A5",
+          padding: [0, 30, 0, 0],
+        },
+        max: 600,
+        interval: 200,
+        axisLine: {
+          show: true
+        },
+        axisLabel: {
+          fontSize: 12,
+          color: '#95A6A5',
+          margin: 10
+        },
+        splitLine: {
+          lineStyle: {
+            type: 'dotted'
+          }
+        }
+      }],
+      series: [
+        {
+          name: 'Direct',
+          type: 'bar',
+          barWidth: '50%',
+          color: '#0C5D64',
+          data: [20, 60, 200, 334, 390, 330, 220]
+        },
+      ]
+    }
+  };
+
+  useEffect(() => {
+    setInterval(() => {
+      if (chartRef.current) {
+        chartRef.current.getEchartsInstance().clear();
+        chartRef.current.getEchartsInstance().setOption(chartOption());
+      }
+    }, 10000);
+  }, []);
+
+  return (
+    <div style={{ width: '450px', height: '300px', margin: '0 auto', position: 'relative' }}>
+      <Chart style={{ height: '100%' }} ref={chartRef} option={chartOption()} />
+    </div>
+  );
+};
+
+export default MultipleLineChart;
+endsnippet
+
+snippet react_echarts_stack_bar "echarts stack bar"
+import React, { useEffect, useRef } from 'react';
+import Chart from 'echarts-for-react';
+
+const StackBarChart = () => {
+  let chartRef = useRef(null);
+
+  const chartOption = () => {
+
+    return {
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          // Use axis to trigger tooltip
+          type: 'shadow' // 'shadow' as default; can also be 'line' or 'shadow'
+        }
+      },
+      legend: {},
+      grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+      },
+      yAxis: {
+        type: 'value',
+        max: 200,
+        axisLine: {
+          show: false
+        },
+        axisLabel: {
+          show: false
+        },
+        splitLine: {
+          lineStyle: {
+            type: 'dotted'
+          }
+        }
+      },
+      xAxis: {
+        type: 'category',
+        axisTick: {
+          alignWithLabel: true
+        },
+        axisLine: {
+          show: false
+        },
+        axisLabel: {
+          interval: 0
+        },
+        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+      },
+      series: [
+        {
+          name: 'Direct',
+          type: 'bar',
+          stack: 'total',
+          data: [320, 302, 301, 334, 390, 330, 320]
+        },
+        {
+          name: 'Mail Ad',
+          type: 'bar',
+          stack: 'total',
+          data: [120, 132, 101, 134, 90, 230, 210]
+        },
+        {
+          name: 'Affiliate Ad',
+          type: 'bar',
+          stack: 'total',
+          data: [220, 182, 191, 234, 290, 330, 310]
+        },
+        {
+          name: 'Video Ad',
+          type: 'bar',
+          stack: 'total',
+          data: [150, 212, 201, 154, 190, 330, 410]
+        },
+        {
+          name: 'Search Engine',
+          type: 'bar',
+          stack: 'total',
+          data: [820, 832, 901, 934, 1290, 1330, 1320]
+        }
+      ]
+    }
+  };
+
+  useEffect(() => {
+    setInterval(() => {
+      if (chartRef.current) {
+        chartRef.current.getEchartsInstance().clear();
+        chartRef.current.getEchartsInstance().setOption(chartOption());
+      }
+    }, 10000);
+  }, []);
+
+  return (
+    <div style={{ width: '450px', height: '300px', margin: '0 auto', position: 'relative' }}>
+      <Chart style={{ height: '100%' }} ref={chartRef} option={chartOption()} />
+    </div>
+  );
+};
+
+export default StackBarChart;
+endsnippet
+
+snippet react_uselocalstorage_hook "custom react useLocalStorage hook"
+const useLocalStorage = (keyName, defaultValue) => {
+  const [storedValue, setStoredValue] = React.useState(() => {
+    try {
+      const value = window.localStorage.getItem(keyName);
+
+      if (value) {
+        return JSON.parse(value);
+      } else {
+        window.localStorage.setItem(keyName, JSON.stringify(defaultValue));
+        return defaultValue;
+      }
+    } catch (err) {
+      return defaultValue;
+    }
+  });
+
+  const setValue = newValue => {
+    try {
+      window.localStorage.setItem(keyName, JSON.stringify(newValue));
+    } catch (err) {}
+    setStoredValue(newValue);
+  };
+
+  return [storedValue, setValue];
+};
+endsnippet
+
+snippet react_echart_lineargradient "echart linear gradient"
+series: [
+  {
+    name: '台数',
+    type: 'bar',
+    barWidth: '30%',
+    color: '#0C5D64',
+    data: data,
+    itemStyle: {
+      color: new echarts.graphic.LinearGradient(0, 1, 0, 0, [
+	{
+	  offset: 0,
+	  color: 'rgba(41 , 215, 235, 0)'
+	},
+	{
+	  offset: 1,
+	  color: 'rgba(41 , 215, 235, 1)'
+	}
+      ]),
+      borderColor: '#29d7eb',
+      borderWidth: 2
+    }
+  }
+]
+endsnippet
+
+snippet react_debounce_hook "react useDebouncedEffect"
+# import { useState } from "react";
+# import { useDebouncedEffect } from "./useDebouncedEffect";
+# 
+# const App = () => {
+#   const [value, setValue] = useState(0);
+# 
+#   useDebouncedEffect(() => console.log(value), [value], 1000);
+# 
+#   return <button onClick={() => setValue(value + 1)}>{value}</button>;
+# };
+# 
+# export default App;
+
+import { useEffect } from "react";
+
+export default (effect, deps, delay) => {
+  useEffect(() => {
+    const handler = setTimeout(() => effect(), delay);
+
+    return () => clearTimeout(handler);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [...(deps || []), delay]);
+};
+endsnippet
+
+snippet ust "useState Hook" b
+const [${1}, set`!p snip.rv=capitalize_first(t[1])`] = useState("${3}")
+endsnippet

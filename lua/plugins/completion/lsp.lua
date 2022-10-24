@@ -1,6 +1,6 @@
 local formatting = require("plugins.completion.formatting")
 
-vim.cmd([[packadd lsp_signature.nvim]])
+-- vim.cmd([[packadd lsp_signature.nvim]])
 vim.cmd([[packadd lspsaga.nvim]])
 vim.cmd([[packadd cmp-nvim-lsp]])
 
@@ -18,6 +18,7 @@ mason_lsp.setup({
     "gopls",
     "pyright",
     "html",
+    "tsserver",
   },
 })
 
@@ -25,15 +26,15 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 local function custom_attach(client, bufnr)
-  require("lsp_signature").on_attach({
-    bind = true,
-    use_lspsaga = false,
-    floating_window = true,
-    fix_pos = true,
-    hint_enable = true,
-    hi_parameter = "Search",
-    handler_opts = { "double" },
-  })
+  -- require("lsp_signature").on_attach({
+  --   bind = true,
+  --   use_lspsaga = false,
+  --   floating_window = true,
+  --   fix_pos = true,
+  --   hint_enable = true,
+  --   hi_parameter = "Search",
+  --   handler_opts = { "double" },
+  -- })
 end
 
 local function switch_source_header_splitcmd(bufnr, splitcmd)

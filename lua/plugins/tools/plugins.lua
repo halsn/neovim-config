@@ -3,7 +3,7 @@ local conf = require("plugins.tools.config")
 
 tools["preservim/nerdtree"] = {
   opt = false,
-  config = conf.nerdtree
+  config = conf.nerdtree,
 }
 
 return tools

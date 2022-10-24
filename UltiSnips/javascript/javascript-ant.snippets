@@ -1,0 +1,532 @@
+snippet ant_table_with_pagination "ant design table with pagination"
+const tableColumns = [
+  {
+    title: '序号',
+    key: 'no',
+    dataIndex: 'no',
+    width: 150,
+  },
+  {
+    title: '名称',
+    key: 'name',
+    dataIndex: 'name',
+    width: 150,
+  },
+  {
+    title: '操作',
+    key: 'operation',
+    fixed: 'right',
+    width: 100,
+    render: () => <a>导出</a>,
+  }
+];
+
+const [tableData, setTableData] = useState([]);
+const [currentPage, setCurrentPage] = useState(1);
+const [totalRecord, setTotalRecord] = useState(0);
+const [pageSize, setPageSize] = useState(10);
+const [loading, setLoading] = useState(false);
+const tableWidth = tableColumns.map(t => t.width ? t.width : 100).reduce((p, c) => p + c, 0);
+
+const onPageChange = (page, pageSize) => {
+  setCurrentPage(page);
+  setPageSize(pageSize);
+}
+
+const onShowSizeChange = (current, pageSize) => {
+  setCurrentPage(1);
+  setPageSize(pageSize);
+}
+
+const getTableData = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      return resolve({
+	code: 200,
+	data: [
+	  {
+	    key: 1,
+	    no: 1,
+	    name: 'foo'
+	  }
+	]
+      });
+    }, 500)
+  })
+}
+
+const fetchTableData = async () => {
+  const params = {
+    pageIndex: currentPage,
+    pageSize: pageSize,
+  };
+  setLoading(true);
+  const response = await getTableData(params);
+  const datas = deepGet(response, 'data') || [];
+  const totalRecord = deepGet(response, 'data.totalRecord') || 0;
+  setTableData(datas);
+  setTotalRecord(totalRecord);
+  setLoading(false);
+}
+
+useEffect(() => {
+  fetchTableData();
+}, [currentPage, pageSize]);
+
+<Table
+  columns={tableColumns}
+  dataSource={tableData}
+  scroll={{ y: 'calc(100vh - 380px)', x: tableWidth }}
+  style={{ minWidth: tableWidth }}
+  loading={loading}
+  pagination={{
+    showSizeChanger: true,
+    current: currentPage,
+    total: totalRecord,
+    pageSize: pageSize,
+    pageSizeOptions: ['10', '15', '30'],
+    showTotal: (total) => \`共${total}条\`,
+    onChange: onPageChange,
+    onShowSizeChange: onShowSizeChange
+  }}
+/>
+endsnippet
+
+snippet ant_empty_component "ant design empty page"
+import React, { useState, useEffect, useRef } from 'react';
+import { Row, Col, message } from 'antd';
+import styles from './styles.less';
+
+const ${1:Component} = (props) => {
+    useEffect(() => {
+
+    }, []);
+    return (
+        <div className={styles.wrapper} style={{ height: 'calc(100% - 78px)' }}>
+            <Row>
+                <Col span={24} className={styles.topWrapper}>
+                    <div className={styles.header}>${0}</div>
+                </Col>
+            </Row>
+
+        </div>
+    );
+};
+
+export default ${1};
+endsnippet
+
+snippet ant_empty_modal "ant design empty modal"
+const [formVisible, setFormVisible] = useState(false);
+
+<Modal title="title"
+  bodyStyle={{ height: 620, overflowY: 'scroll',overflowX:'hidden' }}
+  visible={formVisible}
+  onOk={(e) => {}}
+  onCancel={() => setFormVisible(false)}
+  centered={true}
+  width="700px"
+  wrapClassName="modal"
+  footer={null}
+  destroyOnClose
+>
+  $1
+</Modal>
+endsnippet
+
+snippet ant_select_basic "ant design basic select example"
+import { Select } from 'antd';
+const { Option } = Select;
+const onSelectChange = value => {
+  $2
+}
+<Select placeholder='$1' defaultValue="foo" style={{ width: 120 }} onChange={onSelectChange}>
+  <Option value="foo">Foo</Option>
+</Select>
+endsnippet
+
+snippet ant_tabs_basic "ant design basic tabs example"
+import { Tabs } from 'antd';
+
+const { TabPane } = Tabs;
+
+function callback(key) {
+  console.log(key);
+}
+
+const ${1:Demo} = () => (
+  <Tabs defaultActiveKey="1" onChange={callback}>
+    <TabPane tab="${2:Tab 1}" key="1">
+      Content of Tab Pane 1
+    </TabPane>
+    <TabPane tab="${3:Tab 2}" key="2">
+      Content of Tab Pane 2
+    </TabPane>
+  </Tabs>
+);
+endsnippet
+
+snippet ant_inline_form_v3 "ant design search input"
+<Form layout="inline">
+  <Form.Item>
+    {getFieldDecorator('form_field', {
+      initialValue: '0',
+      rules: [],
+    })(<Input />)}
+  </Form.Item>
+</Form>
+endsnippet
+
+snippet ant_base_tree_list "ant design base tree list"
+import { Tree } from 'antd';
+const treeData = [
+  {
+    title: 'parent 1',
+    key: '0-0',
+    children: [
+      {
+        title: 'parent 1-0',
+        key: '0-0-0',
+        disabled: true,
+        children: [
+          {
+            title: 'leaf',
+            key: '0-0-0-0',
+            disableCheckbox: true,
+          },
+          {
+            title: 'leaf',
+            key: '0-0-0-1',
+          },
+        ],
+      },
+      {
+        title: 'parent 1-1',
+        key: '0-0-1',
+        children: [
+          {
+            title: (
+              <span
+                style={{
+                  color: '#1890ff',
+                }}
+              >
+                sss
+              </span>
+            ),
+            key: '0-0-1-0',
+          },
+        ],
+      },
+    ],
+  },
+];
+
+const TreeComponent = () => {
+  const onSelect = (selectedKeys, info) => {
+    console.log('selected', selectedKeys, info);
+  };
+
+  const onCheck = (checkedKeys, info) => {
+    console.log('onCheck', checkedKeys, info);
+  };
+
+  return (
+    <Tree
+      checkable
+      defaultExpandedKeys={['0-0-0', '0-0-1']}
+      defaultSelectedKeys={['0-0-0', '0-0-1']}
+      defaultCheckedKeys={['0-0-0', '0-0-1']}
+      onSelect={onSelect}
+      onCheck={onCheck}
+      treeData={treeData}
+    />
+  );
+};
+endsnippet
+
+snippet ant_basic_form "ant design basic flow form"
+<Form labelCol={{ span: 7 }} wrapperCol={{ span: 12 }}>
+  <Form.Item label='label'>
+    {getFieldDecorator('form_field', {
+      initialValue: '0',
+      rules: [],
+    })(<Input />)}
+  </Form.Item>
+</Form>
+endsnippet
+
+snippet ant_form_hook "ant design form hook"
+const Demo = () => {
+  const [form] = Form.useForm();
+
+  const layout = {
+    labelCol: { span: 8 },
+    wrapperCol: { span: 16 },
+  };
+
+  const tailLayout = {
+    wrapperCol: { offset: 8, span: 16 },
+  };
+
+  const onGenderChange = (value: string) => {
+    switch (value) {
+      case 'male':
+        form.setFieldsValue({ note: 'Hi, man!' });
+        return;
+      case 'female':
+        form.setFieldsValue({ note: 'Hi, lady!' });
+        return;
+      case 'other':
+        form.setFieldsValue({ note: 'Hi there!' });
+    }
+  };
+
+  const onFinish = (values: any) => {
+    console.log(values);
+  };
+
+  const onReset = () => {
+    form.resetFields();
+  };
+
+  const onFill = () => {
+    form.setFieldsValue({
+      note: 'Hello world!',
+      gender: 'male',
+    });
+  };
+
+  return (
+    <Form {...layout} form={form} name="control-hooks" onFinish={onFinish}>
+      <Form.Item name="note" label="Note" rules={[{ required: true }]}>
+        <Input />
+      </Form.Item>
+      <Form.Item name="gender" label="Gender" rules={[{ required: true }]}>
+        <Select
+          placeholder="Select a option and change input text above"
+          onChange={onGenderChange}
+          allowClear
+        >
+          <Option value="male">male</Option>
+          <Option value="female">female</Option>
+          <Option value="other">other</Option>
+        </Select>
+      </Form.Item>
+      <Form.Item
+        noStyle
+        shouldUpdate={(prevValues, currentValues) => prevValues.gender !== currentValues.gender}
+      >
+        {({ getFieldValue }) =>
+          getFieldValue('gender') === 'other' ? (
+            <Form.Item name="customizeGender" label="Customize Gender" rules={[{ required: true }]}>
+              <Input />
+            </Form.Item>
+          ) : null
+        }
+      </Form.Item>
+      <Form.Item {...tailLayout}>
+        <Button type="primary" htmlType="submit">
+          Submit
+        </Button>
+        <Button htmlType="button" onClick={onReset}>
+          Reset
+        </Button>
+        <Button type="link" htmlType="button" onClick={onFill}>
+          Fill form
+        </Button>
+      </Form.Item>
+    </Form>
+  );
+};
+endsnippet
+
+snippet ant_inputnumber_only_integer "ant design inputNumber only accept positive integer"
+<InputNumber
+  min={1}
+  step={1}
+  formatter={val => `${val}`.replace(/^(0+)|[^\d]+/g, '')}
+  parser={val => `${val}`.replace(/^(0+)|[^\d]+/g, '')}
+/>
+endsnippet
+
+snippet ant_table_with_form "ant design table with form search"
+// index.less
+// .wrap {
+//   background: #fff;
+//   margin: 0 20px 20px;
+//   border-radius: 2px;
+//   height: 100%;
+//   overflow: auto;
+//   padding: 0 50px;
+//   .content {
+//     margin: 20px;
+//     .form {
+//       display: flex;
+//       justify-content: space-between;
+//       .leftView {
+//         display: flex;
+//         flex-wrap: wrap;
+//       }
+//       .rightView {
+//         display: flex;
+//         padding-top: 5px;
+//       }
+//     }
+//   }
+// }
+import React, { useState, useEffect } from 'react';
+import { Button, Form, Select, Tooltip, Input, Tag, Table, Popconfirm } from 'antd';
+import styles from './index.less';
+const { Option } = Select;
+
+const Demo = (props) => {
+  const { getFieldDecorator, resetFields } = props.form;
+
+  const [dataSource, setDataSource] = useState([]);
+  const [formVal, setFormVal] = useState({});
+  const [totalCount, setTotalCount] = useState(0);
+  const [pageIndex, setPageIndex] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
+
+  const formatTable = (param) => {
+    return param ? (param?.length > 20 ? \`\$\{param.slice(0, 20)}...\` : param) : '-';
+  };
+  const columns = [
+    {
+      title: 'id',
+      key: 'id',
+      dataIndex: 'id',
+      fixed: 'left',
+      render: (text) => (
+        <Tooltip placement='topLeft' title={text} trigger='hover'>
+          {formatTable(text)}
+        </Tooltip>
+      )
+    },
+    {
+      title: '状态',
+      key: 'status',
+      dataIndex: 'status',
+      render: (text) => <Tag>{text}</Tag>
+    },
+    {
+      title: '操作',
+      key: 'operation',
+      width: 100,
+      render: () => {
+        return (
+          <div>
+            <Popconfirm title='confirm?' placement='topRight' onConfirm={() => {}}>
+              <Button type='link' style={{ marginLeft: -15 }}>
+                删除
+              </Button>
+            </Popconfirm>
+          </div>
+        );
+      }
+    }
+  ];
+
+  const onChangeFormVal = (key, val) => {
+    setFormVal({
+      ...formVal,
+      [\`\$\{key\}\`]: val
+    });
+  };
+  const reset = () => {
+    resetFields();
+    setFormVal({});
+  };
+  const fetchData = async () => {
+    const dataSource = [
+      {
+        id: 123,
+        key: 123,
+        status: 'success',
+        operation: '操作'
+      }
+    ];
+    setDataSource(dataSource);
+    setTotalCount(dataSource.length);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [formVal, pageIndex, pageSize]);
+
+  return (
+    <div className={styles.wrap}>
+      <div className={styles.content}>
+        <Form className={styles.form}>
+          <div className={styles.leftView}>
+            <Form.Item>
+              {getFieldDecorator('type')(
+                <Select
+                  placeholder='请选择类型'
+                  style={{ width: 174, marginRight: 10 }}
+                  onChange={(val) => onChangeFormVal('type', val)}>
+                  <Option value='type1'>type1</Option>
+                  <Option value='type2'>type2</Option>
+                </Select>
+              )}
+            </Form.Item>
+            <Form.Item>
+              {getFieldDecorator('name')(
+                <Input.Search
+                  onChange={(e) => onChangeFormVal('name', e.target.value)}
+                  placeholder='请输入名称'
+                  style={{ width: 174, marginRight: 10 }}
+                />
+              )}
+            </Form.Item>
+            <Form.Item>
+              <Button type='default' onClick={reset}>
+                重置
+              </Button>
+            </Form.Item>
+          </div>
+        </Form>
+        <Table
+	  rowKey='id'
+          columns={columns}
+          dataSource={dataSource}
+          scroll={{ x: 'max-content' }}
+          rowSelection={() => {}}
+          pagination={{
+            total: +totalCount,
+            pageSize: pageSize,
+            showSizeChanger: true,
+            pageSizeOptions: ['10', '15', '30'],
+            showTotal: (total) => \`共\$\{total\}条\`,
+            current: pageIndex,
+            onChange: (val) => setPageIndex(val),
+            onShowSizeChange: (_, val) => {
+              setPageSize(val);
+              setPageIndex(1);
+            }
+          }}
+        />
+      </div>
+    </div>
+  );
+};
+export default Form.create()(Demo);
+endsnippet
+
+snippet ant_pop_confirm "ant design pop confirm"
+<Popconfirm
+  title='confirm data'
+  placement='topLeft'
+  onConfirm={() => {}}
+  onCancel={() => {}}
+  okText='确定'
+  cancelText='取消'
+>
+  <a href="#">删除</a>
+</Popconfirm>
+endsnippet
+
+snippet ant_time_picker "ant design date picker with time"
+<DatePicker showTime placeholder='选择时间' onChange={(val, dateString) => console.log(val, dateString)} onOk={val => console.log(val)} />
+endsnippet

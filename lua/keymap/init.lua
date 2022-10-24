@@ -8,6 +8,14 @@ local plug_map = {
   -- NerdTree
   ["n|<leader>t"] = map_cmd(":NERDTreeToggle<cr>"):with_noremap():with_silent(),
   ["n|<leader><leader>t"] = map_cmd(":NERDTreeFind<cr>"):with_noremap():with_silent(),
+  -- Lspsaga
+  ["n|T"] = map_cmd(":Lspsaga code_action<CR>"):with_noremap():with_silent(),
+  ["n|gr"] = map_cmd(":Lspsaga rename<CR>"):with_noremap():with_silent(),
+  ["n|gd"] = map_cmd(":Lspsaga lsp_finder<CR>"):with_noremap():with_silent(),
+  ["n|K"] = map_cmd(":Lspsaga hover_doc<CR>"):with_noremap():with_silent(),
+  ["n|<leader>w"] = map_cmd(':lua require("lspsaga.diagnostic").goto_next({ severity = vim.diagnostic.severity.ERROR })<CR>')
+    :with_noremap()
+    :with_silent(),
   -- Bufferline
   -- ["n|gb"] = map_cr("BufferLinePick"):with_noremap():with_silent(),
   -- ["n|<A-j>"] = map_cr("BufferLineCycleNext"):with_noremap():with_silent(),

@@ -1,0 +1,25 @@
+snippet ng_form_html "ng zorro form html"
+<div class="modal-header">
+    <div *ngIf="!create" class="modal-title">{{ '$1' | translate}}</div>
+    <div *ngIf="create" class="modal-title">{{ '$2' | translate}}</div>
+</div>
+<div class="mdoal-body">
+    <form nz-form [formGroup]="validateForm" se-container="1" autocomplete="off">
+        <se label="{{ '$3' | translate}}" [error]="'$4' | translate">
+            <input type="text" nz-input [(ngModel)]="record.$5" formControlName="$6" autocomplete="off" required>
+        </se>
+        <se label="{{ '$7' | translate}}" [error]="'$8' | translate">
+            <nz-select [(ngModel)]="record.$9" formControlName="$10" nzAllowClear>
+                <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
+                <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
+                <nz-option nzValue="disabled" nzLabel="Disabled" nzDisabled></nz-option>
+            </nz-select>
+        </se>
+    </form>
+</div>
+<div class="modal-footer">
+    <button nz-button [nzType]="'primary'" [disabled]="!validateForm.valid" [nzSize]="'large'" (click)="ok()">
+        {{ 'confirm' | translate }}
+    </button>
+</div>
+endsnippet
