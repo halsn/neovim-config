@@ -42,4 +42,10 @@ tools["nvim-telescope/telescope-frecency.nvim"] = {
   after = "telescope-project.nvim",
   requires = { { "tami5/sqlite.lua", opt = true } },
 }
+tools["folke/trouble.nvim"] = {
+  opt = true,
+  cmd = { "Trouble", "TroubleToggle", "TroubleRefresh" },
+  config = conf.trouble,
+}
+
 return tools
