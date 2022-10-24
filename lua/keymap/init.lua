@@ -27,6 +27,7 @@ local plug_map = {
   ["n|}"] = map_cmd(":Telescope find_files<CR>"):with_noremap():with_silent(),
   ["n|{"] = map_cmd(":Telescope grep_string initial_mode=normal<CR>"):with_noremap():with_silent(),
   ["n|P"] = map_cmd(":Telescope live_grep<CR>"):with_noremap():with_silent(),
+  ["n|<leader>p"] = map_cmd(":Telescope frecency initial_mode=normal<CR>"):with_noremap():with_silent(),
   ["n|<leader><space>"] = map_cmd(":Telescope buffers sort_lastused=true initial_mode=normal<CR>")
     :with_noremap()
     :with_silent(),
