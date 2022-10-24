@@ -195,6 +195,21 @@ for _, server in ipairs(mason_lsp.get_installed_servers()) do
         },
       },
     })
+  elseif server == "html" then
+    -- https://github.com/vscode-langservers/vscode-html-languageserver-bin
+    nvim_lsp.html.setup({
+      cmd = { "vscode-html-language-server", "--stdio" },
+      filetypes = { "html" },
+      init_options = {
+        configurationSection = { "html", "css", "javascript" },
+        embeddedLanguages = { css = true, javascript = true },
+      },
+      settings = {},
+      single_file_support = true,
+      flags = { debounce_text_changes = 500 },
+      capabilities = capabilities,
+      on_attach = custom_attach,
+    })
   else
     nvim_lsp[server].setup({
       capabilities = capabilities,
@@ -202,22 +217,6 @@ for _, server in ipairs(mason_lsp.get_installed_servers()) do
     })
   end
 end
-
--- https://github.com/vscode-langservers/vscode-html-languageserver-bin
-
-nvim_lsp.html.setup({
-  cmd = { "vscode-html-language-server", "--stdio" },
-  filetypes = { "html" },
-  init_options = {
-    configurationSection = { "html", "css", "javascript" },
-    embeddedLanguages = { css = true, javascript = true },
-  },
-  settings = {},
-  single_file_support = true,
-  flags = { debounce_text_changes = 500 },
-  capabilities = capabilities,
-  on_attach = custom_attach,
-})
 
 local efmls = require("efmls-configs")
 
@@ -230,6 +229,8 @@ efmls.init({
 })
 
 -- Require `efmls-configs-nvim`'s config here
+
+-- Add your own config for formatter and linter here
 
 local vint = require("efmls-configs.linters.vint")
 local eslint = require("efmls-configs.linters.eslint")
@@ -247,9 +248,6 @@ local clangfmt = {
 }
 local prettier = require("efmls-configs.formatters.prettier")
 local shfmt = require("efmls-configs.formatters.shfmt")
-
--- Add your own config for formatter and linter here
-
 -- local rustfmt = require("modules.completion.efm.formatters.rustfmt")
 
 -- Override default config here

@@ -40,7 +40,7 @@ local function load_options()
     expandtab = true, -- 缩进设置，2个空格代替Tab
     shiftwidth = 2,
     softtabstop = 2,
-    smarttab= true,
+    smarttab = true,
     swapfile = false,
     autoread = true,
     backspace = "indent,eol,start", -- 在insert模式下能用删除键进行删除
@@ -49,6 +49,7 @@ local function load_options()
     sidescroll = 1, -- 横向滚屏时为1字符
     number = true, -- 显示行号
     showmatch = true, -- 高亮括号配对
+    mouse = "",
   }
 
   for name, value in pairs(global_local) do

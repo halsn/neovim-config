@@ -1,7 +1,9 @@
 local config = {}
+
 function config.nvim_lsp()
   require("plugins.completion.lsp")
 end
+
 function config.lspsaga()
   -- Set icons for sidebar.
   local diagnostic_icons = {
@@ -78,14 +80,14 @@ function config.cmp()
   end
 
   cmp.setup({
-    window = {
-      completion = {
-        border = border("CmpBorder"),
-      },
-      documentation = {
-        border = border("CmpDocBorder"),
-      },
-    },
+    -- window = {
+    --   completion = {
+    --     border = border("CmpBorder"),
+    --   },
+    --   documentation = {
+    --     border = border("CmpDocBorder"),
+    --   },
+    -- },
     sorting = {
       comparators = {
         -- require("cmp_tabnine.compare"),

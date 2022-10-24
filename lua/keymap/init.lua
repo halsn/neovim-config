@@ -16,6 +16,13 @@ local plug_map = {
   ["n|<leader>w"] = map_cmd(':lua require("lspsaga.diagnostic").goto_next({ severity = vim.diagnostic.severity.ERROR })<CR>')
     :with_noremap()
     :with_silent(),
+  -- vim-translator
+  ["n|<leader>'"] = map_cmd(":TranslateW<CR>"):with_noremap():with_silent(),
+  ["v|<leader>'"] = map_cmd(":TranslateWV<CR>"):with_noremap():with_silent(),
+  -- nvim-comment
+  ["n|<leader>v"] = map_cmd(":CommentToggle<CR>"):with_noremap():with_silent(),
+  ["v|<leader>v"] = map_cmd(":CommentToggle<CR>"):with_noremap():with_silent(),
+
   -- Bufferline
   -- ["n|gb"] = map_cr("BufferLinePick"):with_noremap():with_silent(),
   -- ["n|<A-j>"] = map_cr("BufferLineCycleNext"):with_noremap():with_silent(),

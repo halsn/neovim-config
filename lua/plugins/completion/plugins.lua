@@ -10,8 +10,8 @@ completion["williamboman/mason.nvim"] = {
   },
 }
 completion["neovim/nvim-lspconfig"] = {
-  opt = true,
-  event = "BufReadPre",
+  opt = false,
+  -- event = "BufEnter",
   config = conf.nvim_lsp,
 }
 completion["creativenull/efmls-configs-nvim"] = {
@@ -19,14 +19,14 @@ completion["creativenull/efmls-configs-nvim"] = {
   requires = "neovim/nvim-lspconfig",
 }
 completion["glepnir/lspsaga.nvim"] = {
-  opt = true,
+  opt = false,
   after = "nvim-lspconfig",
   config = conf.lspsaga,
 }
 -- completion["ray-x/lsp_signature.nvim"] = { opt = true, after = "nvim-lspconfig" }
 
 completion["hrsh7th/nvim-cmp"] = {
-  event = "InsertEnter",
+  event = "BufEnter",
   requires = {
     { "lukas-reineke/cmp-under-comparator" },
     {

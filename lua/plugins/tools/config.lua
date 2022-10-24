@@ -14,4 +14,16 @@ function config.nerdtree()
   ]])
 end
 
+function config.rooter()
+  vim.cmd([[
+    let g:rooter_resolve_links = 1
+  ]])
+end
+
+function config.translator()
+  vim.cmd([[
+    let g:translator_default_engines = ['bing', 'haici']
+  ]])
+end
+
 return config
