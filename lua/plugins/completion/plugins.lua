@@ -10,8 +10,8 @@ completion["williamboman/mason.nvim"] = {
   },
 }
 completion["neovim/nvim-lspconfig"] = {
-  opt = false,
-  -- event = "BufEnter",
+  opt = true,
+  event = "BufEnter",
   config = conf.nvim_lsp,
 }
 completion["creativenull/efmls-configs-nvim"] = {
