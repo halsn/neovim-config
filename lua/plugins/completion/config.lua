@@ -309,4 +309,11 @@ function config.mason_install()
   })
 end
 
+function config.ultisnipp()
+  vim.cmd([[
+    autocmd FileType javascript,javascriptreact,typescript,typescriptreact
+      \ UltiSnipsAddFiletypes javascript.javascriptreact.typescript.typescriptreact
+  ]])
+end
+
 return config

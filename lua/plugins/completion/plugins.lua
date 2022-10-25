@@ -53,6 +53,7 @@ completion["hrsh7th/nvim-cmp"] = {
 }
 completion["SirVer/ultisnips"] = {
   after = "nvim-cmp",
+  config = conf.ultisnipp,
 }
 completion["windwp/nvim-autopairs"] = {
   after = "nvim-cmp",
