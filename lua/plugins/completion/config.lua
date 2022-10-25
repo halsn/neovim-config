@@ -25,6 +25,15 @@ function config.lspsaga()
   local saga = require("lspsaga")
   saga.init_lsp_saga({
     diagnostic_header = { "", "W", "I", "H" },
+    code_action_lightbulb = {
+      enable = true,
+      enable_in_insert = false,
+      cache_code_action = true,
+      sign = false,
+      update_time = 150,
+      sign_priority = 20,
+      virtual_text = true,
+    },
     max_preview_lines = 30,
     finder_icons = {
       def = "",
@@ -89,19 +98,19 @@ function config.cmp()
     --     border = border("CmpDocBorder"),
     --   },
     -- },
-    sorting = {
-      comparators = {
-        compare.order,
-        require("cmp_tabnine.compare"),
-        compare.offset,
-        compare.exact,
-        require("cmp-under-comparator").under,
-        compare.kind,
-        compare.sort_text,
-        compare.length,
-        compare.score,
-      },
-    },
+    -- sorting = {
+    --   comparators = {
+    --     compare.order,
+    --     require("cmp_tabnine.compare"),
+    --     compare.offset,
+    --     compare.exact,
+    --     require("cmp-under-comparator").under,
+    --     compare.kind,
+    --     compare.sort_text,
+    --     compare.length,
+    --     compare.score,
+    --   },
+    -- },
     formatting = {
       format = function(entry, vim_item)
         vim_item.menu = ({
