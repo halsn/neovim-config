@@ -18,7 +18,7 @@ local plug_map = {
     :with_silent(),
   -- vim-translator
   ["n|<leader>'"] = map_cmd(":TranslateW<CR>"):with_noremap():with_silent(),
-  ["v|<leader>'"] = map_cmd(":TranslateWV<CR>"):with_noremap():with_silent(),
+  ["v|<leader>'"] = map_cmd(":TranslateW<CR>"):with_noremap():with_silent(),
   -- nvim-comment
   ["n|<leader>v"] = map_cmd(":CommentToggle<CR>"):with_noremap():with_silent(),
   ["v|<leader>v"] = map_cmd(":CommentToggle<CR>"):with_noremap():with_silent(),

@@ -49,7 +49,7 @@ function config.lspsaga()
 end
 
 function config.cmp()
-  -- vim.cmd([[packadd cmp-tabnine]])
+  vim.cmd([[packadd cmp-tabnine]])
   local t = function(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
   end
@@ -91,30 +91,28 @@ function config.cmp()
     -- },
     sorting = {
       comparators = {
-        -- require("cmp_tabnine.compare"),
+        compare.order,
+        require("cmp_tabnine.compare"),
         compare.offset,
         compare.exact,
-        compare.score,
         require("cmp-under-comparator").under,
         compare.kind,
         compare.sort_text,
         compare.length,
-        compare.order,
+        compare.score,
       },
     },
     formatting = {
       format = function(entry, vim_item)
         vim_item.menu = ({
-          -- cmp_tabnine = "[TN]",
-          buffer = "[BUF]",
-          orgmode = "[ORG]",
+          ultisnips = "[SNIP]",
           nvim_lsp = "[LSP]",
+          buffer = "[BUF]",
+          cmp_tabnine = "[TN]",
+          orgmode = "[ORG]",
           nvim_lua = "[LUA]",
           path = "[PATH]",
-          tmux = "[TMUX]",
-          -- luasnip = "[SNIP]",
-          ultisnips = "[SNIP]",
-          spell = "[SPELL]",
+          -- dictionary = "[DICT]",
         })[entry.source.name]
 
         return vim_item
@@ -185,17 +183,20 @@ function config.cmp()
       end,
     },
     sources = {
-      { name = "nvim_lsp" },
-      { name = "nvim_lua" },
+      { name = "ultisnips", priority = 100 },
+      { name = "nvim_lsp", priority = 90 },
+      { name = "cmp_tabnine", priority = 80 },
+      { name = "buffer", priority = 70 },
+      { name = "nvim_lua", priority = 60 },
       -- { name = "luasnip" },
-      { name = "path" },
-      { name = "spell" },
-      { name = "tmux" },
-      { name = "orgmode" },
-      { name = "buffer" },
-      { name = "ultisnips" },
+      { name = "path", priority = 50 },
+      { name = "orgmode", priority = 40 },
+      -- {
+      --   name = "dictionary",
+      --   keyword_length = 2,
+      --   priority = 30,
+      -- },
       -- { name = "latex_symbols" },
-      -- { name = "cmp_tabnine" },
     },
   })
 end
@@ -212,10 +213,30 @@ function config.luasnip()
   require("luasnip.loaders.from_snipmate").lazy_load()
 end
 
--- function config.tabnine()
--- 	local tabnine = require("cmp_tabnine.config")
--- 	tabnine:setup({ max_line = 1000, max_num_results = 20, sort = true })
--- end
+function config.tabnine()
+  local tabnine = require("cmp_tabnine.config")
+  tabnine:setup({ max_line = 1000, max_num_results = 20, sort = true })
+end
+
+function config.dictionary()
+  require("cmp_dictionary").setup({
+    dic = {
+      ["*"] = { "~/.config/nvim/dicts/en.dict" },
+      -- spelllang = {
+      --   en = "path/to/english.dic",
+      -- },
+    },
+    -- The following are default values.
+    exact = 2,
+    first_case_insensitive = true,
+    document = false,
+    document_command = "wn %s -over",
+    async = true,
+    max_items = -1,
+    capacity = 5,
+    debug = false,
+  })
+end
 
 function config.autopairs()
   require("nvim-autopairs").setup({})

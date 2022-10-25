@@ -29,14 +29,14 @@ local leader_map = function()
 end
 
 local load_core = function()
+  -- 注意加载顺序
+
   local pack = require("core.pack")
   createdir()
-  -- disable_distribution_plugins()
   leader_map()
 
   pack.ensure_plugins()
   pack.load_compile()
-  -- clipboard_config()
   require("core.options")
   require("core.mapping")
   require("keymap")
