@@ -12,6 +12,11 @@ function config.lspsaga()
     Info = "",
     Hint = "",
   }
+
+  -- vim.api.nvim_set_hl(0, "IlluminatedWordText", { bg = "#FFFF00", fg = "#000000" })
+  vim.api.nvim_set_hl(0, "LspSagaFinderSelection", { bg = "#FFFF00", fg = "#000000", bold = true })
+  vim.api.nvim_set_hl(0, "TargetFileName", { fg = "#747777" })
+  vim.api.nvim_set_hl(0, "FinderParam", { fg = "#ffffff", bg = "#CBA6F7", bold = true })
   for type, icon in pairs(diagnostic_icons) do
     local hl = "DiagnosticSign" .. type
     vim.fn.sign_define(hl, { text = icon, texthl = hl })

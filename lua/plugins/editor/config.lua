@@ -94,7 +94,10 @@ function config.illuminate()
       "regex",
     },
     delay = 50,
-    filetypes_denylist = {},
+    filetypes_denylist = {
+      "lspsagafinder",
+      "lspsagafindertitlebar",
+    },
     under_cursor = true,
   })
 end

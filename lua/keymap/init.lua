@@ -34,6 +34,10 @@ local plug_map = {
 
   -- Plugin trouble
   ["n|<leader>e"] = map_cr("TroubleToggle"):with_noremap():with_silent(),
+
+  -- Plugin illuminate
+  ["n|m"] = map_cmd(":lua require('illuminate').goto_next_reference(wrap)<CR>"):with_noremap():with_silent(),
+  ["n|M"] = map_cmd(":lua require('illuminate').goto_prev_reference(wrap)<CR>"):with_noremap():with_silent(),
 }
 
 bind.nvim_load_mapping(plug_map)
