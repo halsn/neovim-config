@@ -2,8 +2,12 @@ local global = require("core.global")
 
 vim.cmd([[
   autocmd BufEnter,TermOpen,WinEnter term://* set nonu
+  autocmd BufEnter,TermOpen,WinEnter term://* set signcolumn=no
   " autocmd BufLeave,WinLeave term://* stopinsert
   autocmd BufLeave,WinLeave term://* set nu
+  autocmd BufLeave,WinLeave term://* set signcolumn=no
+  autocmd BufRead,BufNewFile * set signcolumn=yes
+  autocmd FileType tagbar,nerdtree set signcolumn=no
 ]])
 
 local function load_options()
@@ -27,7 +31,7 @@ local function load_options()
     timeoutlen = 1000,
     ttimeoutlen = 0,
 
-    redrawtime = 1500,
+    -- redrawtime = 1500,
     lazyredraw = true, -- Don't redraw while executing macros (good performance config)
     magic = true, -- For regular expressions turn magic on
     ignorecase = true, -- 搜索时，忽略大小写

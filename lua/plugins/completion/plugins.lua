@@ -18,26 +18,30 @@ completion["creativenull/efmls-configs-nvim"] = {
   opt = false,
   requires = "neovim/nvim-lspconfig",
 }
-completion["glepnir/lspsaga.nvim"] = {
-  opt = false,
-  after = "nvim-lspconfig",
-  config = conf.lspsaga,
-}
+-- completion["glepnir/lspsaga.nvim"] = {
+--   opt = false,
+--   after = "nvim-lspconfig",
+--   config = conf.lspsaga,
+-- }
 -- completion["ray-x/lsp_signature.nvim"] = { opt = true, after = "nvim-lspconfig" }
 
 completion["hrsh7th/nvim-cmp"] = {
-  event = "BufEnter",
+  opt = false,
+  -- event = "BufEnter",
   requires = {
-    { "lukas-reineke/cmp-under-comparator" },
+    -- { "lukas-reineke/cmp-under-comparator" },
     {
       "quangnguyen30192/cmp-nvim-ultisnips",
       config = function()
         -- optional call to setup (see customization section)
-        require("cmp_nvim_ultisnips").setup({})
+        require("cmp_nvim_ultisnips").setup({
+          filetype_source = "ultisnips_default",
+        })
       end,
       after = "ultisnips",
     },
     { "hrsh7th/cmp-nvim-lsp", after = "cmp-nvim-ultisnips" },
+    -- { "hrsh7th/cmp-nvim-lsp" },
     { "hrsh7th/cmp-nvim-lua", after = "cmp-nvim-lsp" },
     { "hrsh7th/cmp-path", after = "cmp-nvim-lua" },
     { "hrsh7th/cmp-buffer", after = "cmp-path" },

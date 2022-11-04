@@ -1,7 +1,6 @@
 local editor = {}
 local conf = require("plugins.editor.config")
 
-editor["LunarWatcher/auto-pairs"] = { opt = false }
 editor["Lokaltog/vim-easymotion"] = {
   opt = true,
   event = "BufEnter",
@@ -23,14 +22,14 @@ editor["nvim-treesitter/nvim-treesitter"] = {
   config = conf.nvim_treesitter,
 }
 
-editor["andymass/vim-matchup"] = {
-  opt = true,
-  after = "nvim-treesitter",
-  config = conf.matchup,
-}
+-- editor["andymass/vim-matchup"] = {
+--   opt = true,
+--   after = "nvim-treesitter",
+--   config = conf.matchup,
+-- }
 
 editor["JoosepAlviste/nvim-ts-context-commentstring"] = {
-  opt = true,
+  opt = false,
   after = "nvim-treesitter",
 }
 
@@ -41,12 +40,12 @@ editor["RRethy/vim-illuminate"] = {
 }
 
 editor["nvim-treesitter/nvim-treesitter-textobjects"] = {
-  opt = true,
+  opt = false,
   after = "nvim-treesitter",
 }
 
 editor["windwp/nvim-ts-autotag"] = {
-  opt = true,
+  opt = false,
   after = "nvim-treesitter",
   config = conf.autotag,
 }

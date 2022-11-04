@@ -1,7 +1,13 @@
 local formatting = require("plugins.completion.formatting")
 
+vim.diagnostic.config({
+  virtual_text = false,
+  signs = true,
+  underline = true,
+})
+
 -- vim.cmd([[packadd lsp_signature.nvim]])
-vim.cmd([[packadd lspsaga.nvim]])
+-- vim.cmd([[packadd lspsaga.nvim]])
 vim.cmd([[packadd cmp-nvim-lsp]])
 
 local mason = require("mason")
@@ -210,6 +216,10 @@ for _, server in ipairs(mason_lsp.get_installed_servers()) do
       capabilities = capabilities,
       on_attach = custom_attach,
     })
+  elseif server == "tsserver" then
+    nvim_lsp.tsserver.setup({
+      flags = { debounce_text_changes = 2000 },
+    })
   else
     nvim_lsp[server].setup({
       capabilities = capabilities,
@@ -226,6 +236,7 @@ efmls.init({
   on_attach = custom_attach,
   capabilities = capabilities,
   init_options = { documentFormatting = true, codeAction = true },
+  flags = { debounce_text_changes = 2000 },
 })
 
 -- Require `efmls-configs-nvim`'s config here
