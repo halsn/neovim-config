@@ -31,6 +31,7 @@ Plug 'voldikss/vim-translator'                                  " 翻译插件
 Plug 'tpope/vim-surround'                                       " 快速插入括号
 Plug 'tpope/vim-repeat'                                         " 重复之前操作
 Plug 'junkblocker/git-time-lapse'                               " 类似于git lens
+Plug 'romainl/vim-cool'
 " Mac
 Plug 'APZelos/blamer.nvim'                                      " git blame显示
 Plug 'edluffy/hologram.nvim'

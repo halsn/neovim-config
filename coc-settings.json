@@ -1,6 +1,9 @@
 {
   // "coc.preferences.jumpCommand": "split",
   "diagnostic.infoSign": "I",
+  "diagnostic.hintSign": "H",
+  "diagnostic.errorSign": "E",
+  "diagnostic.warningSign": "W",
   "eslint.validate": [
     "javascript",
     "javascriptreact",

@@ -53,6 +53,23 @@ let g:coc_snippet_prev = '<c-h>'
 
 " imap <S-Tab> <Plug>(coc-snippets-expand)
 imap <C-l> <Plug>(coc-snippets-expand-jump)
+let g:coc_global_extensions = [
+            \ 'coc-word',
+            \ 'coc-ultisnips',
+            \ 'coc-tsserver',
+            \ 'coc-snippets',
+            \ 'coc-python',
+            \ 'coc-lists',
+            \ 'coc-json',
+            \ 'coc-html',
+            \ 'coc-eslint',
+            \ 'coc-emmet',
+            \ 'coc-dictionary',
+            \ 'coc-diagnostic',
+            \ 'coc-css',
+            \ 'coc-tabnine',
+            \ 'coc-prettier',
+            \ ]
 
 highlight CocUnusedHighlight  ctermfg=245
 " highlight CocErrorHighlight ctermfg=Red  guifg=#ff0000
