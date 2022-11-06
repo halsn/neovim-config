@@ -46,13 +46,18 @@ let g:ag_working_path_mode="r"
 " coc-snippets config
 
 " Use <C-j> for jump to next placeholder, it's default of coc.nvim
-" let g:coc_snippet_next = '<S-Tab>'
+let g:coc_snippet_next = '<c-l>'
 
-" Use <C-l> for trigger snippet expand.
-imap <S-Tab> <Plug>(coc-snippets-expand)
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-h>'
+
+" imap <S-Tab> <Plug>(coc-snippets-expand)
+imap <C-l> <Plug>(coc-snippets-expand-jump)
 
 highlight CocUnusedHighlight  ctermfg=245
 " highlight CocErrorHighlight ctermfg=Red  guifg=#ff0000
+
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 hi CocSearch ctermfg=24 guifg=#005f87
 hi CocMenuSel ctermbg=109 guibg=#13354A

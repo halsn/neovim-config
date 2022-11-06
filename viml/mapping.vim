@@ -49,6 +49,9 @@ vmap d<Space> zd
 nmap <silent> { :exe 'CocList --auto-preview --normal --input='.expand('<cword>').' grep'<CR>
 nmap <silent> } :exe 'CocList files'<CR>
 nmap <silent> <leader>m :exe 'CocList --auto-preview --normal --input='.expand('<cword>').' words'<CR>
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
 
 " coc mapping
 " buffer list

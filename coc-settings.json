@@ -16,8 +16,8 @@
     "javascriptreact": ["javascript"],
     "javascript.jsx": ["javascript"]
   },
-  "coc.source.word.priority": 100,
-  "tabnine.priority": 99,
+  "coc.source.word.priority": 80,
+  "tabnine.priority": 95,
   "list.source.mru.ignoreGitIgnore": true,
   "emmet.includeLanguages": {
     "vue-html": "html",
@@ -28,8 +28,8 @@
   "json.format.enable": false,
   "javascript.suggest.autoImports": true,
   "typescript.suggest.autoImports": true,
-  // "suggest.selection": "first",
+  "suggest.selection": "first",
   "tabnine.enablePreselect": false,
-  "suggest.enablePreselect": false,
-  "suggest.noselect": true
+  "suggest.enablePreselect": true,
+  "suggest.noselect": false
 }

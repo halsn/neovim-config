@@ -31,6 +31,7 @@ set smarttab
 set noswapfile
 set clipboard=unnamed,unnamedplus                       " 解决系统粘贴板问题
 set autoread
+set mouse=""
 
 " 解决wsl复制问题
 let s:clip = '/mnt/c/Windows/System32/clip.exe' 
