@@ -17,7 +17,9 @@
   },
   "snippets.extends": {
     "javascriptreact": ["javascript"],
-    "javascript.jsx": ["javascript"]
+    "javascript.jsx": ["javascript"],
+    "typescriptreact": ["javascript"],
+    "tpyescript.jsx": ["javascript"]
   },
   "coc.source.word.priority": 80,
   "tabnine.priority": 95,
@@ -27,7 +29,6 @@
     "ejs": "html",
     "javascript": "javascriptreact"
   },
-  "snippets.textmateSnippetsRoots": ["~/.config/nvim/vscode-snippets"],
   "json.format.enable": false,
   "javascript.suggest.autoImports": true,
   "typescript.suggest.autoImports": true,
