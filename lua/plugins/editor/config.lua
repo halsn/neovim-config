@@ -2,10 +2,11 @@ local config = {}
 
 function config.easymotion()
   vim.cmd([[
-    hi EasyMotionTarget ctermbg=253 ctermfg=253
+    hi EasyMotionTargetDefault ctermbg=253 ctermfg=253
     " hi EasyMotionShade  ctermbg=none
-    hi EasyMotionTarget2First ctermbg=253 ctermfg=253
-    hi EasyMotionTarget2Second ctermbg=253 ctermfg=253
+    hi EasyMotionTarget2FirstDefault ctermbg=253 ctermfg=253
+    hi EasyMotionTarget2SecondDefault ctermbg=253 ctermfg=253
+    hi EasyMotionIncSearchDefault ctermbg=253 ctermfg=253
   ]])
 end
 
@@ -84,7 +85,28 @@ function config.nvim_comment()
 end
 
 function config.matchup()
-  vim.cmd([[let g:matchup_matchparen_offscreen = {'method': 'popup'}]])
+  vim.cmd([[
+    function! JSXHotFix()
+        setlocal matchpairs=(:),{:},[:],<:>
+        let b:match_words = '<\@<=\([^/][^ \t>]*\)\g{hlend}\%(>\|$\|[ \t][^>]*\%(>\|$\)\):<\@<=/\1\g{hlend}>'
+        " let b:match_words = '<\@<=\([^/][^ \t>]*\)\g{hlend}[^>]*\%(/\@<!>\|$\):<\@<=/\1>'
+    endfunction
+
+    let g:matchup_hotfix = {'jsx': 'JSXHotFix'}
+    let g:matchup_matchparen_offscreen = {'method': 'popup'}
+    let g:matchup_transmute_enabled = 1
+
+    " Deferred highlight for performance reasons
+    let g:matchup_matchparen_deferred = 1
+    let b:match_words = matchup#util#standard_html()
+
+    let g:matchup_matchpref = {
+        \ 'html': { 'tagnameonly': 1, },
+        \ 'javascript.jsx': { 'tagnameonly': 1, },
+        \ 'javascript': { 'tagnameonly': 1, },
+        \ 'jsx': { 'tagnameonly': 1, },
+        \}
+  ]])
 end
 
 function config.illuminate()

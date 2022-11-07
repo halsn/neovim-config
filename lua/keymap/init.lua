@@ -8,14 +8,6 @@ local plug_map = {
   -- NerdTree
   ["n|<leader>t"] = map_cmd(":NERDTreeToggle<cr>"):with_noremap():with_silent(),
   ["n|<leader><leader>t"] = map_cmd(":NERDTreeFind<cr>"):with_noremap():with_silent(),
-  -- Lspsaga
-  ["n|T"] = map_cmd(":Lspsaga code_action<CR>"):with_noremap():with_silent(),
-  ["n|gr"] = map_cmd(":Lspsaga rename<CR>"):with_noremap():with_silent(),
-  ["n|gd"] = map_cmd(":Lspsaga lsp_finder<CR>"):with_noremap():with_silent(),
-  ["n|K"] = map_cmd(":Lspsaga hover_doc<CR>"):with_noremap():with_silent(),
-  ["n|<leader>w"] = map_cmd(':lua require("lspsaga.diagnostic").goto_next({ severity = vim.diagnostic.severity.ERROR })<CR>')
-    :with_noremap()
-    :with_silent(),
   -- vim-translator
   ["n|<leader>'"] = map_cmd(":TranslateW<CR>"):with_noremap():with_silent(),
   ["v|<leader>'"] = map_cmd(":TranslateW<CR>"):with_noremap():with_silent(),
@@ -32,12 +24,8 @@ local plug_map = {
     :with_noremap()
     :with_silent(),
 
-  -- Plugin trouble
-  ["n|<leader>e"] = map_cr("TroubleToggle"):with_noremap():with_silent(),
-
   -- Plugin illuminate
-  ["n|m"] = map_cmd(":lua require('illuminate').goto_next_reference(wrap)<CR>"):with_noremap():with_silent(),
-  ["n|M"] = map_cmd(":lua require('illuminate').goto_prev_reference(wrap)<CR>"):with_noremap():with_silent(),
+  ["n|;"] = map_cmd(":lua require('illuminate').goto_next_reference(wrap)<CR>"):with_noremap():with_silent(),
 }
 
 bind.nvim_load_mapping(plug_map)

@@ -37,6 +37,7 @@ local load_core = function()
 
   pack.ensure_plugins()
   pack.load_compile()
+
   require("core.options")
   require("core.mapping")
   require("keymap")
@@ -48,6 +49,20 @@ local load_core = function()
     hi NonText ctermbg=none
     hi MatchParen cterm=none ctermbg=226 ctermfg=0 guifg=#000000 guibg=#FFFF00          " 括号匹配颜色
     hi Folded ctermbg=253 ctermfg=51 guifg=#00ffff guibg=#dadada                         " 设置折叠区颜色
+
+    " Coc configuration
+    hi CocSearch ctermfg=24 guifg=#005f87
+    hi CocMenuSel ctermbg=109 guibg=#87afaf
+    " hi Pmenu ctermfg=238 ctermbg=254 guibg=#87afaf
+    hi PmenuSel cterm=NONE gui=NONE ctermfg=109 guibg=#87afaf
+    
+    hi LspDiagnosticsDefaultWarning ctermfg=247 guifg=#9e9e9e guibg=#eeeeee
+    hi LspDiagnosticsDefaultInformation ctermfg=247 guifg=#9e9e9e guibg=#eeeeee
+    hi LspDiagnosticsDefaultHint ctermfg=247 guifg=#9e9e9e guibg=#eeeeee
+    hi CocInlayHint ctermfg=247 guifg=#9e9e9e guibg=#eeeeee
+    hi CocFadeOut ctermfg=247 guifg=#9e9e9e guibg=#eeeeee
+    imap <C-j> <C-n>
+    imap <C-k> <C-p>
   ]])
 end
 

@@ -22,14 +22,8 @@ editor["nvim-treesitter/nvim-treesitter"] = {
   config = conf.nvim_treesitter,
 }
 
--- editor["andymass/vim-matchup"] = {
---   opt = true,
---   after = "nvim-treesitter",
---   config = conf.matchup,
--- }
-
 editor["JoosepAlviste/nvim-ts-context-commentstring"] = {
-  opt = false,
+  opt = true,
   after = "nvim-treesitter",
 }
 
@@ -40,41 +34,20 @@ editor["RRethy/vim-illuminate"] = {
 }
 
 editor["nvim-treesitter/nvim-treesitter-textobjects"] = {
-  opt = false,
+  opt = true,
   after = "nvim-treesitter",
+}
+
+editor["andymass/vim-matchup"] = {
+  opt = true,
+  after = "nvim-treesitter",
+  config = conf.matchup,
 }
 
 editor["windwp/nvim-ts-autotag"] = {
-  opt = false,
+  opt = true,
   after = "nvim-treesitter",
   config = conf.autotag,
 }
-
--- editor["rmagatti/auto-session"] = {
--- 	opt = true,
--- 	cmd = { "SaveSession", "RestoreSession", "DeleteSession" },
--- 	config = conf.auto_session,
--- }
--- editor["mfussenegger/nvim-dap"] = {
--- 	opt = true,
--- 	cmd = {
--- 		"DapSetLogLevel",
--- 		"DapShowLog",
--- 		"DapContinue",
--- 		"DapToggleBreakpoint",
--- 		"DapToggleRepl",
--- 		"DapStepOver",
--- 		"DapStepInto",
--- 		"DapStepOut",
--- 		"DapTerminate",
--- 	},
--- 	module = "dap",
--- 	config = conf.dap,
--- }
--- editor["rcarriga/nvim-dap-ui"] = {
--- 	opt = true,
--- 	after = "nvim-dap", -- Need to call setup after dap has been initialized.
--- 	config = conf.dapui,
--- }
 
 return editor

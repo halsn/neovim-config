@@ -1,0 +1,38 @@
+{
+  // "coc.preferences.jumpCommand": "split",
+  "diagnostic.infoSign": "I",
+  "diagnostic.hintSign": "H",
+  "diagnostic.errorSign": "E",
+  "diagnostic.warningSign": "W",
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "vue",
+    "typescript",
+    "typescriptreact"
+  ],
+  "eslint.autoFixOnSave": true,
+  "diagnostic-languageserver.filetypes": {
+    "sh": "shellcheck"
+  },
+  "snippets.extends": {
+    "javascriptreact": ["javascript"],
+    "javascript.jsx": ["javascript"]
+  },
+  "coc.source.word.priority": 80,
+  "tabnine.priority": 95,
+  "list.source.mru.ignoreGitIgnore": true,
+  "emmet.includeLanguages": {
+    "vue-html": "html",
+    "ejs": "html",
+    "javascript": "javascriptreact"
+  },
+  "snippets.textmateSnippetsRoots": ["~/.config/nvim/vscode-snippets"],
+  "json.format.enable": false,
+  "javascript.suggest.autoImports": true,
+  "typescript.suggest.autoImports": true,
+  "suggest.selection": "first",
+  "tabnine.enablePreselect": false,
+  "suggest.enablePreselect": true,
+  "suggest.noselect": false
+}

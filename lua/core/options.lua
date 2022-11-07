@@ -20,19 +20,19 @@ local function load_options()
     fencs = "utf-8,gbk,gb18030,gb2312,cp936,usc-bom,euc-jp",
     termencoding = "utf-8",
     clipboard = "unnamed,unnamedplus", -- 解决系统粘贴板问题
-    undodir = global.cache_dir .. "undo/",
-    directory = global.cache_dir .. "swap/",
-    backupdir = global.cache_dir .. "backup/",
-    viewdir = global.cache_dir .. "view/",
-    spellfile = global.cache_dir .. "spell/en.uft-8.add",
-    shada = "!,'300,<50,@100,s10,h",
+    -- undodir = global.cache_dir .. "undo/",
+    -- directory = global.cache_dir .. "swap/",
+    -- backupdir = global.cache_dir .. "backup/",
+    -- viewdir = global.cache_dir .. "view/",
+    -- spellfile = global.cache_dir .. "spell/en.uft-8.add",
+    -- shada = "!,'300,<50,@100,s10,h",
     timeout = true,
     ttimeout = true,
     timeoutlen = 1000,
     ttimeoutlen = 0,
 
     -- redrawtime = 1500,
-    lazyredraw = true, -- Don't redraw while executing macros (good performance config)
+    -- lazyredraw = true, -- Don't redraw while executing macros (good performance config)
     magic = true, -- For regular expressions turn magic on
     ignorecase = true, -- 搜索时，忽略大小写
     smartcase = true, -- 搜索时，智能大小写
@@ -54,6 +54,9 @@ local function load_options()
     number = true, -- 显示行号
     showmatch = true, -- 高亮括号配对
     mouse = "",
+    updatetim = 300,
+    backup = false,
+    writebackup = false
   }
 
   for name, value in pairs(global_local) do
