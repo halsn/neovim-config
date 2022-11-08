@@ -52,10 +52,10 @@ local load_core = function()
 
     " Coc configuration
     hi CocSearch ctermfg=24 guifg=#005f87
-    hi CocMenuSel ctermbg=109 guibg=#87afaf
+    hi CocMenuSel cterm=reverse ctermfg=0 ctermbg=7 gui=reverse guifg=#444444 guibg=#d0d0d0
     " hi Pmenu ctermfg=238 ctermbg=254 guibg=#87afaf
-    hi PmenuSel cterm=NONE gui=NONE ctermfg=109 guibg=#87afaf
-    
+    " hi PmenuSel cterm=reverse ctermfg=0 ctermbg=7 gui=reverse guifg=#444444 guibg=#d0d0d0
+
     hi LspDiagnosticsDefaultWarning ctermfg=247 guifg=#9e9e9e guibg=#eeeeee
     hi LspDiagnosticsDefaultInformation ctermfg=247 guifg=#9e9e9e guibg=#eeeeee
     hi LspDiagnosticsDefaultHint ctermfg=247 guifg=#9e9e9e guibg=#eeeeee
