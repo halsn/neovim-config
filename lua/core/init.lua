@@ -48,7 +48,7 @@ local load_core = function()
     colorscheme PaperColor
     hi NonText ctermbg=none
     hi MatchParen cterm=none ctermbg=226 ctermfg=0 guifg=#000000 guibg=#FFFF00          " 括号匹配颜色
-    hi Folded ctermbg=253 ctermfg=51 guifg=#00ffff guibg=#dadada                         " 设置折叠区颜色
+    hi Folded ctermbg=253 ctermfg=245 guifg=#8a8a8a guibg=#dadada                         " 设置折叠区颜色
 
     " Coc configuration
     hi CocSearch ctermfg=24 guifg=#005f87
