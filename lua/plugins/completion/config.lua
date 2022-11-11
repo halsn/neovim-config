@@ -64,8 +64,9 @@ function config.coc()
 
   -- auto complete
   local opts = {silent = true, noremap = true, expr = true}
+
   vim.api.nvim_set_keymap("i", "<TAB>",
-                          'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()', opts)
+                          [[coc#pum#visible() ? coc#pum#next(1) : pumvisible() ? "\<C-n>" : "\<TAB>"]], opts)
   vim.api.nvim_set_keymap("i", "<S-TAB>",
                           [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], opts)
 

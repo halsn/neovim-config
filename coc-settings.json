@@ -34,6 +34,6 @@
   "typescript.suggest.autoImports": true,
   "suggest.selection": "first",
   "tabnine.enablePreselect": false,
-  "suggest.enablePreselect": true,
-  "suggest.noselect": false
+  "suggest.enablePreselect": false,
+  "suggest.noselect": true
 }

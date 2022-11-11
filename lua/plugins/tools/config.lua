@@ -67,6 +67,8 @@ function config.telescope()
           -- e.g. git_{create, delete, ...}_branch for the git_branches picker
           ["<C-j>"] = "move_selection_next",
           ["<C-k>"] = "move_selection_previous",
+          ["<C-s>"] = "file_split",
+          ["<C-t>"] = "file_tab",
         },
         n = {
           ["s"] = "file_split",
