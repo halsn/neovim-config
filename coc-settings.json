@@ -19,15 +19,17 @@
     "javascriptreact": ["javascript"],
     "javascript.jsx": ["javascript"],
     "typescriptreact": ["javascript"],
+    "typescript": ["javascript"],
     "tpyescript.jsx": ["javascript"]
   },
-  "coc.source.word.priority": 80,
-  "tabnine.priority": 95,
+  "coc.source.word.priority": 70,
+  "coc.source.buffer.priority": 80,
+  "tabnine.priority": 100,
   "list.source.mru.ignoreGitIgnore": true,
   "emmet.includeLanguages": {
     "vue-html": "html",
     "ejs": "html",
-    "javascript": "javascriptreact"
+    // "javascript": "javascriptreact"
   },
   "json.format.enable": false,
   "javascript.suggest.autoImports": true,
