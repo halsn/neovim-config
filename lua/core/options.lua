@@ -8,6 +8,20 @@ vim.cmd([[
   autocmd BufLeave,WinLeave term://* set signcolumn=no
   autocmd BufRead,BufNewFile * set signcolumn=yes
   autocmd FileType tagbar,nerdtree set signcolumn=no
+  if has('wsl')
+    let g:clipboard = {
+                \   'name': 'WslClipboard',
+                \   'copy': {
+                \      '+': 'clip.exe',
+                \      '*': 'clip.exe',
+                \    },
+                \   'paste': {
+                \      '+': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+                \      '*': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+                \   },
+                \   'cache_enabled': 0,
+                \ }
+  endif
 ]])
 
 local function load_options()
@@ -19,7 +33,7 @@ local function load_options()
     fenc = "utf-8",
     fencs = "utf-8,gbk,gb18030,gb2312,cp936,usc-bom,euc-jp",
     termencoding = "utf-8",
-    clipboard = "unnamed,unnamedplus", -- 解决系统粘贴板问题
+    clipboard = "unnamedplus", -- 解决系统粘贴板问题
     -- undodir = global.cache_dir .. "undo/",
     -- directory = global.cache_dir .. "swap/",
     -- backupdir = global.cache_dir .. "backup/",
