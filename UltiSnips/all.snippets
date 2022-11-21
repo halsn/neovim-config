@@ -158,7 +158,6 @@ snippet eslint_rc_tsx "eslint configuration for tsx project"
 // "eslint-plugin-jsx-a11y": "^6.4.1",
 // "eslint-plugin-react": "^7.21.5",
 // "eslint-plugin-react-hooks": "4.1.0",
-// "eslint-plugin-typescript": "^0.14.0",
 
 module.exports = {
   env: {
@@ -305,6 +304,8 @@ module.exports = {
       rules: {
         'no-use-before-define': 'off',
         '@typescript-eslint/no-use-before-define': ['error'],
+        'no-redeclare': 'off',
+        '@typescript-eslint/no-redeclare': 'warn'
       },
     },
   ],
