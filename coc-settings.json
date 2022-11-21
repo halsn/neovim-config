@@ -37,5 +37,6 @@
   "suggest.selection": "first",
   "tabnine.enablePreselect": false,
   "suggest.enablePreselect": false,
-  "suggest.noselect": true
+  "suggest.noselect": true,
+  "python.formatting.provider": "autopep8"
 }
