@@ -33,7 +33,7 @@ function config.coc()
     "coc-ultisnips",
     "coc-tsserver",
     "coc-snippets",
-    "coc-python",
+    "coc-pyright",
     "coc-lists",
     "coc-json",
     "coc-html",
