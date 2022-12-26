@@ -33,6 +33,7 @@ function config.nvim_treesitter()
       "typescript",
       "vue",
       "css",
+      "vim"
     },
     highlight = { enable = true },
     textobjects = {
