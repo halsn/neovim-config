@@ -44,6 +44,7 @@ function config.coc()
     "coc-css",
     "coc-tabnine",
     "coc-prettier",
+    "coc-vetur"
   }
 
   function _G.check_back_space()

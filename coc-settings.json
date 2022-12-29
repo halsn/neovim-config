@@ -20,7 +20,8 @@
     "javascript.jsx": ["javascript"],
     "typescriptreact": ["javascript"],
     "typescript": ["javascript"],
-    "tpyescript.jsx": ["javascript"]
+    "tpyescript.jsx": ["javascript"],
+    "vue": ["javascript"]
   },
   "coc.source.word.priority": 70,
   "coc.source.buffer.priority": 80,
