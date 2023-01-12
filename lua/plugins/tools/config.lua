@@ -85,7 +85,7 @@ function config.telescope()
       results_title = false,
       -- borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
       layout_strategy = "horizontal",
-      path_display = { "absolute" },
+      path_display = { "smart" },
       file_ignore_patterns = {},
       layout_config = {
         prompt_position = "bottom",
