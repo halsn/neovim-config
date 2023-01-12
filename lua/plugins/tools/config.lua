@@ -68,11 +68,12 @@ function config.telescope()
           ["<C-j>"] = "move_selection_next",
           ["<C-k>"] = "move_selection_previous",
           ["<C-s>"] = "file_split",
+          ["<C-v>"] = "file_vsplit",
           ["<C-t>"] = "file_tab",
         },
         n = {
           ["s"] = "file_split",
-          ["i"] = "file_vsplit",
+          ["v"] = "file_vsplit",
           ["t"] = "file_tab",
         },
       },
