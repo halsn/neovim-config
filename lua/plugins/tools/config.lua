@@ -140,8 +140,8 @@ function config.bookmarks()
         nmap ma :BookmarkShowAll<CR>
         nmap mc :BookmarkClear<CR>
         nmap mx :BookmarkClearAll<CR>
-        nmap mkk :BookmarkMoveUp
-        nmap mjj :BookmarkMoveDown
+        nmap mkk :BookmarkMoveUp<CR>
+        nmap mjj :BookmarkMoveDown<CR>
     endfunction
     function! BookmarkUnmapKeys()
         unmap mm
