@@ -56,4 +56,9 @@ tools["nvim-telescope/telescope-frecency.nvim"] = {
   requires = { { "tami5/sqlite.lua", opt = true } },
 }
 
+tools["MattesGroeger/vim-bookmarks"] = {
+  opt = false,
+  config = conf.bookmarks,
+}
+
 return tools

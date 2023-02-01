@@ -9,7 +9,7 @@ function config.nerdtree()
     let NERDTreeMouseMode=2
     let NERDTreeQuitOnOpen=1
     let NERDTreeAutoDeleteBuffer = 1
-    let g:NERDTreeMinimalMenu=1
+    let g:NERDTreeMinimalMenu=0
 
     " autocmd BufEnter * lcd %:p:h        
   ]])
@@ -125,6 +125,38 @@ function config.telescope()
   require("telescope").load_extension("fzf")
   require("telescope").load_extension("project")
   require("telescope").load_extension("frecency")
+end
+
+function config.bookmarks()
+  vim.cmd([[
+    let g:bookmark_no_default_key_mappings = 1
+    let g:bookmark_auto_close = 1
+    let g:bookmark_display_annotation = 1
+    function! BookmarkMapKeys()
+        nmap mm :BookmarkToggle<CR>
+        nmap mi :BookmarkAnnotate<CR>
+        nmap mn :BookmarkNext<CR>
+        nmap mp :BookmarkPrev<CR>
+        nmap ma :BookmarkShowAll<CR>
+        nmap mc :BookmarkClear<CR>
+        nmap mx :BookmarkClearAll<CR>
+        nmap mkk :BookmarkMoveUp
+        nmap mjj :BookmarkMoveDown
+    endfunction
+    function! BookmarkUnmapKeys()
+        unmap mm
+        unmap mi
+        unmap mn
+        unmap mp
+        unmap ma
+        unmap mc
+        unmap mx
+        unmap mkk
+        unmap mjj
+    endfunction
+    autocmd BufEnter * :call BookmarkMapKeys()
+    autocmd BufEnter NERD_tree_* :call BookmarkUnmapKeys()
+  ]])
 end
 
 return config
