@@ -132,14 +132,15 @@ function config.bookmarks()
     let g:bookmark_no_default_key_mappings = 1
     let g:bookmark_auto_close = 1
     let g:bookmark_display_annotation = 1
+    let g:bookmark_highlight_lines = 1    
     function! BookmarkMapKeys()
         nmap mm :BookmarkToggle<CR>
         nmap mi :BookmarkAnnotate<CR>
         nmap mn :BookmarkNext<CR>
         nmap mp :BookmarkPrev<CR>
-        nmap ma :BookmarkShowAll<CR>
-        nmap mc :BookmarkClear<CR>
-        nmap mx :BookmarkClearAll<CR>
+        " nmap <leader>sa :BookmarkShowAll<CR>
+        nmap mx :BookmarkClear<CR>
+        nmap mxx :BookmarkClearAll<CR>
         nmap mkk :BookmarkMoveUp<CR>
         nmap mjj :BookmarkMoveDown<CR>
     endfunction
@@ -148,9 +149,9 @@ function config.bookmarks()
         unmap mi
         unmap mn
         unmap mp
-        unmap ma
-        unmap mc
+        " unmap <leader>a
         unmap mx
+        unmap mxx
         unmap mkk
         unmap mjj
     endfunction

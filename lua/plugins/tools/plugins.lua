@@ -61,4 +61,9 @@ tools["MattesGroeger/vim-bookmarks"] = {
   config = conf.bookmarks,
 }
 
+tools["tom-anders/telescope-vim-bookmarks.nvim"] = {
+  opt = false,
+  after = "telescope.nvim"
+}
+
 return tools

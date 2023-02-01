@@ -23,6 +23,7 @@ local plug_map = {
   ["n|<leader><space>"] = map_cmd(":Telescope buffers sort_lastused=true initial_mode=insert<CR>")
     :with_noremap()
     :with_silent(),
+  ["n|<leader>a"] = map_cmd(":Telescope vim_bookmarks all initial_mode=normal<CR>"):with_noremap():with_silent(),
 
   -- Plugin illuminate
   ["n|;"] = map_cmd(":lua require('illuminate').goto_next_reference(wrap)<CR>"):with_noremap():with_silent(),
