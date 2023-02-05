@@ -40,5 +40,7 @@
   "suggest.enablePreselect": false,
   "suggest.noselect": true,
   "python.formatting.provider": "autopep8",
-  "snippets.ultisnips.pythonPrompt": false
+  "snippets.ultisnips.pythonPrompt": false,
+  "pyright.inlayHints.functionReturnTypes": false,
+  "pyright.inlayHints.variableTypes": false
 }
