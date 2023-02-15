@@ -133,6 +133,8 @@ function config.bookmarks()
     let g:bookmark_auto_close = 1
     let g:bookmark_display_annotation = 1
     let g:bookmark_highlight_lines = 1    
+    let g:bookmark_save_per_working_dir = 1
+    let g:bookmark_auto_save = 1
     function! BookmarkMapKeys()
         nmap mm :BookmarkToggle<CR>
         nmap mi :BookmarkAnnotate<CR>
