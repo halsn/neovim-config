@@ -51,6 +51,9 @@ local def_map = {
   -- Visual
   ["v|J"] = map_cmd(":m '>+1<cr>gv=gv"),
   ["v|K"] = map_cmd(":m '<-2<cr>gv=gv"),
+
+  -- Coc
+  ["n|<leader><leader>f"] = map_cmd("<Esc>:Format<CR>"):with_noremap():with_silent(),
 }
 
 bind.nvim_load_mapping(def_map)
