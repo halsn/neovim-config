@@ -107,7 +107,7 @@ function getPie3D(pieData: any, internalDiameterRatio: any) {
 
     let seriesItem: any = {
       name:
-        typeof pieData[i].name === 'undefined' ? `series${i}` : pieData[i].name,
+        typeof pieData[i].name === 'undefined' ? \`series${i}\` : pieData[i].name,
       type: 'surface',
       parametric: true,
       wireframe: {
@@ -341,13 +341,13 @@ const getData = () => {
           params.seriesName !== 'mouseoutSeries' &&
           params.seriesName !== 'pie2d'
         ) {
-          return `${
+          return \`${
             params.seriesName
           }<br/><span style="display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:${
             params.color
           };"></span>${
             option.value.series[params.seriesIndex].pieData.value + '辆'
-          }`;
+          }\`;
         }
       },
       textStyle: {
@@ -533,16 +533,16 @@ const onGlobalOut = () => {
   />
 </template>
 
-<style>
+<style scoped lang="scss">
 /**
  * 默认尺寸为 600px×400px，如果想让图表响应尺寸变化，可以像下面这样
  * 把尺寸设为百分比值（同时请记得为容器设置尺寸）。
  */
 /**/
-/* .echarts { */
-/*   width: 600px; */
-/*   height: 400px; */
-/* } */
+.echarts {
+  width: 600px;
+  height: 400px;
+}
 </style>
 endsnippet
 
