@@ -227,3 +227,13 @@ const downloadFile = async (type, fileName) => {
   saveAs(blob, \`\${fileName\}.xls\`);
 };
 endsnippet
+
+snippet utils_safe_parse "safe json parse"
+function safeJsonParse (text) {
+  try {
+    return JSON.parse(text)
+  } catch (ex) {
+    return {}
+  }
+}
+endsnippet
