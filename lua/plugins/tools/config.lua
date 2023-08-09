@@ -9,7 +9,7 @@ function config.nerdtree()
     let NERDTreeMouseMode=2
     let NERDTreeQuitOnOpen=1
     let NERDTreeAutoDeleteBuffer = 1
-    let g:NERDTreeMinimalMenu=0
+    let g:NERDTreeMinimalMenu=1
 
     " autocmd BufEnter * lcd %:p:h        
   ]])
