@@ -106,4 +106,11 @@ function config.coc()
   keyset("n", "<leader>m", ":exe 'CocList -I --auto-preview --normal --input='.expand('<cword>').' words'<CR>", opts)
 end
 
+function config.copilot()
+  vim.cmd([[
+    imap <silent><script><expr> <S-TAB> copilot#Accept("\<CR>")
+    let g:copilot_no_tab_map = v:true
+  ]])
+end
+
 return config

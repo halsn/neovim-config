@@ -12,4 +12,8 @@ completion["windwp/nvim-autopairs"] = {
   config = conf.autopairs,
 }
 
+completion["github/copilot.vim"] = {
+  opt = false,
+  config = conf.copilot
+}
 return completion
