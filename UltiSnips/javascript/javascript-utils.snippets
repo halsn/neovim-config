@@ -237,3 +237,18 @@ function safeJsonParse (text) {
   }
 }
 endsnippet
+
+snippet utils_get_tree_data_by_key
+function getTreeDataByKey(tree, key) {
+  let res = [];
+  const recuFun = arr => {
+    if (!Array.isArray(arr)) return;
+    if (!arr.length) return;
+    let checked = arr.filter(c => c[key]);
+    res = [...res, ...checked];
+    arr.forEach(ch => recuFun(ch.childList));
+  };
+  recuFun(tree);
+  return res;
+}
+endsnippet
