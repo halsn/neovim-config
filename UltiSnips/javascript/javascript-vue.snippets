@@ -546,8 +546,37 @@ const onGlobalOut = () => {
 </style>
 endsnippet
 
-snippet vue_empty_component "vue3 empty component"
+snippet vue3_empty_component "vue3 empty component"
 <script setup lang="ts"></script>
+
+<template>
+  <div>
+    <slot></slot>
+  </div>
+</template>
+
+<style scoped lang="scss"></style>
+endsnippet
+
+snippet vue2_empty_component "vue2 empty component"
+<script>
+export default {
+  name: '',
+  data() {
+    return {
+    }
+  },
+
+  computed: {
+  },
+
+  mounted() {
+  },
+
+  methods: {
+  }
+}
+</script>
 
 <template>
   <div>
