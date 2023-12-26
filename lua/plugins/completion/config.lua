@@ -44,7 +44,7 @@ function config.coc()
     "coc-css",
     "coc-tabnine",
     "coc-prettier",
-    "coc-vetur"
+    "coc-vetur",
     "@yaegassy/coc-volar"
   }
 
