@@ -45,6 +45,7 @@ function config.coc()
     "coc-tabnine",
     "coc-prettier",
     "coc-vetur"
+    "@yaegassy/coc-volar"
   }
 
   function _G.check_back_space()

@@ -42,5 +42,9 @@
   "python.formatting.provider": "autopep8",
   "snippets.ultisnips.pythonPrompt": false,
   "pyright.inlayHints.functionReturnTypes": false,
-  "pyright.inlayHints.variableTypes": false
+  "pyright.inlayHints.variableTypes": false,
+  "volar.takeOverMode.enabled": false,
+  "volar.enable": true,
+  "volar.autoClosingTags": true,
+  "vetur.enable": false
 }

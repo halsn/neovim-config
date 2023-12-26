@@ -13,6 +13,7 @@ editor["romainl/vim-cool"] = {
 editor["terrortylor/nvim-comment"] = {
   opt = false,
   config = conf.nvim_comment,
+  after = "nvim-treesitter",
 }
 
 editor["nvim-treesitter/nvim-treesitter"] = {
@@ -24,7 +25,8 @@ editor["nvim-treesitter/nvim-treesitter"] = {
 
 editor["JoosepAlviste/nvim-ts-context-commentstring"] = {
   opt = true,
-  after = "nvim-treesitter",
+  config = conf.ts_context_commentstring,
+  after = "nvim-comment",
 }
 
 editor["RRethy/vim-illuminate"] = {

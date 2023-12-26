@@ -33,7 +33,8 @@ function config.nvim_treesitter()
       "typescript",
       "vue",
       "css",
-      "vim"
+      "vim",
+      "tsx"
     },
     highlight = { enable = true },
     textobjects = {
@@ -67,7 +68,7 @@ function config.nvim_treesitter()
         },
       },
     },
-    context_commentstring = { enable = true, enable_autocmd = false },
+    -- context_commentstring = { enable = true, enable_autocmd = false },
     matchup = { enable = true },
   })
   require("nvim-treesitter.install").prefer_git = true
@@ -77,10 +78,19 @@ function config.nvim_treesitter()
   end
 end
 
+function config.ts_context_commentstring()
+  require('ts_context_commentstring').setup {
+    enable_autocmd = false,
+    languages = {
+      typescript = '// %s',
+    },
+  }
+end
+
 function config.nvim_comment()
   require("nvim_comment").setup({
     hook = function()
-      require("ts_context_commentstring.internal").update_commentstring()
+      require("ts_context_commentstring").update_commentstring()
     end,
   })
 end
