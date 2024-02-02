@@ -109,7 +109,7 @@ end
 
 function config.copilot()
   vim.cmd([[
-    imap <silent><script><expr> <C-H> copilot#Accept("\<CR>")
+    imap <silent><script><expr> <C-U> copilot#Accept("\<CR>")
     let g:copilot_no_tab_map = v:true
   ]])
 end
