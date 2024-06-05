@@ -25,7 +25,6 @@
   },
   "coc.source.word.priority": 70,
   "coc.source.buffer.priority": 80,
-  "tabnine.priority": 100,
   "list.source.mru.ignoreGitIgnore": true,
   "emmet.includeLanguages": {
     "vue-html": "html",
@@ -36,7 +35,6 @@
   "javascript.suggest.autoImports": true,
   "typescript.suggest.autoImports": true,
   "suggest.selection": "first",
-  "tabnine.enablePreselect": false,
   "suggest.enablePreselect": false,
   "suggest.noselect": true,
   "python.formatting.provider": "autopep8",

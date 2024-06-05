@@ -12,8 +12,14 @@ completion["windwp/nvim-autopairs"] = {
   config = conf.autopairs,
 }
 
-completion["github/copilot.vim"] = {
+-- completion["github/copilot.vim"] = {
+--   opt = false,
+--   config = conf.copilot
+-- }
+
+completion["Exafunction/codeium.vim"] = {
   opt = false,
-  config = conf.copilot
+  config = conf.codeium
 }
+
 return completion

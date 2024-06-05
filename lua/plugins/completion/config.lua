@@ -42,7 +42,7 @@ function config.coc()
     "coc-dictionary",
     "coc-diagnostic",
     "coc-css",
-    "coc-tabnine",
+    -- "coc-tabnine",
     "coc-prettier",
     "coc-vetur",
     "@yaegassy/coc-volar"
@@ -112,6 +112,12 @@ function config.copilot()
     imap <silent><script><expr> <C-U> copilot#Accept("\<CR>")
     let g:copilot_no_tab_map = v:true
   ]])
+end
+
+function config.codeium()
+  vim.g.codeium_disable_bindings = 1
+  vim.g.codeium_no_map_tab = true
+  vim.keymap.set('i', '<C-U>', function () return vim.fn['codeium#Accept']() end, { expr = true, silent = true })
 end
 
 return config
