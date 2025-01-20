@@ -1,3 +1,0 @@
-let l:bm_file_version = 1
-let l:bm_sessions = {'default': {'/mnt/d/workspace/hnst-big-screen/.gitignore': [{'sign_idx': 9500, 'line_nr': 28, 'content': '*.sw?', 'annotation': 'fooo'},],}}
-let l:bm_current_session = 'default'
